@@ -15,6 +15,8 @@ app.get('/', (request, response) => {
   })
   app.get('/users', db.getUsers) // obtener todo los usuarios
   app.get('/users/:nit', db.getUserByNit)
+  app.post('/users', db.createUser)  // creando 
+  app.put('/users/:nit', db.updateUser)  //actualizando
   app.delete('/users/:nit', db.deleteUserByNit) //este elimina un usuario nnaguanagua
   
   app.listen(port, () => {

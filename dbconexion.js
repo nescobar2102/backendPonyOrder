@@ -14,7 +14,7 @@ const getUsers = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
-   const getUserByNit = (request, response) => {
+  const getUserByNit = (request, response) => {
     const nit = parseInt(request.params.nit)
   
     pool.query('SELECT * FROM usuario WHERE nit = $1', [nit], (error, results) => {
@@ -23,6 +23,31 @@ const getUsers = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
+  }
+  const createUser = (request, response) => {
+    const { nombre, correo_electronico } = request.body
+  
+    pool.query('INSERT INTO usuario (nombre, correo_electronico) VALUES ($1, $2)', [nombre, correo_electronico], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).send(`User added with nit: ${result.insertNit}`)
+    })
+  }
+  const updateUser = (request, response) => {
+    const nit = parseInt(request.params.nit)
+    const { nombre, correo_electronico } = request.body
+  
+    pool.query(
+      'UPDATE usuario SET nombre = $1, correo_electronico = $2 WHERE nit = $3',
+      [nombre, correo_electronico, nit],
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`User modified with nit: ${nit}`)
+      }
+    )
   }
   /**
    * author:nnaguanagua
@@ -42,6 +67,8 @@ const getUsers = (request, response) => {
   module.exports = {
     getUsers,
     getUserByNit,
-    deleteUserByNit
+    deleteUserByNit,
+    createUser,
+    updateUser,
   }
 
