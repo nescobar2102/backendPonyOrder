@@ -24,8 +24,24 @@ const getUsers = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
+  /**
+   * author:nnaguanagua
+   * date: 16/0/22
+   */
+  const deleteUserByNit = (request, response) => {
+    const nit = parseInt(request.params.nit)
+  
+    pool.query('DELETE FROM usuario WHERE nit = $1', [nit], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`User deleted with ID: ${nit}`)
+    })
+  }
+
   module.exports = {
     getUsers,
-    getUserByNit
+    getUserByNit,
+    deleteUserByNit
   }
 

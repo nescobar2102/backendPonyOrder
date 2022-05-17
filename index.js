@@ -15,6 +15,8 @@ app.get('/', (request, response) => {
   })
   app.get('/users', db.getUsers) // obtener todo los usuarios
   app.get('/users/:nit', db.getUserByNit)
+  app.delete('/users/:nit', db.deleteUserByNit) //este elimina un usuario nnaguanagua
+  
   app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   })
