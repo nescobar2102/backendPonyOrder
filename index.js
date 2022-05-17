@@ -2,7 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
-const db = require('./dbconexion')
+ 
+var usersRouter = require("./api/controllers/users"); 
+var users = express.Router();
+
 
 app.use(bodyParser.json())
 app.use(
@@ -13,9 +16,20 @@ app.use(
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
   })
-  app.get('/users', db.getUsers) // obtener todo los usuarios
-  app.get('/users/:nit', db.getUserByNit)
-  app.delete('/users/:nit', db.deleteUserByNit) //este elimina un usuario nnaguanagua
+
+  
+users
+.route("/users")
+.get(usersRouter.findAllUsers)
+.post(usersRouter.findAllUsers);
+
+users
+  .route("/users/:nit")
+  .get(usersRouter.findByNit)
+  //.put(usersRouter.updateTVShow)
+  .delete(usersRouter.deleteUserByNit);
+
+  app.use("/api", users);
   
   app.listen(port, () => {
     console.log(`App running on port ${port}.`)
