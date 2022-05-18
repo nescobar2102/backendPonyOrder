@@ -1,12 +1,4 @@
-/*const Pool = require('pg').Pool
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'PonyOrder',
-    password: '123456',
-    port: 5432,
-})*/
-const db = require('../config/db')
+ const db = require('../config/db')
 
 class Usuario {
 
