@@ -54,6 +54,7 @@ class Usuario {
                     return results;
                 }  
                  
+            
 }
 
 module.exports = Usuario;

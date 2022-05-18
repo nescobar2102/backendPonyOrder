@@ -43,7 +43,7 @@ router.delete('/users/:nit', async (req,res) => {
     
 });
 
-//Create a todo.
+//inicio de sesio app
 router.post('/login', async (req,res) => {
     const { usuario, clave } = req.body
     let usuarios = await new Usuario().login(usuario, clave);   
@@ -52,9 +52,23 @@ router.post('/login', async (req,res) => {
     }
     else {
         res.status(404).json('El usuario o la clave es invalida')  
-    }
-    
+    }    
 });
+
+//Create a todo.
+router.post('/synchronization_users', async (req,res) => {
+    const {usuarios } = req.body
+    for (var i=0;i<usuarios.length;i++){ 
+        console.log(usuarios[i]);
+        const {nit, correo_electronico, usuario, nombre, flag_activo, clave  } =  usuarios[i]
+        await new Usuario().createUser( nit, correo_electronico, usuario, nombre, flag_activo, clave ); 
+     };
+     
+     let usuarios_all= await new Usuario().getUsers();
+     res.status(200).json(usuarios_all)
+  
+});
+
 
 module.exports = router;
  
