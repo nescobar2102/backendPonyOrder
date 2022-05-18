@@ -25,10 +25,14 @@ app.get('/', (request, response) => {
 const userRoutes = require('./src/routers/users');
 const empresaRoutes = require('./src/routers/empresa');
 const pedidoRoutes = require('./src/routers/pedido');
+const barrioRoutes = require('./src/routers/barrio');
+const ciudadesRoutes = require('./src/routers/ciudad');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
 app.use(pedidoRoutes);
+app.use(barrioRoutes);
+app.use(ciudadesRoutes);
 
 
   app.listen(PORT, () => {
