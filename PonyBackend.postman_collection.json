@@ -1,19 +1,26 @@
 {
-	"variables": [],
 	"info": {
+		"_postman_id": "c84902e4-db78-4e26-b100-021ce970202b",
 		"name": "PonyBackend",
-		"_postman_id": "d79915e8-1966-9da4-1511-dfcf7df45454",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Listado de todos los usuarios",
 			"request": {
-				"url": "http://localhost:3000/users",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				},
 				"description": "sewu oweonv"
 			},
 			"response": []
@@ -21,79 +28,124 @@
 		{
 			"name": "Obtener usuario por nit",
 			"request": {
-				"url": "http://localhost:3000/users/13333",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/users/13333",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"13333"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Eliminar un usuario por nit",
 			"request": {
-				"url": "http://localhost:3000/users/13333",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/users/13333",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"13333"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "update usuario por nit",
 			"request": {
-				"url": "http://localhost:3000/users/19314687",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"nombre\":\"Norbelys\",\n\t\"correo_electronico\" : \"WERTYUIO\"\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/users/19314687",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"19314687"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Crear un usuario",
 			"request": {
-				"url": "http://localhost:3000/users",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Listar todas las empresas",
 			"request": {
-				"url": "http://localhost:3000/empresa",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/empresa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Listar una empresa por  nit",
 			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/empresa/:nit",
 					"protocol": "http",
@@ -105,29 +157,162 @@
 						"empresa",
 						":nit"
 					],
-					"query": [],
 					"variable": [
 						{
 							"key": "nit",
 							"value": ""
 						}
 					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "listado de barrio",
 			"request": {
-				"url": "http://localhost:3000/barrio",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/barrio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"barrio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sincronizacion de barrio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"barrios\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"id_barrio\" : \"76001001\" ,\r\n\"nombre\" : \"Las acacias\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"id_barrio\" : \"76001002\" ,\r\n\"nombre\" : \"Los Andes\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_barrio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_barrio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizacion del estado de empresa ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"estado\":false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/empresa/status/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa",
+						"status",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "33333"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar ciudad por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/ciudades/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de cuidad ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ciudades\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"nombre\" : \"Cali\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76016\" ,\r\n\"nombre\" : \"Buenaventura\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_ciudad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_ciudad"
+					]
+				}
 			},
 			"response": []
 		}
