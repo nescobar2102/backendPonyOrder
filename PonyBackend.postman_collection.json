@@ -1,228 +1,135 @@
 {
-	"id": "d79915e8-1966-9da4-1511-dfcf7df45454",
-	"name": "PonyBackend",
-	"description": "",
-	"order": [
-		"aca0cef9-3d8b-4eaf-60b3-40eb03e0c8bf",
-		"04d3fe14-1b17-ba65-0b57-cd325d530fb3",
-		"e7962261-650e-e5a9-cc37-1ab7e1f4b52d",
-		"b75bae53-6a96-f018-ce27-ef8e0a50561a",
-		"45f65e8c-1c57-8d93-cf14-065d928a7081",
-		"f774e80a-a6e0-25b7-1415-ce636197bef6",
-		"9f535b03-cc18-930c-c1eb-da431a1ce046",
-		"7f355574-f544-8b95-9d2a-b711da75706d"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 1649606963954,
-	"owner": "2354114",
-	"public": false,
-	"requests": [
+	"variables": [],
+	"info": {
+		"name": "PonyBackend",
+		"_postman_id": "d79915e8-1966-9da4-1511-dfcf7df45454",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "04d3fe14-1b17-ba65-0b57-cd325d530fb3",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/users/13333",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": null,
-			"dataMode": "params",
-			"name": "Obtener usuario por nit",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652804690380,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "45f65e8c-1c57-8d93-cf14-065d928a7081",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:3000/users",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Crear un usuario",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652891499586,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
-		},
-		{
-			"id": "7f355574-f544-8b95-9d2a-b711da75706d",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/barrio",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": null,
-			"dataMode": "params",
-			"name": "listado de barrio",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652913846412,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "9f535b03-cc18-930c-c1eb-da431a1ce046",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/empresa/:nit",
-			"queryParams": [],
-			"pathVariables": {
-				"nit": ""
-			},
-			"pathVariableData": [
-				{
-					"key": "nit",
-					"value": ""
-				}
-			],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": null,
-			"dataMode": "params",
-			"name": "Listar una empresa por  nit",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652896654960,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "aca0cef9-3d8b-4eaf-60b3-40eb03e0c8bf",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/users",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1652810698423,
 			"name": "Listado de todos los usuarios",
-			"description": "sewu oweonv",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"responses": []
+			"request": {
+				"url": "http://localhost:3000/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "sewu oweonv"
+			},
+			"response": []
 		},
 		{
-			"id": "b75bae53-6a96-f018-ce27-ef8e0a50561a",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:3000/users/19314687",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "PUT",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": [],
-			"dataMode": "raw",
-			"name": "update usuario por nit",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652810717068,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\n\t\"nombre\":\"Norbelys\",\n\t\"correo_electronico\" : \"WERTYUIO\"\n}"
+			"name": "Obtener usuario por nit",
+			"request": {
+				"url": "http://localhost:3000/users/13333",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "e7962261-650e-e5a9-cc37-1ab7e1f4b52d",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/users/13333",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "DELETE",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": null,
-			"dataMode": "params",
 			"name": "Eliminar un usuario por nit",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652804709984,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			"request": {
+				"url": "http://localhost:3000/users/13333",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "f774e80a-a6e0-25b7-1415-ce636197bef6",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/empresa",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "d79915e8-1966-9da4-1511-dfcf7df45454",
-			"data": null,
-			"dataMode": "params",
+			"name": "update usuario por nit",
+			"request": {
+				"url": "http://localhost:3000/users/19314687",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Norbelys\",\n\t\"correo_electronico\" : \"WERTYUIO\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario",
+			"request": {
+				"url": "http://localhost:3000/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Listar todas las empresas",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652896632264,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			"request": {
+				"url": "http://localhost:3000/empresa",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Listar una empresa por  nit",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/empresa/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa",
+						":nit"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "nit",
+							"value": ""
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "listado de barrio",
+			"request": {
+				"url": "http://localhost:3000/barrio",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
