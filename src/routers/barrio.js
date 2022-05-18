@@ -4,13 +4,13 @@ const Barrio = require('../controllers/barrio');
 
 // listar los Barrio
 router.get('/barrio', async (req,res) => {
-    let barrio = await new barrio().getBarrio();
+    let barrio = await new Barrio().getBarrio();
     res.status(200).json(barrio)
 });
 // listar un nuevo Barrio por Nit
 router.get('/barrio/:nit', async (req,res) => {
     let {nit} = req.params;    
-    let barrio = await new barrio().getBarrioByNit(nit);
+    let barrio = await new Barrio().getBarrioByNit(nit);
     res.status(200).json(barrio)
 });
 //Create a todo.
