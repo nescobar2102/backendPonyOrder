@@ -2,16 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require("cors");
 const app = express()
-<<<<<<< HEAD
-const port = 3000
- 
-var usersRouter = require("./api/controllers/users"); 
-var users = express.Router();
-
-=======
 //const port = 3000
  
->>>>>>> 33436810fa90a7d7bce46b463ce75d4eea2b4dc1
 
 app.use(bodyParser.json())
 app.use(cors());
