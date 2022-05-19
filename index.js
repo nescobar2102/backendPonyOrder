@@ -1,10 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require("cors");
 const app = express()
-const port = 3000
-const db = require('./dbconexion')
+//const port = 3000
+ 
 
 app.use(bodyParser.json())
+app.use(cors());
+
+const PORT = process.env.PORT || 3000;
+
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -13,10 +19,22 @@ app.use(
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
   })
-  app.get('/users', db.getUsers) // obtener todo los usuarios
-  app.get('/users/:nit', db.getUserByNit)
-  app.delete('/users/:nit', db.deleteUserByNit) //este elimina un usuario nnaguanagua
-  
-  app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
+ 
+
+  //import the routes
+const userRoutes = require('./src/routers/users');
+const empresaRoutes = require('./src/routers/empresa');
+const pedidoRoutes = require('./src/routers/pedido');
+const barrioRoutes = require('./src/routers/barrio');
+const ciudadesRoutes = require('./src/routers/ciudad');
+
+app.use(userRoutes);
+app.use(empresaRoutes);
+app.use(pedidoRoutes);
+app.use(barrioRoutes);
+app.use(ciudadesRoutes);
+
+
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}.`)
   })
