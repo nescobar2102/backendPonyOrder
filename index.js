@@ -1,13 +1,24 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require("cors");
 const app = express()
+<<<<<<< HEAD
 const port = 3000
  
 var usersRouter = require("./api/controllers/users"); 
 var users = express.Router();
 
+=======
+//const port = 3000
+ 
+>>>>>>> 33436810fa90a7d7bce46b463ce75d4eea2b4dc1
 
 app.use(bodyParser.json())
+app.use(cors());
+
+const PORT = process.env.PORT || 3000;
+
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -16,21 +27,22 @@ app.use(
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
   })
+ 
 
-  
-users
-.route("/users")
-.get(usersRouter.findAllUsers)
-.post(usersRouter.findAllUsers);
+  //import the routes
+const userRoutes = require('./src/routers/users');
+const empresaRoutes = require('./src/routers/empresa');
+const pedidoRoutes = require('./src/routers/pedido');
+const barrioRoutes = require('./src/routers/barrio');
+const ciudadesRoutes = require('./src/routers/ciudad');
 
-users
-  .route("/users/:nit")
-  .get(usersRouter.findByNit)
-  //.put(usersRouter.updateTVShow)
-  .delete(usersRouter.deleteUserByNit);
+app.use(userRoutes);
+app.use(empresaRoutes);
+app.use(pedidoRoutes);
+app.use(barrioRoutes);
+app.use(ciudadesRoutes);
 
-  app.use("/api", users);
-  
-  app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
+
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}.`)
   })
