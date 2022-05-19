@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "c84902e4-db78-4e26-b100-021ce970202b",
+		"name": "PonyBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listado de todos los usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users_all"
+					]
+				},
+				"description": "sewu oweonv"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener usuario por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un usuario por nit",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/13333",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"13333"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update usuario por nit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Norbelys\",\n\t\"correo_electronico\" : \"WERTYUIO\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/19314687",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"19314687"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas las empresas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresa_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar una empresa por  nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresa/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listado de barrio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/barrio_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"barrio_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sincronizacion de barrio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"barrios\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"id_barrio\" : \"76001001\" ,\r\n\"nombre\" : \"Las acacias\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"id_barrio\" : \"76001002\" ,\r\n\"nombre\" : \"Los Andes\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_barrio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_barrio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizacion del estado de empresa ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"estado\":false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/empresa/status/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa",
+						"status",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "33333"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar ciudad todas las ciudades",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/ciudades_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de cuidad ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ciudades\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76001\" ,\r\n\"nombre\" : \"Cali\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_pais\" : \"57\" ,\r\n\"id_depto\" : \"76\" ,\r\n\"id_ciudad\" : \"76016\" ,\r\n\"nombre\" : \"Buenaventura\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_ciudad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_ciudad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listado de ciudades por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar barrio por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/barrio/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"barrio",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear empresa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nit\": \"33333\",\r\n         \"dv\": \"r\",\r\n        \"correo_electronico\": \"carmen\",\r\n        \"razon_social\": \"social\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/empresa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
