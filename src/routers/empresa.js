@@ -3,21 +3,12 @@ const router = express.Router();
 const Empresa = require('../controllers/empresa');
 
 
-/*
-  // Empresa
-  app.get('/empresa', empresa.getEmpresa) // listar las empresa
-  app.get('/empresa/:nit', empresa.getEmpresaNit) // listar una empresa por Nit
-  app.post('/empresa', empresa.createEmpresa) // creando una nueva empresa
-  app.put('/empresa/:nit', empresa.updateEmpresa)
-  app.put('/empresa/status/:nit', empresa.updateEmpresaStatus) //actualizar el estado
-*/
-
-// listar los usuarios
-router.get('/empresa', async (req,res) => {
+// listar los empresa
+router.get('/empresa_all', async (req,res) => {
     let empresa = await new Empresa().getEmpresa();
     res.status(200).json(empresa)
 });
-// listar un nuevo usuario por Nit
+// listar una nueva empresa por Nit
 router.get('/empresa/:nit', async (req,res) => {
     let {nit} = req.params;    
     let empresa = await new Empresa().getEmpresaNit(nit);

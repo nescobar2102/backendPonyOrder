@@ -3,7 +3,7 @@ const router = express.Router();
 const Usuario = require('../controllers/usuario');
 
 // listar los usuarios
-router.get('/users', async (req,res) => {
+router.get('/users_all', async (req,res) => {
     let usuarios = await new Usuario().getUsers();
     res.status(200).json(usuarios)
 });
@@ -59,7 +59,6 @@ router.post('/login', async (req,res) => {
 router.post('/synchronization_users', async (req,res) => {
     const {usuarios } = req.body
     for (var i=0;i<usuarios.length;i++){ 
-        console.log(usuarios[i]);
         const {nit, correo_electronico, usuario, nombre, flag_activo, clave  } =  usuarios[i]
         await new Usuario().createUser( nit, correo_electronico, usuario, nombre, flag_activo, clave ); 
      };

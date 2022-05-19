@@ -3,7 +3,7 @@ const router = express.Router();
 const Barrio = require('../controllers/barrio');
 
 // listar los Barrio
-router.get('/barrio', async (req,res) => {
+router.get('/barrio_all', async (req,res) => {
     let barrio = await new Barrio().getBarrio();
     res.status(200).json(barrio)
 });
@@ -17,7 +17,6 @@ router.get('/barrio/:nit', async (req,res) => {
 router.post('/synchronization_barrio', async (req,res) => {
     const {barrios } = req.body
     for (var i=0;i<barrios.length;i++){ 
-        console.log(barrios[i]);
         const {nit, id_pais, id_depto, id_ciudad, id_barrio, nombre } =  barrios[i]
         await new Barrio().createBarrio( nit, id_pais, id_depto, id_ciudad, id_barrio, nombre ); 
      };

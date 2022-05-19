@@ -6,7 +6,7 @@ class Barrio
         let results = await db.query(`SELECT * FROM barrio ORDER BY nit ASC`).catch(console.log); 
         return results.rows;
     }
-    async getBarrioNit(nit) {
+    async getBarrioByNit(nit) {
         let results = await db.query('SELECT * FROM barrio WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }

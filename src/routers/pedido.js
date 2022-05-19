@@ -3,7 +3,7 @@ const router = express.Router();
 const Pedido = require('../controllers/pedido');
 
 // listar los usuarios
-router.get('/pedido', async (req,res) => { 
+router.get('/pedido_all', async (req,res) => { 
 });
 // listar un nuevo peido por Nit
 router.get('/pedido/:nit', async (req,res) => {
