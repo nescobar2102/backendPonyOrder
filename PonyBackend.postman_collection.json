@@ -394,6 +394,154 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Listar los auxiliares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auxiliar_all/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auxiliar_all",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de auxiliar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"auxiliares\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"13050501\" ,\r\n\"descripcion\" : \"Clientes Nacionales\" ,\r\n\"flag_flujo_caja\" : \"NO\" ,\r\n\"id_tipo_cuenta\" : \"CC\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"11050501\" ,\r\n\"descripcion\" : \"Caja General\" ,\r\n\"flag_flujo_caja\" : \"SI\" ,\r\n\"id_tipo_cuenta\" : \"CA\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_auxiliar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_auxiliar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincrronizacion de los banco",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"bancos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_banco\" : \"07\" ,\r\n\"descripcion\" : \"Bancolombia\" ,\r\n\"id_tercero\" : \"890903938\" ,\r\n\"id_sucursal_tercero\" : \"1\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_banco\" : \"23\" ,\r\n\"descripcion\" : \"Banco de Occidente\" ,\r\n\"id_tercero\" : \"890300279\" ,\r\n\"id_sucursal_tercero\" : \"1\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_banco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_banco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar banco por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/banco_all/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"banco_all",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listado de banco",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/banco_all/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"banco_all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar  todos los auxiliar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auxiliar_all/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auxiliar_all",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
