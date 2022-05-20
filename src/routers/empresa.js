@@ -27,19 +27,17 @@ router.put('/empresa/:nit', async (req,res) => {
     const nit = parseInt(req.params.nit)
     const {razon_social, correo_electronico } = req.body 
     let empresa = await new Empresa().updateEmpresa( nit,razon_social, correo_electronico ); 
-    if(empresa){
- 
+    if(empresa){ 
         res.status(200).json(`Empresa modified with nit: ${nit} rowCount :  ${empresa.rowCount}`)
     }
     
 });
 //Update a todo.
 router.put('/empresa/status/:nit', async (req,res) => {
-    const nit = parseInt(req.params.nit)
+    const nit = req.params.nit
     const { estado } = req.body 
     let empresa = await new Empresa().updateEmpresaStatus( nit,estado ); 
-    if(empresa){
- 
+    if(empresa){ 
         res.status(200).send(`Empresa status modified with nit: ${nit} rowCount :  ${empresa.rowCount}`)
     }
     

@@ -9,15 +9,13 @@ class Usuario {
     }
 
     async getUserByNit(nit) {
-        let results = await db.query('SELECT * FROM usuario WHERE nit = $1', [nit]).catch(console.log);
-        console.log("-------", results.rows)
+        let results = await db.query('SELECT * FROM usuario WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
 
     async createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave) {
         let results = await db.query('SELECT * FROM usuario WHERE nit = $1', [nit]).catch(console.log);
-        if (results.rowCount > 0) {
-            console.log("entra al select ")
+        if (results.rowCount > 0) { 
             return results.rows;
         } else {
           await db

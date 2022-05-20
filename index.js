@@ -27,7 +27,7 @@ const pedidoRoutes = require('./src/routers/pedido');
 const barrioRoutes = require('./src/routers/barrio');
 const ciudadesRoutes = require('./src/routers/ciudad');
 const auxiliarRoutes = require('./src/routers/auxiliar');
-const bancoRoutes = require('./src/routers/bancos');
+const bancoRoutes = require('./src/routers/banco');
 
 app.use(userRoutes);
 app.use(empresaRoutes);

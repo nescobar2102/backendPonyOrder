@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Banco = require('../controllers/bancos');
+const Banco = require('../controllers/banco');
 
 // listar banco
 router.get('/banco_all', async (req,res) => {

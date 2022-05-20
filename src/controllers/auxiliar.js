@@ -11,6 +11,8 @@ class Auxiliares
         return results.rows;
     }
     async createAuxiliares (nit, id_auxiliar, descripcion, flag_flujo_caja, id_tipo_cuenta ) {
+        let results = await db.query('SELECT * FROM auxiliar WHERE nit = $1 and id_auxiliar = $2', [nit, id_auxiliar]).catch(console.log);
+        if (results.rowCount == 0) {  
             await db
             .query('INSERT INTO auxiliar (nit, id_auxiliar, descripcion, flag_flujo_caja, id_tipo_cuenta) VALUES ($1, $2, $3, $4,$5)', [
                 nit, 
@@ -21,7 +23,7 @@ class Auxiliares
             ])
             .catch(console.log);
           return;
-       
+            }
         }
 
 }
