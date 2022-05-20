@@ -28,6 +28,7 @@ const barrioRoutes = require('./src/routers/barrio');
 const ciudadesRoutes = require('./src/routers/ciudad');
 const auxiliarRoutes = require('./src/routers/auxiliar');
 const bancoRoutes = require('./src/routers/banco');
+const clasificacionItemsRoutes = require('./src/routers/clasificacionItems');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -36,6 +37,7 @@ app.use(barrioRoutes);
 app.use(ciudadesRoutes);
 app.use(auxiliarRoutes);
 app.use(bancoRoutes);
+app.use(clasificacionItemsRoutes);
 
 
   app.listen(PORT, () => {

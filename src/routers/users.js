@@ -4,8 +4,17 @@ const Usuario = require('../controllers/usuario');
 
 // listar los usuarios
 router.get('/users_all', async (req,res) => {
+    const response = newResponseJson();
+    response.msg = 'Listado de usuario';
     let usuarios = await new Usuario().getUsers();
-    res.status(200).json(usuarios)
+    console.log (usuarios);
+    if (usuarios.length>0){
+        response.data = usuarios;       
+    }
+    else {
+        response.success = false;
+    }
+    res.status(200).json(response)
 });
 // listar un nuevo usuario por Nit
 router.get('/users/:nit', async (req,res) => {
@@ -68,6 +77,13 @@ router.post('/synchronization_users', async (req,res) => {
   
 });
 
+function newResponseJson() {
+    return {
+        success: true,
+        msg: "",
+        data: [],
+    };
+}
 
 module.exports = router;
  
