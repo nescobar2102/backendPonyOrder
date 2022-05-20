@@ -1,6 +1,6 @@
 const db = require('../config/db')
 
-class clasificacionItems 
+class ClasificacionItems 
     {
         async getclasificacionItems() {
             let results = await db.query(`SELECT * FROM clasificacion_item ORDER BY descripcion ASC`).catch(console.log); 
@@ -30,4 +30,4 @@ class clasificacionItems
     }
     
     }
-module.exports = clasificacionItems;
+module.exports = ClasificacionItems;
