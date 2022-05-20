@@ -37,10 +37,10 @@ router.put('/empresa/:nit', async (req,res) => {
 router.put('/empresa/status/:nit', async (req,res) => {
     const nit = parseInt(req.params.nit)
     const { estado } = req.body 
-    let empresa = await new Empresa().updateUser( nit,estado ); 
+    let empresa = await new Empresa().updateEmpresaStatus( nit,estado ); 
     if(empresa){
  
-        response.status(200).send(`Empresa status modified with nit: ${nit} rowCount :  ${empresa.rowCount}`)
+        res.status(200).send(`Empresa status modified with nit: ${nit} rowCount :  ${empresa.rowCount}`)
     }
     
 });
