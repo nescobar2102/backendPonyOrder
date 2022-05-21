@@ -542,6 +542,205 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Listar clasificacion_Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sincronizacion  clasificacion_Items (categoria)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_clasificacionItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_clasificacionItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar categoria por descripcion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Frutas y Verduras"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los concepto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"conceptos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"01\" ,\r\n\"id_auxiliar\" : \"13551505\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 1.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"02\" ,\r\n\"id_auxiliar\" : \"13551501\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 2.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"03\" ,\r\n\"id_auxiliar\" : \"42958101\" ,\r\n\"descripcion\" : \"AJUSTE AL PESO (CREDITO)\" ,\r\n\"naturalezacta\" : \"CREDITO\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/concepto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"concepto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los concepto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/concepto/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"concepto",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "RETEFUENTE A FAVOR 1.5"
+						},
+						{
+							"key": "nit",
+							"value": "01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinncronizacion de concepto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"conceptos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"01\" ,\r\n\"id_auxiliar\" : \"13551505\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 1.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"02\" ,\r\n\"id_auxiliar\" : \"13551501\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 2.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"03\" ,\r\n\"id_auxiliar\" : \"42958101\" ,\r\n\"descripcion\" : \"AJUSTE AL PESO (CREDITO)\" ,\r\n\"naturalezacta\" : \"CREDITO\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_concepto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_concepto"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
