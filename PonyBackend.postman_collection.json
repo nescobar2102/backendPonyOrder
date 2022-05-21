@@ -741,6 +741,211 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Sincronizacion de medio_Contacto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_medioContacto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_medioContacto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar medioContacto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/medioContacto/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": null
+						},
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los medioContacto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/medioContacto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de zona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"zona\" :\r\n[\r\n{\r\n\"id_zona\" : \"4\" ,\r\n\"descripcion\" : \"carrera\" ,\r\n\"id_padre\" : \"23\",\r\n\"nivel\" : \"3\",\r\n\"es_padre\" : \"ma\",\r\n\"id_tercero\" : \"23\",\r\n\"id_sucursal_tercero\" : \"33\",\r\n\"nit\" : \"22\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_zona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_zona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar la zona por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"zona\" :\r\n[\r\n{\r\n\"id_zona\" : \"4\" ,\r\n\"descripcion\" : \"carrera\" ,\r\n\"id_padre\" : \"23\",\r\n\"nivel\" : \"3\",\r\n\"es_padre\" : \"ma\",\r\n\"id_tercero\" : \"23\",\r\n\"id_sucursal_tercero\" : \"33\",\r\n\"nit\" : \"22\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/zona/:descripcion/:nit/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"zona",
+						":descripcion",
+						":nit",
+						""
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "carrera"
+						},
+						{
+							"key": "nit",
+							"value": "22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo las zona",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/zona_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"zona_all"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

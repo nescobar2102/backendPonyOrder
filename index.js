@@ -30,6 +30,8 @@ const auxiliarRoutes = require('./src/routers/auxiliar');
 const bancoRoutes = require('./src/routers/banco');
 const clasificacionItemsRoutes = require('./src/routers/clasificacionItems');
 const conceptoRoutes = require('./src/routers/concepto');
+const medioContactoRoutes = require('./src/routers/medioContacto');
+const zonaRoutes = require('./src/routers/zona');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -40,6 +42,8 @@ app.use(auxiliarRoutes);
 app.use(bancoRoutes);
 app.use(clasificacionItemsRoutes);
 app.use(conceptoRoutes);
+app.use(medioContactoRoutes);
+app.use(zonaRoutes);
 
 
   app.listen(PORT, () => {
