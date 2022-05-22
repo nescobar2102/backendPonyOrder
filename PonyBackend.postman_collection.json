@@ -946,6 +946,409 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Listar los tipo documento por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipodoc/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipodoc",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "examinar"
+						},
+						{
+							"key": "nit",
+							"value": "9000555"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tipo documento ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipodoc_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipodoc_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion tipo documento ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_doc\" :\r\n[\r\n{\r\n\"id_empresa\" : \"26\",\r\n\"id_sucursal\" : \"62\",\r\n\"id_clase_doc\" : \"icd\",\r\n\"id_tipo_doc\" : \"465\",\r\n\"consecutivo\" : \"233\",\r\n\"descripcion\" : \"examinar\",\r\n\"prefijo\" : \"examinar\",\r\n\"id_ciudad\" : \"123333\",\r\n\"id_pais\" : \"98888\",\r\n\"id_depto\" : \"677777\",\r\n\"flag_notificacion\" : \"36\",\r\n\"flag_maneja_separado\" : \"44\",\r\n\"resolucion_dian\" : \"carolina\",\t\r\n\"nit\" : \"9000555\" \r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipodoc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipodoc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar tipo pago por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipopago/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipopago",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "cancelado"
+						},
+						{
+							"key": "nit",
+							"value": "9022255"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo pago",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_pago\" :\r\n[\r\n{\r\n\"id_tipo_pago\" : \"2644\",\r\n\"descripcion\" : \"cancelado\",\r\n\"aplica_en\" : \"22\",\r\n\"flag_valor\" : \"45\",\r\n\"nit\" : \"9022255\" \r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipopago_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipopago_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de los tipo pago",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_pago\" :\r\n[\r\n{\r\n\"id_tipo_pago\" : \"2644\",\r\n\"descripcion\" : \"cancelado\",\r\n\"aplica_en\" : \"22\",\r\n\"flag_valor\" : \"45\",\r\n\"nit\" : \"9022255\" \r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipopago",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipopago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo empresa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoempresa_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoempresa_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tipo empresa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_empresa\" :\r\n[\r\n{\r\n\"id_tipo_empresa\" : \"2224\",\r\n\"descripcion\" : \"Privada\",\r\n\"id_destino\" : \"2442\",\r\n\"id_proyecto\" : \"4522\",\r\n\"nit\" : \"9099005\" \r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipoempresa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipoempresa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tipo empresa por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoempresa/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoempresa",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Privada"
+						},
+						{
+							"key": "nit",
+							"value": "9099005"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo los tipo identificacion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoidentificacion_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoidentificacion_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tipo identificacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_identificacion\" :\r\n[\r\n{\r\n\"id_tipo_identificacion\" : \"222222\",\r\n\"descripcion\" : \"Industria\",\r\n\"id_clase_ident\" : \"2442\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipoidentificacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipoidentificacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo identificacion por descripcion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoidentificacion/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoidentificacion",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Industria"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

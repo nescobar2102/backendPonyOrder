@@ -32,6 +32,10 @@ const clasificacionItemsRoutes = require('./src/routers/clasificacionItems');
 const conceptoRoutes = require('./src/routers/concepto');
 const medioContactoRoutes = require('./src/routers/medioContacto');
 const zonaRoutes = require('./src/routers/zona');
+const tipodocRoutes = require('./src/routers/tipodoc');
+const tipopagoRoutes = require('./src/routers/tipopago');
+const tipoempresaRoutes = require('./src/routers/tipoempresa');
+const tipoidentificacionRoutes = require('./src/routers/tipoidentificacion');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -44,6 +48,10 @@ app.use(clasificacionItemsRoutes);
 app.use(conceptoRoutes);
 app.use(medioContactoRoutes);
 app.use(zonaRoutes);
+app.use(tipodocRoutes);
+app.use(tipopagoRoutes);
+app.use(tipoempresaRoutes);
+app.use(tipoidentificacionRoutes);
 
 
   app.listen(PORT, () => {
