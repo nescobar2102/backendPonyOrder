@@ -10,14 +10,13 @@ class Tipoidentificacion
         let results = await db.query('SELECT * FROM tipo_identificacion WHERE descripcion = $1', [descripcion]).catch(console.log); 
         return results.rows;
     }
-    async createTipoidentificacion(id_tipo_identificacion, descripcion, id_clase_ident) { 
+    async createTipoidentificacion(id_tipo_identificacion, descripcion) { 
         let results = await db.query('SELECT * FROM tipo_identificacion WHERE descripcion = $1', [descripcion]).catch(console.log);
         if (results.rowCount == 0) {     
             await db
-            .query('INSERT INTO tipo_identificacion (id_tipo_identificacion, descripcion, id_clase_ident ) VALUES ($1, $2, $3)', [
+            .query('INSERT INTO tipo_identificacion (id_tipo_identificacion, descripcion) VALUES ($1, $2)', [
                 id_tipo_identificacion,
-                descripcion, 
-                id_clase_ident
+                descripcion
             ])
             .catch(console.log);
           return;

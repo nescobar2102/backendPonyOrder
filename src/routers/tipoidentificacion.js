@@ -12,10 +12,10 @@ router.get('/tipoidentificacion/:descripcion', async (req,res) => {
     res.status(200).json(tipoidentificacion)
 });
 router.post('/synchronization_tipoidentificacion', async (req,res) => {
-    const {tipo_identificacion } = req.body
-    for (var i=0;i<tipo_identificacion.length;i++){ 
-        const {id_tipo_identificacion, descripcion, id_clase_ident } =  tipo_identificacion[i]
-        await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion, descripcion, id_clase_ident); 
+    const {identificaciones } = req.body
+    for (var i=0;i<identificaciones.length;i++){ 
+        const {id_tipo_identificacion, descripcion } =  identificaciones[i]
+        await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion, descripcion); 
      };
      
      let tipoidentificacion_all= await new Tipoidentificacion().getTipoidentificacion();

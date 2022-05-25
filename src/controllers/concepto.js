@@ -27,6 +27,5 @@ class Concepto
     }
     
     }
-module.exports = Concepto 
-;
+module.exports = Concepto;
 

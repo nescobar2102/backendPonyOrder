@@ -42,7 +42,18 @@ router.put('/empresa/status/:nit', async (req,res) => {
     }
     
 });
- 
+//Sincronizacion 
+router.post('/synchronization_empresa', async (req,res) => {
+    const {empresas } = req.body
+    for (var i=0;i<empresas.length;i++){ 
+        const {nit,razon_social,id_tipo_empresa,pre_actividad_economica,pre_cuenta,pre_medio_contacto,id_moneda,direccion,telefono,dv,fax,id_pais,id_depto,id_ciudad,regimen_tributario,flag_iva,flag_forma_pago_efectivo,correo_electronico,id_empresa} =  empresas[i]
+        await new Empresa().createEmpresa(nit,razon_social,id_tipo_empresa,pre_actividad_economica,pre_cuenta,pre_medio_contacto,id_moneda,direccion,telefono,dv,fax,id_pais,id_depto,id_ciudad,regimen_tributario,flag_iva,flag_forma_pago_efectivo,correo_electronico,id_empresa ); 
+     };
+     
+     let empresa_all= await new Empresa().getEmpresa();
+     res.status(200).json(empresa_all)
+  
+});
 
 module.exports = router;
  

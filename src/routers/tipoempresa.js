@@ -12,10 +12,10 @@ router.get('/tipoempresa/:descripcion/:nit', async (req,res) => {
     res.status(200).json(tipoempresa)
 });
 router.post('/synchronization_tipoempresa', async (req,res) => {
-    const {tipo_empresa } = req.body
-    for (var i=0;i<tipo_empresa.length;i++){ 
-        const { id_tipo_empresa, descripcion, id_destino, id_proyecto, nit} =  tipo_empresa[i]
-        await new Tipoempresa().createTipoempresa(id_tipo_empresa, descripcion, id_destino, id_proyecto, nit); 
+    const {tipoempresas } = req.body
+    for (var i=0;i<tipoempresas.length;i++){ 
+        const { id_tipo_empresa, descripcion, nit} =  tipoempresas[i]
+        await new Tipoempresa().createTipoempresa(id_tipo_empresa, descripcion, nit); 
      };
      
      let tipoempresa_all= await new Tipoempresa().getTipoempresa();

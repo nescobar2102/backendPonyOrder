@@ -36,6 +36,9 @@ const tipodocRoutes = require('./src/routers/tipodoc');
 const tipopagoRoutes = require('./src/routers/tipopago');
 const tipoempresaRoutes = require('./src/routers/tipoempresa');
 const tipoidentificacionRoutes = require('./src/routers/tipoidentificacion');
+const cuentaporterceroRoutes = require('./src/routers/cuentaportercero');
+const cuotaventasRoutes = require('./src/routers/cuotaventas');
+const deptoRoutes = require('./src/routers/depto');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -52,7 +55,9 @@ app.use(tipodocRoutes);
 app.use(tipopagoRoutes);
 app.use(tipoempresaRoutes);
 app.use(tipoidentificacionRoutes);
-
+app.use(cuentaporterceroRoutes);
+app.use(cuotaventasRoutes);
+app.use(deptoRoutes);
 
   app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`)

@@ -10,15 +10,13 @@ class Tipoempresa
         let results = await db.query('SELECT * FROM tipo_empresa WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log); 
         return results.rows;
     }
-    async createTipoempresa(id_tipo_empresa, descripcion, id_destino, id_proyecto, nit) { 
+    async createTipoempresa(id_tipo_empresa, descripcion, nit) { 
         let results = await db.query('SELECT * FROM tipo_empresa WHERE nit = $1 and descripcion = $2', [descripcion,nit]).catch(console.log);
         if (results.rowCount == 0) {     
             await db
-            .query('INSERT INTO tipo_empresa (id_tipo_empresa, descripcion, id_destino, id_proyecto, nit ) VALUES ($1, $2, $3, $4, $5 )', [
+            .query('INSERT INTO tipo_empresa (id_tipo_empresa, descripcion, nit ) VALUES ($1, $2, $3 )', [
                 id_tipo_empresa,
-                descripcion,
-                id_destino, 
-                id_proyecto, 
+                descripcion, 
                 nit
             ])
             .catch(console.log);

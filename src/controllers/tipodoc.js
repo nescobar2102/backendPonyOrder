@@ -10,25 +10,18 @@ class Tipodoc
         let results = await db.query('SELECT * FROM tipo_doc WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log); 
         return results.rows;
     }
-    async createTipodoc(id_empresa, id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion, prefijo, id_ciudad, id_pais, id_depto, flag_notificacion, flag_maneja_separado, resolucion_dian, nit) { 
+    async createTipodoc(nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion ) { 
         let results = await db.query('SELECT * FROM tipo_doc WHERE nit = $1 and descripcion = $2', [descripcion,nit]).catch(console.log);
         if (results.rowCount == 0) {     
             await db
-            .query('INSERT INTO tipo_doc (id_empresa, id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion, prefijo, id_ciudad, id_pais, id_depto, flag_notificacion, flag_maneja_separado, resolucion_dian, nit) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9,$10, $11, $12,$13, $14 )', [
-                id_empresa, 
-                id_sucursal, 
-                id_clase_doc, 
+            .query('INSERT INTO tipo_doc (nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion) VALUES ($1, $2, $3, $4, $5, $6, $7 )', [
+                nit,
+                id_empresa,
+                id_sucursal,
+                id_clase_doc,
                 id_tipo_doc,
                 consecutivo,
-                descripcion, 
-                prefijo,
-                id_ciudad, 
-                id_pais, 
-                id_depto,
-                flag_notificacion, 
-                flag_maneja_separado,
-                resolucion_dian, 
-                nit
+                descripcion,
             ])
             .catch(console.log);
           return;
