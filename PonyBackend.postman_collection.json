@@ -803,11 +803,11 @@
 					"variable": [
 						{
 							"key": "descripcion",
-							"value": null
+							"value": "ZAPATA"
 						},
 						{
 							"key": "nit",
-							"value": null
+							"value": "90005445"
 						}
 					]
 				}
@@ -906,11 +906,11 @@
 					"variable": [
 						{
 							"key": "descripcion",
-							"value": "carrera"
+							"value": "ZONA NORTE"
 						},
 						{
 							"key": "nit",
-							"value": "22"
+							"value": "900054835"
 						}
 					]
 				}
@@ -1553,6 +1553,205 @@
 					"port": "3000",
 					"path": [
 						"synchronization_depto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los impuesto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/impuesto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"impuesto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los impuesto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/impuesto/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"impuesto",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": null
+						},
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion_ de mpuesto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_impuesto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de pais",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"paises\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"ie_pais\":\"57\",\r\n\"nacionalidad\":\"Colombiano\",\r\n\"nombre\":\"Colombia\"\r\n},\r\n{\r\n\"nit\":\"90005483\",\r\n\"id_pais\":\"51\",\r\n\"ie_pais\":\"51\",\r\n\"nacionalidad\":\"Peruano\",\r\n\"nombre\":\"Perú\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_pais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_pais"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo los pais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pais_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pais_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los pais por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pais/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pais",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
 					]
 				}
 			},

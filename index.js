@@ -39,6 +39,8 @@ const tipoidentificacionRoutes = require('./src/routers/tipoidentificacion');
 const cuentaporterceroRoutes = require('./src/routers/cuentaportercero');
 const cuotaventasRoutes = require('./src/routers/cuotaventas');
 const deptoRoutes = require('./src/routers/depto');
+const impuestoRoutes = require('./src/routers/impuesto');
+const paisRoutes = require('./src/routers/pais');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -58,6 +60,8 @@ app.use(tipoidentificacionRoutes);
 app.use(cuentaporterceroRoutes);
 app.use(cuotaventasRoutes);
 app.use(deptoRoutes);
+app.use(impuestoRoutes);
+app.use(paisRoutes);
 
   app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`)
