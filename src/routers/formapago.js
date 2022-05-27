@@ -15,19 +15,18 @@ router.get('/formapago/:nit', async (req,res) => {
 
 router.post('/synchronization_formapago', async (req,res) => {
     const {forma_pago} = req.body
-    for (var i=0;i<forma_pago.length;i++){ 
-        console.log("------categ" ,  forma_pago[i])
+    for (var i=0;i<forma_pago.length;i++){        
         const {nit,descripcion,id_precio_item,id_forma_pago,forma_pagodet} =  forma_pago[i]
             await new Formapago().createFormapago(nit,descripcion,id_precio_item,id_forma_pago); 
            
-            for (var j=0;j<forma_pagodet.length;j++){ 	 
-            console.log("------subFormapago-------------" ,  forma_pagodet[j])
+            for (var j=0;j<forma_pagodet.length;j++){ 	            
                 const {cuota,dias,tasa,clase,descripcion_detalle,flag_activo} =  forma_pagodet[j]
-                        await new Formapago().createFormapagodet(nit,id_forma_pago,cuota,dias,tasa,clase,descripcion_detalle,flag_activo); 
-                };
+                await new Formapago().createFormapagodet(nit,id_forma_pago,cuota,dias,tasa,clase,descripcion_detalle,flag_activo); 
+           };
      };     
     let formapago_all= await new Formapago().getFormapago();
      res.status(200).json(formapago_all)
   
 });
+ 
 module.exports = router;
