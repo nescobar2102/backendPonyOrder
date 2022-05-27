@@ -23,6 +23,5 @@ class ClasificacionItems {
             return;
         }
     }
-
 }
 module.exports = ClasificacionItems;
