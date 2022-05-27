@@ -14,8 +14,15 @@ router.get('/clasificacionItems/:descripcion', async (req,res) => {
 router.post('/synchronization_clasificacionItems', async (req,res) => {
     const {clasificacionItems } = req.body
     for (var i=0;i<clasificacionItems.length;i++){ 
-        const {id_clasificacion, descripcion, id_padre, nivel, es_padre, imagen, foto, nit } =  clasificacionItems[i]
-        await new ClasificacionItems().createclasificacionItems(id_clasificacion, descripcion, id_padre, nivel, es_padre, imagen, foto, nit ); 
+        console.log("------categ" ,  clasificacionItems[i])
+        const {id_clasificacion, descripcion, id_padre, nivel,  imagen, nit ,subclasificacionItem} =  clasificacionItems[i]
+            await new ClasificacionItems().createclasificacionItems(id_clasificacion, descripcion, id_padre, nivel,   imagen, nit ); 
+           
+            for (var j=0;j<subclasificacionItem.length;j++){ 	 
+            console.log("------subategorias-------------" ,  subclasificacionItem[j])
+                const {id_clasificacion, descripcion, id_padre, nivel,  imagen, nit } =  subclasificacionItem[j]
+                        await new ClasificacionItems().createclasificacionItems(id_clasificacion, descripcion, id_padre, nivel,   imagen,  nit ); 
+                };
      };
      
      let clasificacionItems_all= await new ClasificacionItems().getclasificacionItems();
