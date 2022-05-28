@@ -23,5 +23,18 @@ class Tipopago
           return;
         }
 }
+    async createTipopagodet(nit,id_tipo_pago,id_auxiliar,cuota,clase) {
+        let results = await db.query('SELECT * FROM tipo_pagodet WHERE nit = $1 and id_tipo_pago =$2', [nit,id_tipo_pago]).catch(console.log);
+        if (results.rowCount == 0) {
+        await db.query('INSERT INTO tipo_pagodet (nit,id_tipo_pago,id_auxiliar,cuota,clase) VALUES ($1, $2, $3, $4,$5)', [
+            nit,
+            id_tipo_pago,
+            id_auxiliar,
+            cuota,
+            clase      
+        ]).catch(console.log);
+        return;
+    }
+}
 }
 module.exports = Tipopago;
