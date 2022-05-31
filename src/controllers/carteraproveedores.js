@@ -3,10 +3,10 @@ const db = require('../config/db')
 class Carteraproveedores 
 {
     async getCarteraproveedores() {
-        let results = await db.query(`select * from cartera_proveedores ORDER BY id_tercero ASC `).catch(console.log); 
+        let results = await db.query(`select * from cartera_proveedores ORDER BY id_empresa ASC `).catch(console.log); 
         return results.rows;
     }
-    async getCarteraproveedoresByTer(id_empresa,id_tercero) {
+    async getCarteraproveedoresByEmp(id_empresa,id_tercero) {
         let results = await db.query('SELECT * FROM cartera_proveedores WHERE id_empresa = $1 and id_tercero = $2', [id_empresa,id_tercero]).catch(console.log); 
         return results.rows;
     }

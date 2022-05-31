@@ -6,8 +6,8 @@ class Item
         let results = await db.query(`SELECT * FROM item  ORDER BY nit ASC `).catch(console.log); 
         return results.rows;
     }
-    async getItemBy(descripcion,nit) {
-        let results = await db.query('SELECT * FROM item WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log); 
+    async getItemByNit(nit,descripcion) {
+        let results = await db.query('SELECT * FROM item WHERE nit = $1 and descripcion = $2', [nit,descripcion]).catch(console.log); 
         return results.rows;
     }
     async createItem(nit,id_item,descripcion,referencia,id_impuesto,tipo_impuesto,dcto_producto,dcto_maximo,flag_serial,flag_kit,id_clasificacion,id_padre_clasificacion,id_unidad_compra,exento_impuesto,flag_existencia,flag_dcto_volumen,saldo_inventario,item_dctos) { 

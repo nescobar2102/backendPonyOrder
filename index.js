@@ -44,6 +44,8 @@ const paisRoutes = require('./src/routers/pais');
 const formapagoRoutes = require('./src/routers/formapago');
 const carteraproveedoresRoutes = require('./src/routers/carteraproveedores');
 const itemRoutes = require('./src/routers/item');
+const kitRoutes = require('./src/routers/kit');
+const precioRoutes = require('./src/routers/precio');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -68,6 +70,8 @@ app.use(paisRoutes);
 app.use(formapagoRoutes);
 app.use(carteraproveedoresRoutes);
 app.use(itemRoutes);
+app.use(kitRoutes);
+app.use(precioRoutes);
 
   app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`)
