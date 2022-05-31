@@ -1837,7 +1837,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"cartera_proveedores\":\r\n[\r\n{\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"2\",\r\n\"documento_forma_pago\":\"D\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"4\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"8\",\r\n\"id_proyecto\":\"7\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"9\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"E\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"9\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"9\",\r\n\"id_proyecto\":\"9\",\r\n\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"8\"\r\n}\r\n]\r\n},\r\n{\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"5\",\r\n\"documento_forma_pago\":\"5\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"3\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"33\",\r\n\"id_proyecto\":\"2\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"34\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\t\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"raw": "{\r\n\"cartera_proveedores\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1881,6 +1881,62 @@
 					"port": "3000",
 					"path": [
 						"synchronization_item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de kit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"kits\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"k01\",\r\n\"descripcion\": \"Cafe Aguila Roja Tradicional x 1000 gr + gratis tradicional por 500 gr\",\r\n\"precio_kit\": \"10000\",\r\n\"precio_kit_iva\": \"11900\",\r\n\"flag_vigencia\": \"SI\",\r\n\"fecha_inicial\": \"01/01/2022\",\r\n\"fecha_final\": \"2022/03/01\",\r\n\"ultima_actualizacion\": \"30/04/2022\",\r\n\"kits_det\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"k01\",\r\n\"id_item\": \"02\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"tasa_dcto\": \"0\",\r\n\"precio\": \"10000\",\r\n\"valor_total\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"valor_iva\": \"1900\",\r\n\"total\": \"11900\",\r\n\"ultima_actualizacion\": \"31/04/2022\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"03\",\r\n\"id_item\": \"02\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"tasa_dcto\": \"0\",\r\n\"precio\": \"0\",\r\n\"valor_total\": \"0\",\r\n\"tasa_iva\": \"19\",\r\n\"valor_iva\": \"0\",\r\n\"total\": \"0\",\r\n\"ultima_actualizacion\": \"31/04/2022\"\r\n}\r\n]\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_kit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_kit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"\",\r\n\"observacion\": \"\",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_pedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_pedido"
 					]
 				}
 			},

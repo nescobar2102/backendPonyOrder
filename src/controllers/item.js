@@ -38,17 +38,19 @@ class Item
           return;
         }
 }
-    async createItemdcto(consecutivo,cantidad_inicial,cantidad_final,tasa_dcto) {
+    async createItemdcto(nit,id_item,consecutivo,cantidad_inicial,cantidad_final,tasa_dcto) {
         let results = await db.query('SELECT * FROM item_dcto WHERE cantidad_final = $1', [cantidad_final]).catch(console.log);
-        if (results.rowCount == 0) {
-        await db.query('INSERT INTO item_dcto (consecutivo,cantidad_inicial,cantidad_final,tasa_dcto) VALUES ($1, $2, $3, $4)', [
+        //if (results.rowCount == 0) {
+        await db.query('INSERT INTO item_dcto (nit,id_item,consecutivo,cantidad_inicial,cantidad_final,tasa_dcto) VALUES ($1, $2, $3, $4,$5,$6)', [
+            nit,
+            id_item,
             consecutivo,
             cantidad_inicial,
             cantidad_final,
             tasa_dcto      
         ]).catch(console.log);
         return;
-    }
+    //}
 }
 }
 module.exports = Item;

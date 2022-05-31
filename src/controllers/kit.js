@@ -31,8 +31,8 @@ class Kit
         }
 }
     async createKitdet(nit,id_kit,id_item,id_bodega,cantidad,tasa_dcto,precio,valor_total,tasa_iva,valor_iva,total,ultima_actualizacion) {
-        let results = await db.query('SELECT * FROM kit WHERE nit = $1', [nit]).catch(console.log);
-        if (results.rowCount == 0) {
+        //let results = await db.query('SELECT * FROM kit WHERE nit = $1', [nit]).catch(console.log);
+        //if (results.rowCount == 0) {
         await db.query('INSERT INTO kit (nit,id_kit,id_item,id_bodega,cantidad,tasa_dcto,precio,valor_total,tasa_iva,valor_iva,total,ultima_actualizacion) VALUES ($1, $2, $3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [
             nit,
             id_kit,
@@ -48,7 +48,7 @@ class Kit
             ultima_actualizacion     
         ]).catch(console.log);
         return;
-    }
+    //}
 }
 }
 module.exports = Kit;
