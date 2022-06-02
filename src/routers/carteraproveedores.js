@@ -6,7 +6,7 @@ router.get('/carteraproveedores_all', async (req,res) => {
     let carteraproveedores = await new Carteraproveedores().getCarteraproveedores(); 
     res.status(200).json(carteraproveedores)
 });
-router.get('/getCarteraproveedores/:id_empresa/:id_tercero/:nit', async (req,res) => {
+router.get('/carteraproveedores/:id_empresa/:id_tercero/:nit', async (req,res) => {
     let {id_empresa,id_tercero,nit} = req.params;    
     let carteraproveedores = await new Carteraproveedores().getCarteraproveedoresByEmp(id_empresa,id_tercero,nit);
     res.status(200).json(carteraproveedores)

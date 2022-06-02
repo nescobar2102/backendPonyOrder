@@ -1082,11 +1082,11 @@
 					"variable": [
 						{
 							"key": "descripcion",
-							"value": "cancelado"
+							"value": "EFECTIVO"
 						},
 						{
 							"key": "nit",
-							"value": "9022255"
+							"value": "900054835"
 						}
 					]
 				}
@@ -1921,7 +1921,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\r\n{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"\",\r\n\"observacion\": \"\",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"raw": "{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"PRUEBA\",\r\n\"observacion\": \"PRUEBA \",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"22\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1937,6 +1937,400 @@
 					"port": "3000",
 					"path": [
 						"synchronization_pedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los pedido",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pedido_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los pedido por Nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pedido/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los item por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Café Aguila Roja Tradicional x 2500 gr"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos las forma pago",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/formapago_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"formapago_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar las forma pago por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/formapago/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"formapago",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los forma pago por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/formapago/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"formapago",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista todos las clasificacionItems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los carteraproveedores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/carteraproveedores_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"carteraproveedores_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar las carteraproveedores :id_empresa/:id_tercero/:nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/carteraproveedores/:id_empresa/:id_tercero/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"carteraproveedores",
+						":id_empresa",
+						":id_tercero",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "id_empresa",
+							"value": "1"
+						},
+						{
+							"key": "id_tercero",
+							"value": "94297397"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinchronizacion precio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"precios\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_precio_item\": \"01\",\r\n\"descripcion\": \"precios distribuidor\",\r\n\"vigencia_desde\": \"01/01/2022\",\r\n\"vigencia_hasta\": \"31/12/2022\",\r\n\"id_margen_item\": \"01\",\r\n\"id_moneda\": \"COLP\",\r\n\"flag_iva_incluido\": \"SI\",\r\n\"flag_lista_base\": \"NO\",\r\n\"flag_mobile\": \"SI\",\r\n\"precios_det\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_precio_item\": \"01\",\r\n\"id_item\": \"01\",\r\n\"precio\": \"10000\",\r\n\"descuento_maximo\": \"2.5\",\r\n\"id_talla\": \"SIN\",\r\n\"id_moneda\": \"SIN\",\r\n\"id_unidad_compra\": \"Und\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_precio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_precio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los precioitem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/precioitem_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"precioitem_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los precioitem por descripcion y nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/precioitem/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"precioitem",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "precios distribuidor"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinchronizacion_tercero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16499705\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tercero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tercero"
 					]
 				}
 			},

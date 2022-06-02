@@ -8,7 +8,7 @@ router.get('/item_all', async (req,res) => {
 });
 router.get('/item/:descripcion/:nit', async (req,res) => {
     let {descripcion,nit} = req.params;    
-    let item = await new Item().getItemBy(descripcion,nit);
+    let item = await new Item().getItemByNit(descripcion,nit);
     res.status(200).json(item)
 });
 router.post('/synchronization_item', async (req,res) => {
