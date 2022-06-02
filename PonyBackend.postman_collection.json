@@ -113,7 +113,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
+					"raw": "{\n\"nit\":\"900227680\",\n\"correo_electronico\": \"panza@ibla.co\",\n\"usuario\": \"rmurillo\",\n\"nombre\": \"Ricardo Murillo Lemos\",\n\"flag_activo\": \"SI\",\n\"clave\": \"12345678\",\n\"flag_cambia_fp\": \"SI\",\n\"flag_cambia_lp\": \"SI\",\n\"flag_edita_cliente\": \"NO\",\n\"flag_edita_dcto\": \"SI\",\n\"id_tipo_doc_pe\": \"P01\",\n\"id_tipo_doc_rc\": \"RC1\",\n\"id_bodega\": \"01\",\n\"edita_consecutivo_rc\": \"SI\",\n\"edita_fecha_rc \": \"SI\"\n}\n"
 				},
 				"url": {
 					"raw": "http://localhost:3000/users",
@@ -2331,6 +2331,169 @@
 					"port": "3000",
 					"path": [
 						"synchronization_tercero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tiempo entrega",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tiempo_entregas\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_tiempo_entrega\":\"01\",\r\n\"hora_inicial\":\"10:00\",\r\n\"hora_final\":\"11:00\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_tiempo_entrega\":\"02\",\r\n\"hora_inicial\":\"14:00\",\r\n\"hora_final\":\"15:00\"\r\n}\r\n]\r\n}\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tiempoentrega",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tiempoentrega"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tiempoentrega",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tiempoentrega_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiempoentrega_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tiempoentrega por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tiempoentrega/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiempoentrega",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tercero",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tercero_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tercero_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tercero por nombre y nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tercero/:nombre/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tercero",
+						":nombre",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nombre",
+							"value": null
+						},
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"usuarios\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"rmurillo@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Ricardo Murillo Lemos\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"smurillo@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Sophia Murillo Fernandez\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"yvalencia@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Yaneth Valencia\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_users"
 					]
 				}
 			},
