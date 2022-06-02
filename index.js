@@ -47,6 +47,7 @@ const itemRoutes = require('./src/routers/item');
 const kitRoutes = require('./src/routers/kit');
 const precioitemRoutes = require('./src/routers/precioitem');
 const terceroRoutes = require('./src/routers/tercero');
+const tiempoentregaRoutes = require('./src/routers/tiempoentrega');
 
 app.use(userRoutes);
 app.use(empresaRoutes);
@@ -73,7 +74,7 @@ app.use(carteraproveedoresRoutes);
 app.use(itemRoutes);
 app.use(kitRoutes);
 app.use(precioitemRoutes);
-app.use(terceroRoutes);
+app.use(tiempoentregaRoutes);
 
   app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`)

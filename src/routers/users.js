@@ -23,10 +23,10 @@ router.get('/users/:nit', async (req,res) => {
     res.status(200).json(usuarios)
 });
 
-//Create a todo.
+//Create un usuario.
 router.post('/users', async (req,res) => {
-    const {nit, correo_electronico, usuario, nombre, flag_activo, clave } = req.body
-    let usuarios = await new Usuario().createUser( nit, correo_electronico, usuario, nombre, flag_activo, clave ); 
+    const {nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc} = req.body
+    let usuarios = await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc); 
     res.status(200).json(usuarios)
 });
 
@@ -68,8 +68,8 @@ router.post('/login', async (req,res) => {
 router.post('/synchronization_users', async (req,res) => {
     const {usuarios } = req.body
     for (var i=0;i<usuarios.length;i++){ 
-        const {nit, correo_electronico, usuario, nombre, flag_activo, clave  } =  usuarios[i]
-        await new Usuario().createUser( nit, correo_electronico, usuario, nombre, flag_activo, clave ); 
+        const {nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc} =  usuarios[i]
+        await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc); 
      };
      
      let usuarios_all= await new Usuario().getUsers();
