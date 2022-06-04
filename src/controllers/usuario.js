@@ -4,7 +4,7 @@ class Usuario {
 
     async getUsers() {
         let results = await db.query(`SELECT * FROM usuario ORDER BY nit ASC`).catch(console.log);
-        console.log("-------", results.rows)
+        //console.log("-------", results.rows)
         return results.rows;
     }
 
@@ -47,10 +47,10 @@ class Usuario {
                 return results;
             }  
         async login( usuario, clave) {
-            let results =  await db.query('SELECT * FROM usuario WHERE usuario = $1 and clave = $2', 
-                    [usuario , clave]).catch(console.log);               
-                    return results;
-                }                
+        let results =  await db.query('SELECT * FROM usuario WHERE usuario = $1 and clave = $2',
+        [usuario , clave]).catch(console.log);               
+                return results;
+            }                
 }
 module.exports = Usuario;
  
