@@ -2498,6 +2498,51 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Listar todos los depto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/depto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"depto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los depto por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/depto/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"depto",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
