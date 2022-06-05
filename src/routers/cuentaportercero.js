@@ -53,7 +53,7 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
         break;        
     }
 }
-    if (cuentas_por_terceros.length>0){
+    if (cuentas_por_terceros.length>0 && !bandera){
         response.data = await new Cuentaportercero().getCuentaportercero();
     }
     else {

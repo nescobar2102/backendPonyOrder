@@ -52,7 +52,7 @@ router.post('/synchronization_cuotaventas', async (req,res) => {
         break;        
   }
 }
-    if (cuota_ventas.length>0){
+    if (cuota_ventas.length>0 && !bandera){
         response.data = await new Cuotaventas().getCuotaventas();
     }
     else {

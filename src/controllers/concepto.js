@@ -13,7 +13,7 @@ class Concepto
         async createConcepto(nit, id_concepto, id_auxiliar, descripcion, naturalezacta) { 
             let results = await db.query('SELECT * FROM conceptos WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log);
             if (results.rowCount == 0) {     
-                await db
+                return await db
                 .query('INSERT INTO conceptos (nit, id_concepto, id_auxiliar, descripcion, naturalezacta) VALUES ($1, $2, $3, $4, $5)', [
                     nit, 
                     id_concepto,
@@ -21,11 +21,9 @@ class Concepto
                     descripcion, 
                     naturalezacta
                 ])
-                .catch(console.log);
-              return;
+                .catch(console.log);              
             }
-    }
-    
+    }    
     }
 module.exports = Concepto;
 
