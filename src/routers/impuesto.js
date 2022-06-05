@@ -1,51 +1,68 @@
 const express = require("express");
+const { status } = require("express/lib/response");
 const router = express.Router();
 const Impuesto = require('../controllers/impuesto');
 // Listar todos los impuestos 
 router.get('/impuesto_all', async (req,res) => { 
     const response = newResponseJson();
     response.msg = 'Listar todos los impuestos';
+    let status = 200;
     let impuesto = await new Impuesto().getImpuesto(); 
-    if (impuesto.length>0){
+    if (impuesto.length > 0){
         response.data = impuesto;
     }
     else {
+        status = 404;
         response.success = false;
+        response.mg = 'No existen registros';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 // Listar un impuestos por descripcion y nit
-router.get('/impuesto/:descripcion/:nit', async (req,res) => {
+router.get('/impuesto/:nit/:descripcion', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un impuesto por Descripcion y Nit';
-    let {descripcion,nit} = req.params;    
-    let impuesto = await new Impuesto().getImpuestoDesc(descripcion,nit);
+    response.msg = 'Listar un impuesto por Nit y Descripcion';
+    let status = 200;
+    let {nit,descripcion} = req.params; 
+    console.log('respuesta nit',nit);   
+    console.log('respuesta descripcion',descripcion); 
+    let impuesto = await new Impuesto().getImpuestoDesc(nit,descripcion);
     if (impuesto.length>0){
         response.data = impuesto;
     }
     else {
+        status = 404;
         response.success = false;
+        response.mg = 'No existen registros';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 // sincronizacion de impuesto
 router.post('/synchronization_impuesto', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de impuesto';
+    let status = 201;
     const {impuestos} = req.body
+    let bandera = false;
     for (var i=0;i<impuestos.length;i++){ 
         const {nit,id_impuesto,descripcion,tasa,tipo_impuesto,por} =  impuestos[i]
-        await new Impuesto().createImpuesto(nit,id_impuesto,descripcion,tasa,tipo_impuesto,por); 
-     };
+        result1 = await new Impuesto().createImpuesto(nit,id_impuesto,descripcion,tasa,tipo_impuesto,por); 
+    console.log('primer insert', result1?.rowCount);
+    if (!result1?.rowCount || result1?.rowCount == 0) {
+        console.log('no se hizo el inser');
+        bandera = true;
+        break;        
+    }
+}     
     if (impuestos.length>0){
-        response.data = impuestos;
+        response.data = await new Impuesto().getImpuesto();;
     }
     else {
         response.success = false;
-    }
-    res.status(200).json(response)
-    let impuesto_all= await new Impuesto().getImpuesto();
-    res.status(200).json(impuesto_all)  
+        status = 400;
+        response.msg = 'Error en la sincronización de forama de pago';
+    }    
+    res.status(status).json(response)  
 });
 function newResponseJson() {
     return {
