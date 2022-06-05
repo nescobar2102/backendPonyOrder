@@ -6,8 +6,8 @@ class Cuentaportercero
         let results = await db.query(`SELECT * FROM cuentas_por_tercero  ORDER BY nit ASC`).catch(console.log); 
         return results.rows;
     }
-    async getCuentaporterceroByNit(nit) {
-        let results = await db.query('SELECT * FROM cuentas_por_tercero WHERE nit = $2', [nit]).catch(console.log); 
+    async getCuentaporterceroByNit(nit,tipo_doc) {
+        let results = await db.query('SELECT * FROM cuentas_por_tercero WHERE tipo_doc = $1 nit = $2', [nit,tipo_doc]).catch(console.log); 
         return results.rows;
     }
     async createCuentaportercero(nit,id_empresa,id_sucursal,tipo_doc,numero,cuota,dias,id_tercero,id_vendedor,id_sucursal_tercero,fecha,vencimiento,credito,dctomax,cuota_cruce,debito,id_destino,id_proyecto) { 
