@@ -22,7 +22,6 @@ class Depto
                     nombre
                 ])
                 .catch(console.log);       
-     }
-    
+     }    
     }
 module.exports = Depto;

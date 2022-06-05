@@ -61,8 +61,7 @@ router.post('/synchronization_depto', async (req,res) => {
             response.success = false;
             response.msg = 'Error en la sincronizacion de datos'; 
         }
-    res.status(status).json(response);
-    
+    res.status(status).json(response);   
   
 });
 function newResponseJson() {

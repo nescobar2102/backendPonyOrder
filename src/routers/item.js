@@ -75,6 +75,8 @@ router.post('/synchronization_item', async (req, res) => {
     if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
         let item_all = await new Item().getItemAll();
         response.data = item_all;
+
+        
     } else { //bandera ( true)
         await new Item().deleteItem();
         response.success = false;
