@@ -348,7 +348,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/barrio/:nit",
+					"raw": "http://localhost:3000/barrio/:nit/:nombre",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -356,12 +356,17 @@
 					"port": "3000",
 					"path": [
 						"barrio",
-						":nit"
+						":nit",
+						":nombre"
 					],
 					"variable": [
 						{
 							"key": "nit",
-							"value": null
+							"value": "900054835"
+						},
+						{
+							"key": "nombre",
+							"value": "Los Andes"
 						}
 					]
 				}
@@ -1491,7 +1496,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/cuotaventas/:nit",
+					"raw": "http://localhost:3000/cuotaventas/:nit/:nombre",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1499,12 +1504,17 @@
 					"port": "3000",
 					"path": [
 						"cuotaventas",
-						":nit"
+						":nit",
+						":nombre"
 					],
 					"variable": [
 						{
 							"key": "nit",
 							"value": "900054835"
+						},
+						{
+							"key": "nombre",
+							"value": "MODIFICADORES DE LECHE"
 						}
 					]
 				}
@@ -1599,7 +1609,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1607,7 +1617,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/impuesto/:descripcion/:nit",
+					"raw": "http://localhost:3000/impuesto/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1615,17 +1625,17 @@
 					"port": "3000",
 					"path": [
 						"impuesto",
-						":descripcion",
-						":nit"
+						":nit",
+						":descripcion"
 					],
 					"variable": [
 						{
-							"key": "descripcion",
-							"value": null
+							"key": "nit",
+							"value": "900054835"
 						},
 						{
-							"key": "nit",
-							"value": null
+							"key": "descripcion",
+							"value": "RETENCION DE ICA 7.7 x 1000"
 						}
 					]
 				}
@@ -1786,31 +1796,12 @@
 			"response": []
 		},
 		{
-			"name": "Listar todos forma de pago",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/formapago_all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"formapago_all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Listar los forma pago por nit",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/formapago/:nit",
+					"raw": "http://localhost:3000/formapago/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1818,12 +1809,17 @@
 					"port": "3000",
 					"path": [
 						"formapago",
-						":nit"
+						":nit",
+						":descripcion"
 					],
 					"variable": [
 						{
 							"key": "nit",
 							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "EFECTIVO"
 						}
 					]
 				}
@@ -2087,58 +2083,6 @@
 					"port": "3000",
 					"path": [
 						"formapago_all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar las forma pago por nit",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/formapago/:nit",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"formapago",
-						":nit"
-					],
-					"variable": [
-						{
-							"key": "nit",
-							"value": "900054835"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar los forma pago por nit",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/formapago/:nit",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"formapago",
-						":nit"
-					],
-					"variable": [
-						{
-							"key": "nit",
-							"value": "900054835"
-						}
 					]
 				}
 			},
@@ -2539,6 +2483,62 @@
 							"key": "nit",
 							"value": "900054835"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de impuesto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_impuesto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ciudades\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"id_depto\":\"76\",\r\n\"id_ciudad\":\"76001\",\r\n\"nombre\":\"Cali\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"id_depto\":\"76\",\r\n\"id_ciudad\":\"76016\",\r\n\"nombre\":\"Buenaventura\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_ciudad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_ciudad"
 					]
 				}
 			},
