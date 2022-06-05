@@ -82,4 +82,11 @@ router.post('/synchronization_kit', async (req, res) => {
 
         }
     );
+    function newResponseJson() {
+        return {
+            success: true,
+            msg: "",
+            data: [],
+        };
+    }
     module.exports = router;
