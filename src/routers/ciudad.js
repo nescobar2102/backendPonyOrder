@@ -6,48 +6,63 @@ const Ciudades = require('../controllers/ciudad');
 router.get('/ciudades_all', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar todas las Ciudades';
+    let status = 200;
     let ciudades = await new Ciudades().getCiudad();
     if (ciudades.length>0){
         response.data = ciudades;
     }
     else {
+        status = 404;
         response.success = false;
+        response.mg = 'No existen registros';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 // listar una nueva Ciudad por Nit
-router.get('/ciudades/:nit', async (req,res) => {
+router.get('/ciudades/:nit/:nombre', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar una Ciudades por Nit';
-    let {nit} = req.params;    
-    let ciudades = await new Ciudades().getCiudadByNit(nit);
+    let status = 200;
+    let {nit,nombre} = req.params;    
+    let ciudades = await new Ciudades().getCiudadByNit(nit,nombre);
     if (ciudades.length>0){
         response.data = ciudades;
     }
     else {
+        status = 404;
         response.success = false;
+        response.mg = 'No existen registros';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 //Create a todo.
 router.post('/synchronization_ciudad', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de Ciudades';
+    let status = 201;
     const {ciudades} = req.body
+    let bandera = false;
     for (var i=0;i<ciudades.length;i++){ 
         const { nit, id_pais, id_depto, id_ciudad, nombre } =  ciudades[i]
-        await new Ciudades().createCiudad( nit, id_pais, id_depto, id_ciudad, nombre ); 
-     };
-     if (ciudades.length>0){
-        response.data = ciudades;
+        result1 = await new Ciudades().createCiudad( nit, id_pais, id_depto, id_ciudad, nombre ); 
+     
+        console.log('primer insert', result1?.rowCount);
+    if (!result1?.rowCount || result1?.rowCount == 0) {
+        console.log('no se hizo el insert');
+        bandera = true;
+        break;        
+    }
+}
+    if (ciudades.length>0 && !bandera){
+        response.data = await new Ciudades().getCiudad();
     }
     else {
         response.success = false;
-    }
-    res.status(200).json(response)
+        status = 400;
+        response.msg = 'Error en la sincronización de ciudades';
 
-     let ciudad_all= await new Ciudades().getCiudad();
-     res.status(200).json(ciudad_all)  
+    }
+    res.status(status).json(response)
 });
 function newResponseJson() {
     return {

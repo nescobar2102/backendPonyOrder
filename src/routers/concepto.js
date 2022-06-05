@@ -58,7 +58,7 @@ router.post('/synchronization_concepto', async (req,res) => {
     else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de forma de pago';
+        response.msg = 'Error en la sincronización de concepto';
     }    
     res.status(status).json(response)  
 });

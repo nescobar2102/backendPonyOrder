@@ -59,7 +59,7 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
     else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de forama de pago';
+        response.msg = 'Error en la sincronización de cuentas por terceros';
     }
      res.status(status).json(response)  
 });

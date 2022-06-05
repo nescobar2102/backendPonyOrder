@@ -58,7 +58,7 @@ router.post('/synchronization_cuotaventas', async (req,res) => {
     else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de forma de pago';
+        response.msg = 'Error en la sincronización de cuota ventas';
     }  
     res.status(status).json(response)  
 });

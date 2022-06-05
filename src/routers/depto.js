@@ -59,7 +59,7 @@ router.post('/synchronization_depto', async (req,res) => {
             await new Depto().deleteDepto();
             status= 400;
             response.success = false;
-            response.msg = 'Error en la sincronizacion de datos'; 
+            response.msg = 'Error en la sincronizacion de departamento'; 
         }
     res.status(status).json(response);   
   

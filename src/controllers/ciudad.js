@@ -5,14 +5,14 @@ class Ciudades {
         let results = await db.query(`SELECT * FROM ciudad ORDER BY nit ASC`).catch(console.log); 
         return results.rows;
     }
-    async getCiudadByNit(nit) {
-    let results = await db.query('SELECT * FROM ciudad WHERE nit = $1', [nit]).catch(console.log); 
+    async getCiudadByNit(nit,nombre) {
+    let results = await db.query('SELECT * FROM ciudad WHERE nit = $1 and nombre =$2', [nit,nombre]).catch(console.log); 
     return results.rows;
     }
     async createCiudad(nit,id_pais,id_depto,id_ciudad,nombre) {
         let results = await db.query('SELECT * FROM ciudad WHERE nit = $1 and id_ciudad = $2', [nit, id_ciudad]).catch(console.log);
         if (results.rowCount == 0) {      
-        await db
+            return await db
             .query('INSERT INTO ciudad (nit,id_pais,id_depto,id_ciudad,nombre) VALUES ($1, $2, $3, $4,$5)', [
                 nit,
                 id_pais,
@@ -20,8 +20,7 @@ class Ciudades {
                 id_ciudad,
                 nombre
             ])
-            .catch(console.log);
-          return;
+            .catch(console.log);         
             }
         }
 }
