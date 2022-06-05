@@ -23,9 +23,7 @@ router.get('/impuesto/:nit/:descripcion', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar un impuesto por Nit y Descripcion';
     let status = 200;
-    let {nit,descripcion} = req.params; 
-    console.log('respuesta nit',nit);   
-    console.log('respuesta descripcion',descripcion); 
+    let {nit,descripcion} = req.params;    
     let impuesto = await new Impuesto().getImpuestoDesc(nit,descripcion);
     if (impuesto.length>0){
         response.data = impuesto;
@@ -60,7 +58,7 @@ router.post('/synchronization_impuesto', async (req,res) => {
     else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de forama de pago';
+        response.msg = 'Error en la sincronización de forma de pago';
     }    
     res.status(status).json(response)  
 });
