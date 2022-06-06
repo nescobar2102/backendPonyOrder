@@ -901,7 +901,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/zona/:descripcion/:nit/",
+					"raw": "http://localhost:3000/zona/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -909,18 +909,17 @@
 					"port": "3000",
 					"path": [
 						"zona",
-						":descripcion",
 						":nit",
-						""
+						":descripcion"
 					],
 					"variable": [
 						{
-							"key": "descripcion",
-							"value": "ZONA NORTE"
-						},
-						{
 							"key": "nit",
 							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "ZONA NORTE"
 						}
 					]
 				}
@@ -976,7 +975,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tipodoc/:descripcion/:nit",
+					"raw": "http://localhost:3000/tipodoc/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -984,17 +983,17 @@
 					"port": "3000",
 					"path": [
 						"tipodoc",
-						":descripcion",
-						":nit"
+						":nit",
+						":descripcion"
 					],
 					"variable": [
 						{
-							"key": "descripcion",
-							"value": "\"ZONA NORTE"
+							"key": "nit",
+							"value": "900054835"
 						},
 						{
-							"key": "nit",
-							"value": "9000555"
+							"key": "descripcion",
+							"value": "Pedido Ruta 1"
 						}
 					]
 				}
@@ -1078,7 +1077,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tipopago/:descripcion/:nit",
+					"raw": "http://localhost:3000/tipopago/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1086,17 +1085,17 @@
 					"port": "3000",
 					"path": [
 						"tipopago",
-						":descripcion",
-						":nit"
+						":nit",
+						":descripcion"
 					],
 					"variable": [
 						{
-							"key": "descripcion",
-							"value": "EFECTIVO"
-						},
-						{
 							"key": "nit",
 							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "EFECTIVO"
 						}
 					]
 				}
@@ -1239,7 +1238,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tipoempresa/:descripcion/:nit",
+					"raw": "http://localhost:3000/tipoempresa/:nit/:descripcion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1247,17 +1246,17 @@
 					"port": "3000",
 					"path": [
 						"tipoempresa",
-						":descripcion",
-						":nit"
+						":nit",
+						":descripcion"
 					],
 					"variable": [
 						{
-							"key": "descripcion",
-							"value": "Privada"
+							"key": "nit",
+							"value": "900054835"
 						},
 						{
-							"key": "nit",
-							"value": "9099005"
+							"key": "descripcion",
+							"value": "COMERCIAL"
 						}
 					]
 				}
@@ -1324,7 +1323,7 @@
 			"response": []
 		},
 		{
-			"name": "Listar todos los tipo identificacion por descripcion",
+			"name": "Listar un tipo identificacion por descripcion",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1354,7 +1353,7 @@
 					"variable": [
 						{
 							"key": "descripcion",
-							"value": "Industria"
+							"value": "Cédula de Ciudadanía"
 						}
 					]
 				}
@@ -1927,7 +1926,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"PRUEBA\",\r\n\"observacion\": \"PRUEBA \",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"22\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"raw": "{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"PRUEBA\",\r\n\"observacion\": \"PRUEBA\",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"22\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1985,7 +1984,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/pedido/:nit",
+					"raw": "http://localhost:3000/pedido/:nit/:observacion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1993,12 +1992,17 @@
 					"port": "3000",
 					"path": [
 						"pedido",
-						":nit"
+						":nit",
+						":observacion"
 					],
 					"variable": [
 						{
 							"key": "nit",
 							"value": "900054835"
+						},
+						{
+							"key": "observacion",
+							"value": "PRUEBA"
 						}
 					]
 				}
