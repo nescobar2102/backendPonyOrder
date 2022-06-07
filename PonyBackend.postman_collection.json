@@ -760,7 +760,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"9000544ssss5\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2602,6 +2602,56 @@
 						{
 							"key": "nit",
 							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los medio Contacto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/medioContacto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los medio Contacto por descripcion y nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/medioContacto/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "ZAPATA"
+						},
+						{
+							"key": "nit",
+							"value": "90005445"
 						}
 					]
 				}
