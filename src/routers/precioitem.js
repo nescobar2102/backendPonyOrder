@@ -42,10 +42,12 @@ router.post('/synchronization_precio', async (req,res) => {
     const {precios} = req.body
     let bandera = false;
     let bandera_hijo = false;
+    await new PrecioItem().deleteformapago(); 
     for (var i=0;i<precios.length;i++){   
         if (!bandera_hijo){             
         const {nit,id_precio_item,descripcion,vigencia_desde,vigencia_hasta,id_margen_item,id_moneda,flag_iva_incluido,flag_lista_base,flag_mobile,precios_det} =  precios[i];
         result1 = await new PrecioItem().createPrecioitem(nit,id_precio_item,descripcion,vigencia_desde,vigencia_hasta,id_margen_item,id_moneda,flag_iva_incluido,flag_lista_base,flag_mobile,precios_det); 
+        console.log('primer insert', result1?.rowCount);
         if (!result1?.rowCount || result1?.rowCount == 0) {
             console.log('no se hizo el inser');
             bandera = true;
@@ -69,7 +71,7 @@ router.post('/synchronization_precio', async (req,res) => {
             let precioitem_all = await new PrecioItem().getPrecioitem();
             response.data = precioitem_all;
         } else { 
-           // await new Formapago().deleteformapago();
+            await new PrecioItem().deleteformapago();
             response.success = false;
             status = 400;
             response.msg = 'Error en la sincronización de Precio';
