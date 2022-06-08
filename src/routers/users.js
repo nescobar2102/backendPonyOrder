@@ -22,6 +22,7 @@ router.get('/users/:nit', async (req,res) => {
     response.msg = 'Listar un Usuario por Nit';
     let {nit} = req.params;    
     let usuarios = await new Usuario().getUserByNit(nit);
+    console.log(usuarios?.detail)
     if (usuarios.length>0) {
         response.data = usuarios;
     }
@@ -34,16 +35,19 @@ router.get('/users/:nit', async (req,res) => {
 //Create un usuario.
 router.post('/users', async (req,res) => {
     const response = newResponseJson();
+    let status = 201;
     response.msg = 'Crear un Usuario';
     const {nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc} = req.body
     let usuarios = await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc); 
-    if (usuarios.length>0){
-        response.data = usuarios;
-    }
+   
+     if (!usuarios?.rowCount || usuarios?.rowCount == 0) { 
+          response.success = false;
+          status=400;
+    }   
     else{
-        response.success = false;
+        response.data = usuarios;       
     }
-    res.status(200).json(response)
+    res.status(status).json(usuarios)
 });
 
 //Update a todo.
@@ -86,6 +90,7 @@ router.delete('/users/:nit', async (req,res) => {
 //inicio de sesion app
 router.post('/login', async (req,res) => {
     const response = newResponseJson();
+    
     response.msg = 'Iniciar sesión';
     const { usuario, clave } = req.body
     let usuarios = await new Usuario().login(usuario, clave);   

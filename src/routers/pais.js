@@ -20,7 +20,7 @@ router.get('/pais_all', async (req,res) => {
 //// listar  los paises por nit y nombre
 router.get('/pais/:nit/:nombre', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar los pais por Nit y nombre';
+    response.msg = 'Listar los pais por Pais y nombre';
     let status = 200;
     let {nit,nombre} = req.params;    
     let pais = await new Pais().getPaisByNit(nit,nombre);

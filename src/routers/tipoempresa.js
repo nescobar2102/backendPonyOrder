@@ -18,12 +18,12 @@ router.get('/tipoempresa_all', async (req,res) => {
     res.status(status).json(response)
 });
 
-router.get('/tipoempresa/:nit/:descripcion', async (req,res) => {
+router.get('/tipoempresa/:nit/', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar una tipo empresa por Nit y descripcion';
+    response.msg = 'Listar una tipo empresa por Nit';
     let status = 200;
-    let {nit,descripcion} = req.params;    
-    let tipoempresa = await new Tipoempresa().getTipoempresaByDesc(nit,descripcion);
+    let {nit} = req.params;    
+    let tipoempresa = await new Tipoempresa().getTipoempresaByDesc(nit);
     if (tipoempresa.length>0){
         response.data = tipoempresa;
     }
@@ -44,10 +44,8 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
     for (var i=0;i<tipoempresas.length;i++){ 
         const { id_tipo_empresa, descripcion, nit} =  tipoempresas[i]
         result1 = await new Tipoempresa().createTipoempresa(id_tipo_empresa, descripcion, nit); 
-        
-        console.log('primer insert', result1?.rowCount);
-        if (!result1?.rowCount || result1?.rowCount == 0) {
-            console.log('no se hizo el insert');
+         
+        if (!result1?.rowCount || result1?.rowCount == 0) { 
             bandera = true;
             break;        
         }
