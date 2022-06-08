@@ -75,7 +75,6 @@ app.use(itemRoutes);
 app.use(kitRoutes);
 app.use(precioitemRoutes);
 app.use(tiempoentregaRoutes);
-app.use(terceroRoutes);
 
   app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`)
