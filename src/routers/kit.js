@@ -43,8 +43,7 @@ router.post('/synchronization_kit', async (req, res) => {
                     if (kits_det?.length > 0 && result1?.rowCount > 0) {
 
                         for (var j = 0; j < kits_det.length; j++) {
-                            console.log('----- segundo insert------', kits_det[j]);
-                            const {
+                             const {
                                 nit,
                                 id_kit,
                                 id_item,
@@ -70,10 +69,8 @@ router.post('/synchronization_kit', async (req, res) => {
             }
         }
             if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
-                let kit_all = await new Kit().getKit();
-                response.data = kit_all;        
-                
-            } else { //bandera ( true) 
+                response.data = await new Kit().getKit();     
+              } else { //bandera ( true) 
                 response.success = false;
                 status = 400;
                 response.msg = 'Error en la  sincronización de item';
