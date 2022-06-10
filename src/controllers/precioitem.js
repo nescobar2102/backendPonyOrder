@@ -10,7 +10,7 @@ class Precioitem
         let results = await db.query('SELECT * FROM precio_item WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log); 
         return results.rows;
     }
-    async deleteformapago() {
+    async deletePrecioitem() {
         await db.query(`DELETE FROM precio_item`).catch(console.log); 
         await db.query(`DELETE FROM precio_item_det`).catch(console.log);        
   }

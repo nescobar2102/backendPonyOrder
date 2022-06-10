@@ -9,8 +9,7 @@ router.get('/precioitem_all', async (req,res) => {
     let precioitem = await new PrecioItem().getPrecioitem(); 
     if (precioitem.length>0){
         response.data = precioitem;
-    }
-    else {
+    } else {
         status= 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -26,8 +25,7 @@ router.get('/precioitem/:descripcion/:nit', async (req,res) => {
     let precioitem = await new PrecioItem().getPrecioitemByNit(descripcion,nit);
     if (precioitem.length > 0){
         response.data = precioitem;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -42,7 +40,7 @@ router.post('/synchronization_precio', async (req,res) => {
     const {precios} = req.body
     let bandera = false;
     let bandera_hijo = false;
-    await new PrecioItem().deleteformapago(); 
+    await new PrecioItem().deletePrecioitem(); 
     for (var i=0;i<precios.length;i++){   
         if (!bandera_hijo){             
         const {nit,id_precio_item,descripcion,vigencia_desde,vigencia_hasta,id_margen_item,id_moneda,flag_iva_incluido,flag_lista_base,flag_mobile,precios_det} =  precios[i];
@@ -71,7 +69,7 @@ router.post('/synchronization_precio', async (req,res) => {
             let precioitem_all = await new PrecioItem().getPrecioitem();
             response.data = precioitem_all;
         } else { 
-            await new PrecioItem().deleteformapago();
+            await new PrecioItem().deletePrecioitem();
             response.success = false;
             status = 400;
             response.msg = 'Error en la sincronización de Precio';
@@ -79,10 +77,6 @@ router.post('/synchronization_precio', async (req,res) => {
             res.status(status).json(response);
  });        
         function newResponseJson() {
-            return {
-                success: true,
-                msg: "",
-                data: [],
-            };
+            return {success: true, msg: "", data: []};
 }         
 module.exports = router;
