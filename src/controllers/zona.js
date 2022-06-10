@@ -11,7 +11,7 @@ class Zona
         return results.rows;
     }
     async createZona(id_zona,descripcion,id_padre,nivel,es_padre,nit) { 
-        let results = await db.query('SELECT * FROM zona WHERE nit = $1 and descripcion = $2', [nit,descripcion]).catch(console.log);
+        let results = await db.query('SELECT * FROM zona WHERE nit = $1 and id_zona = $2', [nit,id_zona]).catch(console.log);
         if (results.rowCount == 0) {     
             return await db
             .query('INSERT INTO zona (id_zona , descripcion, id_padre, nivel, es_padre, nit) VALUES ($1, $2, $3, $4, $5, $6)', [
