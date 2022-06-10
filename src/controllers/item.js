@@ -80,7 +80,7 @@ class Item
             cantidad_inicial,
             cantidad_final,
             tasa_dcto      
-        ]).catch(console.log);      
+        ]).catch(console.log);              
 }
 }
 module.exports = Item;

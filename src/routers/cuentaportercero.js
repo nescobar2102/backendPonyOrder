@@ -64,10 +64,6 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
      res.status(status).json(response)  
 });
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return {success: true, msg: "", data: []};
 }
 module.exports = router;

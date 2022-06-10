@@ -19,7 +19,9 @@ class MedioContacto
                 descripcion,
                 nit
             ])
-            .catch(console.log);         
+            .catch(console.log);     
+        }else{
+            return await db.query('UPDATE medio_contacto SET id_medio_contacto = $1 WHERE descripcion = $2 and nit= $3', [id_medio_contacto,descripcion,nit]).catch(console.log);   
         }
 }
 }

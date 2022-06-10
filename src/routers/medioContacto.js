@@ -9,8 +9,7 @@ router.get('/medioContacto_all', async (req,res) => {
     let medioContacto = await new MedioContacto().getMedioContacto(); 
     if (medioContacto.length>0){
         response.data = medioContacto;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -26,8 +25,7 @@ router.get('/medioContacto/:descripcion/:nit', async (req,res) => {
     let medioContacto = await new MedioContacto().getMedioContactoByDesc(descripcion,nit);
     if (medioContacto.length>0){
         response.data = medioContacto;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -64,10 +62,6 @@ router.post('/synchronization_medioContacto', async (req,res) => {
         res.status(status).json(response)
     });
     function newResponseJson() {
-        return {
-            success: true,
-            msg: "",
-            data: [],
-        };
+        return {success: true,msg: "", data: []};
     }   
 module.exports = router;
