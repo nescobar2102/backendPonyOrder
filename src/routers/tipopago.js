@@ -9,8 +9,7 @@ router.get('/tipopago_all', async (req,res) => {
     let tipopago = await new Tipopago().getTipopago(); 
     if (tipopago.length > 0) {
         response.data = tipopago;
-    }
-    else {
+    }  else {
         status= 404;
         response.success = false;
         response.msg = 'No existen registros';
@@ -21,13 +20,12 @@ router.get('/tipopago_all', async (req,res) => {
 router.get('/tipopago/:nit/:descripcion', async (req,res) => {
     const response = newResponseJson();
     let status = 200;
-    response.msg = 'Listar un tipo de pago por Descripcion y Nit';
+    response.msg = 'Listar un Tipo de Pago por Nit y descripcion ';
     let {nit,descripcion} = req.params;    
     let tipopago = await new Tipopago().getTipopagoByDesc(nit,descripcion);
     if (tipopago.length > 0) {
         response.data = tipopago;
-    }
-    else {
+    }  else {
         status= 404;
         response.success = false;
         response.msg = 'No existen registros';
@@ -37,7 +35,7 @@ router.get('/tipopago/:nit/:descripcion', async (req,res) => {
 
 router.post('/synchronization_tipopago', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de tipo pago';
+    response.msg = 'Sincronización de Tipo Pago';
     let status = 201;
     const {tipopagos} = req.body
     let bandera = false;
@@ -72,22 +70,16 @@ router.post('/synchronization_tipopago', async (req,res) => {
 if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
     let tipopago_all = await new Tipopago().getTipopago();
     response.data = tipopago_all;
-} 
-else 
-{ 
+} else {    
     await new Tipopago().deleteTipopago();
     response.success = false;
     status = 400;
-    response.msg = 'Error en la  sincronización de tipo de pago';
+    response.msg = 'Error en la Sincronización de Tipo de Pago';
 }
 res.status(status).json(response);
 
 });
 function newResponseJson() {
-return {
-    success: true,
-    msg: "",
-    data: [],
-};
+return {success: true, msg: "",data: []};
 }
 module.exports = router;
