@@ -9,8 +9,7 @@ router.get('/tipoidentificacion_all', async (req,res) => {
     let tipoidentificacion = await new Tipoidentificacion().getTipoidentificacion(); 
     if (tipoidentificacion.length>0){
         response.data = tipoidentificacion;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -20,14 +19,13 @@ router.get('/tipoidentificacion_all', async (req,res) => {
 
 router.get('/tipoidentificacion/:descripcion', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un tipo identificacion por descripcion';
+    response.msg = 'Listar un Tipo Identificacion por Descripcion';
     let status = 200;
     let {descripcion} = req.params;        
     let tipoidentificacion = await new Tipoidentificacion().getTipoidentificacionByDesc(descripcion);
     if (tipoidentificacion.length>0){
         response.data = tipoidentificacion;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -37,7 +35,7 @@ router.get('/tipoidentificacion/:descripcion', async (req,res) => {
 
 router.post('/synchronization_tipoidentificacion', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de tipo identificacion';
+    response.msg = 'Sincronización de Tipo Identificacion';
     let status = 201;
     const {identificaciones } = req.body
     let bandera = false;
@@ -46,7 +44,7 @@ router.post('/synchronization_tipoidentificacion', async (req,res) => {
         result1 = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion, descripcion); 
         console.log('primer insert', result1?.rowCount);
         if (!result1?.rowCount || result1?.rowCount == 0) {
-            console.log('no se hizo el insert');
+           //console.log('no se hizo el insert');
             bandera = true;
             break;        
         }
@@ -57,16 +55,11 @@ router.post('/synchronization_tipoidentificacion', async (req,res) => {
         else {
             response.success = false;
             status = 400;
-            response.msg = 'Error en la sincronización de tipo identificacion';
-    
+            response.msg = 'Error en la Sincronización de tipo Identificacion';    
         }
         res.status(status).json(response)
     });
     function newResponseJson() {
-        return {
-            success: true,
-            msg: "",
-            data: [],
-        };
+        return {success: true, msg: "", data: []};
     }    
 module.exports = router;
