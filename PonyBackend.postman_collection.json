@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "c84902e4-db78-4e26-b100-021ce970202b",
 		"name": "PonyBackend",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20510472"
 	},
 	"item": [
 		{
@@ -112,7 +113,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\n{\n\t\n\t\"nit\":\"eqwe\",\n\t\"usuario\":\"asdasd\",\n\t\"nombre\":\"asd\",\n\t\"flag_activo\":\"si\",\n\t\"clave\":\"123456\"\n}"
+					"raw": "{\n\"nit\":\"900227680\",\n\"correo_electronico\": \"panza@ibla.co\",\n\"usuario\": \"rmurillo\",\n\"nombre\": \"Ricardo Murillo Lemos\",\n\"flag_activo\": \"SI\",\n\"clave\": \"12345678\",\n\"flag_cambia_fp\": \"SI\",\n\"flag_cambia_lp\": \"SI\",\n\"flag_edita_cliente\": \"NO\",\n\"flag_edita_dcto\": \"SI\",\n\"id_tipo_doc_pe\": \"P01\",\n\"id_tipo_doc_rc\": \"RC1\",\n\"id_bodega\": \"01\",\n\"edita_consecutivo_rc\": \"SI\",\n\"edita_fecha_rc \": \"SI\"\n}\n"
 				},
 				"url": {
 					"raw": "http://localhost:3000/users",
@@ -347,7 +348,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/barrio/:nit",
+					"raw": "http://localhost:3000/barrio/:nit/:nombre",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -355,12 +356,17 @@
 					"port": "3000",
 					"path": [
 						"barrio",
-						":nit"
+						":nit",
+						":nombre"
 					],
 					"variable": [
 						{
 							"key": "nit",
-							"value": null
+							"value": "900054835"
+						},
+						{
+							"key": "nombre",
+							"value": "Los Andes"
 						}
 					]
 				}
@@ -390,6 +396,2193 @@
 					"port": "3000",
 					"path": [
 						"empresa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los auxiliares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auxiliar/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auxiliar",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "Caja General"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de auxiliar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"auxiliares\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"13050501\" ,\r\n\"descripcion\" : \"Clientes Nacionales\" ,\r\n\"flag_flujo_caja\" : \"NO\" ,\r\n\"id_tipo_cuenta\" : \"CC\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"11050501\" ,\r\n\"descripcion\" : \"Caja General\" ,\r\n\"flag_flujo_caja\" : \"SI\" ,\r\n\"id_tipo_cuenta\" : \"CA\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_auxiliar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_auxiliar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincrronizacion de los banco",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"bancos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_banco\" : \"07\" ,\r\n\"descripcion\" : \"Bancolombia\" ,\r\n\"id_tercero\" : \"890903938\" ,\r\n\"id_sucursal_tercero\" : \"1\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_banco\" : \"23\" ,\r\n\"descripcion\" : \"Banco de Occidente\" ,\r\n\"id_tercero\" : \"890300279\" ,\r\n\"id_sucursal_tercero\" : \"1\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_banco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_banco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar banco por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/banco_all/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"banco_all",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listado de banco",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/banco_all/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"banco_all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar  todos los auxiliar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auxiliar_all/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auxiliar_all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar clasificacion_Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sincronizacion  clasificacion_Items (categoria)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_clasificacionItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_clasificacionItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar categoria por descripcion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Frutas y Verduras"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los concepto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"conceptos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"01\" ,\r\n\"id_auxiliar\" : \"13551505\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 1.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"02\" ,\r\n\"id_auxiliar\" : \"13551501\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 2.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"03\" ,\r\n\"id_auxiliar\" : \"42958101\" ,\r\n\"descripcion\" : \"AJUSTE AL PESO (CREDITO)\" ,\r\n\"naturalezacta\" : \"CREDITO\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/concepto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"concepto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los concepto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/concepto/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"concepto",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "AJUSTE AL PESO (CREDITO)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinncronizacion de concepto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"conceptos\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"01\" ,\r\n\"id_auxiliar\" : \"135515057\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 1.5\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"02\" ,\r\n\"id_auxiliar\" : \"13551501\" ,\r\n\"descripcion\" : \"RETEFUENTE A FAVOR 2.5%\" ,\r\n\"naturalezacta\" : \"DEBITO\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_concepto\" : \"03\" ,\r\n\"id_auxiliar\" : \"42958101\" ,\r\n\"descripcion\" : \"AJUSTE AL PESO (CREDITO)\" ,\r\n\"naturalezacta\" : \"CREDITO\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_concepto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_concepto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de medio_Contacto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n},\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"PANZA\" ,\r\n\"id_medio_contacto\" : \"33\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_medioContacto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_medioContacto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar medioContacto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/medioContacto/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "ZAPATA"
+						},
+						{
+							"key": "nit",
+							"value": "90005445"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los medioContacto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"medio_contacto\" :\r\n[\r\n{\r\n\"nit\" : \"90005445\" ,\r\n\"descripcion\" : \"ZAPATA\" ,\r\n\"id_medio_contacto\" : \"23\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/medioContacto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medioContacto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de zona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"zonas\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_zona\": \"01\",\r\n\"descripcion\": \"ZONA NORTE\",\r\n\"id_padre\": \"-\",\r\n\"nivel\": \"1\",\r\n\"es_padre\": \"1\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_zona\": \"02\",\r\n\"descripcion\": \"ZONA PACIFICA\",\r\n\"id_padre\": \"-\",\r\n\"nivel\": \"1\",\r\n\"es_padre\": \"1\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_zona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_zona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar la zona por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"zona\" :\r\n[\r\n{\r\n\"id_zona\" : \"4\" ,\r\n\"descripcion\" : \"carrera\" ,\r\n\"id_padre\" : \"23\",\r\n\"nivel\" : \"3\",\r\n\"es_padre\" : \"ma\",\r\n\"id_tercero\" : \"23\",\r\n\"id_sucursal_tercero\" : \"33\",\r\n\"nit\" : \"22\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/zona/900054835/ZONA NORTE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"zona",
+						"900054835",
+						"ZONA NORTE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo las zona",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/zona_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"zona_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tipo documento por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipodoc/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipodoc",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "Pedido Ruta 1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo documento",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipodoc_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipodoc_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion tipo documento ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipodocs\": [\r\n{\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_clase_doc\": \"PE\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"consecutivo\": \"1221\",\r\n\"descripcion\": \"Pedido Ruta 1\",\r\n\"nit\": \"900054835\"\r\n},\r\n{\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_clase_doc\": \"RC\",\r\n\"id_tipo_doc\": \"RC1\",\r\n\"consecutivo\": \"1125\",\r\n\"descripcion\": \"Recibo de Caja Ruta 1\",\r\n\"nit\": \"900054835\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipodoc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipodoc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar tipo pago por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipopago/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipopago",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "EFECTIVO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo pago",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipo_pago\" :\r\n[\r\n{\r\n\"id_tipo_pago\" : \"2644\",\r\n\"descripcion\" : \"cancelado\",\r\n\"aplica_en\" : \"22\",\r\n\"flag_valor\" : \"45\",\r\n\"nit\" : \"9022255\" \r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipopago_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipopago_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de los tipo pago",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipopagos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"01\",\r\n\"descripcion\": \"EFECTIVO\",\r\n\"tipopagosdet\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"01\",\r\n\"id_auxiliar\": \"11050501\",\r\n\"cuota\": \"1\",\r\n\"clase\": \"rr\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"02\",\r\n\"descripcion\": \"TRANSFERENCIA BANCOLOMBIA\",\r\n\"tipopagosdet\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"02\",\r\n\"id_auxiliar\": \"11100501\",\r\n\"cuota\": \"1\",\r\n\"clase\": \"TR\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"03\",\r\n\"descripcion\": \"PAGO CON CHEQUES\",\r\n\"tipopagosdet\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_pago\": \"03\",\r\n\"cuota\": \"1\",\r\n\"clase\": \"CH\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipopago",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipopago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tipo empresa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoempresa_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoempresa_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tipo empresa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tipoempresas\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_empresa\": \"01\",\r\n\"descripcion\": \"COMERCIAL\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_empresa\": \"02\",\r\n\"descripcion\": \"MUEBLES Y OFICINAS MODULARES\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_empresa\": \"03\",\r\n\"descripcion\": \"SERVICIOS\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipoempresa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipoempresa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tipo empresa por descripcion y por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoempresa/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoempresa",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "COMERCIAL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo los tipo identificacion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoidentificacion_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoidentificacion_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tipo identificacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"identificaciones\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_identificacion\": \"15\",\r\n\"descripcion\": \"Cédula de Ciudadanía\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_identificacion\": \"31\",\r\n\"descripcion\": \"Número de indentificación Tributaria - Nit\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tipoidentificacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tipoidentificacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar un tipo identificacion por descripcion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tipoidentificacion/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tipoidentificacion",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Número de indentificación Tributaria - Nit"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion_ de las EMPRESA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"empresas\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"razon_social\": \"PANZA NUNEZ DISTRIBUCIONES SAS\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"pre_actividad_economica\": \"0082\",\r\n\"pre_cuenta\": \"13050502\",\r\n\"pre_medio_contacto\": \"02\",\r\n\"id_moneda\": \"COLP\",\r\n\"direccion\": \"KM 11 VIA CALI CANDELARIA LC 4\",\r\n\"telefono\": \"6024484019\",\r\n\"dv\": \"1\",\r\n\"fax\": \"\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"regimen_tributario\": \"\",\r\n\"flag_iva\": \"SI\",\r\n\"flag_forma_pago_efectivo\": \"SI\",\r\n\"correo_electronico\": \"gerencia@pddistribuciones.com\",\r\n\"id_empresa\": \"04\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_empresa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_empresa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de cuenta por tercero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"cuentas_por_terceros\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1021\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"66744881\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"44\",\r\n\"debito\": \"1200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"33\"\r\n},\r\n\t{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"954\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"52\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/03/2022\",\r\n\"vencimiento\": \"30/03/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"36\",\r\n\"debito\": \"4400000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"66\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1003\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"\",\r\n\"debito\": \"2200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"65\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_cuentaportercero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_cuentaportercero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar las cuenta por tercer con el nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cuentaportercero/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cuentaportercero",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de las cuota ventas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"cuota_ventas\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"venta\": \"20000000\",\r\n\"cuota\": \"50000000\",\r\n\"id_linea\": \"03\",\r\n\"nombre\": \"CAFE\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"venta\": \"35000000\",\r\n\"cuota\": \"90000000\",\r\n\"id_linea\": \"02\",\r\n\"nombre\": \"PASTA\"\r\n},\r\n{\r\n    \"nit\":\"900054835\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"venta\": \"10000000\",\r\n\"cuota\": \"70000000\",\r\n\"id_linea\": \"03\",\r\n\"nombre\": \"MODIFICADORES DE LECHE\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_cuotaventas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_cuotaventas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar por cuota venta con el Nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cuotaventas/900054835/MODIFICADORES DE LECHE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cuotaventas",
+						"900054835",
+						"MODIFICADORES DE LECHE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos las cuota ventas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cuotaventas_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cuotaventas_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de depto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"deptos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"11\",\r\n\"nombre\": \"Bogota\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"05\",\r\n\"nombre\": \"Antioquia\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"nombre\": \"Valle del Cauca\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_depto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_depto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los impuesto",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/impuesto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"impuesto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los impuesto por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/impuesto/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"impuesto",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "RETENCION DE ICA 7.7 x 1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion_ de mpuesto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_impuesto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de pais",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"paises\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"ie_pais\":\"57\",\r\n\"nacionalidad\":\"Colombiano\",\r\n\"nombre\":\"Colombia\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"51\",\r\n\"ie_pais\":\"51\",\r\n\"nacionalidad\":\"Peruano\",\r\n\"nombre\":\"Perú\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_pais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_pais"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo los pais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pais_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pais_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los pais por nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pais/:nit/:id_pais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pais",
+						":nit",
+						":id_pais"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "id_pais",
+							"value": "Perú"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinccronization de forma de pago",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"forma_pago\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_forma_pago\": \"01\",\r\n\"descripcion\": \"EFECTIVO\",\r\n\"id_precio_item\": \"\",\r\n\"forma_pagodet\":\r\n[\r\n{\r\n\"cuota\": \"1\",\r\n\"dias\": \"0\",\r\n\"tasa\": \"100\",\r\n\"clase\": \"FE\",\r\n\"descripcion_detalle\": \"EFECTIVO\",\r\n\"flag_activo\": \"SI\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_forma_pago\": \"02\",\r\n\"descripcion\": \"CREDITO 8 DIAS\",\r\n\"id_precio_item\": \"\",\r\n\"forma_pagodet\":\r\n[\r\n\t{\r\n\"cuota\": \"1\",\r\n\"dias\": \"0\",\r\n\"tasa\": \"100\",\r\n\"clase\": \"\",\r\n\"descripcion_detalle\": \"CREDITO 8 DIAS\",\r\n\"flag_activo\": \"SI\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_forma_pago\": \"03\",\r\n\"descripcion\": \"CREDITO 30 DIAS\",\r\n\"id_precio_item\": \"\",\r\n\"forma_pagodet\":\r\n[\r\n{\r\n\"cuota\": \"1\",\r\n\"dias\": \"0\",\r\n\"tasa\": \"100\",\r\n\"clase\": \"\",\r\n\"descripcion_detalle\": \"CREDITO 30 DIAS\",\r\n\"flag_activo\": \"SI\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_formapago",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_formapago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los forma pago por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/formapago/:nit/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"formapago",
+						":nit",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "descripcion",
+							"value": "EFECTIVO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de cartera proveedores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"cartera_proveedores\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11142\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\":\"1\",\r\n\"id_sucursal\":\"1\",\r\n\"id_tipo_doc\":\"R2\",\r\n\"numero\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"total\":\"55200\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"letras\":\"CINCUENTA Y CINCO MIL DOSCIENTOS PESO COLOMBIANO\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_recaudador\":\"0\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"trm\":\"1\",\r\n\"observaciones\":\"el saldo que queda en la factura # 388 corresponde a una diferencia en la dev 33145\",\r\n\"usuario\":\"rmurillo\",\r\n\"flag_enviado\":\"NO\",\r\n\"cartera_proveedores_det\":\r\n[\r\n{\r\n\"consecutivo\":\"1\",\r\n\"cuota\":\"1\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"F02\",\r\n\"numero_cruce\":\"718\",\r\n\"fecha\":\"01/03/2022\",\r\n\"vencimiento\":\"15/03/2022\",\r\n\"debito\":\"0\",\r\n\"credito\":\"55200\",\r\n\"descripcion\":\"Abonó el documento: 11F02718\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"DC\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"1131434\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"1\",\r\n\"id_banco\":\"\"\r\n},\r\n{\r\n\"consecutivo\":\"2\",\r\n\"cuota\":\"2\",\r\n\"id_tercero\":\"94297397\",\r\n\"id_sucursal_tercero\":\"1\",\r\n\"id_empresa_cruce\":\"1\",\r\n\"id_sucursal_cruce\":\"1\",\r\n\"id_tipo_doc_cruce\":\"R2\",\r\n\"numero_cruce\":\"11143\",\r\n\"fecha\":\"01/04/2022\",\r\n\"vencimiento\":\"01/04/2022\",\r\n\"debito\":\"55200\",\r\n\"credito\":\"0\",\r\n\"descripcion\":\"Pago en Efectivo por el valor de 55200\",\r\n\"id_vendedor\":\"6220948\",\r\n\"id_forma_pago\":\"3\",\r\n\"documento_forma_pago\":\"\",\r\n\"distribucion\":\"FP\",\r\n\"trm\":\"1\",\r\n\"id_recaudador\":\"6220948\",\r\n\"id_suc_recaudador\":\"1\",\r\n\"fecha_trm\":\"01/04/2022\",\r\n\"total_factura\":\"0\",\r\n\"id_concepto\":\"\",\r\n\"id_moneda\":\"COLP\",\r\n\"id_destino\":\"\",\r\n\"id_proyecto\":\"\",\r\n\"cuota_cruce\":\"2\",\r\n\"id_banco\":\"\"\r\n}\r\n]\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_carteraproveedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_carteraproveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"items\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_item\": \"01\",\r\n\"descripcion\": \"Café Aguila Roja Tradicional x 2500 gr\",\r\n\"referencia\": \"\",\r\n\"id_impuesto\": \"IVA 19\",\r\n\"tipo_impuesto\": \"IVA\",\r\n\"dcto_producto\": \"0\",\r\n\"dcto_maximo\": \"5\",\r\n\"flag_serial\": \"NO\",\r\n\"flag_kit\": \"NO\",\r\n\"id_clasificacion\": \"0101\",\r\n\"id_padre_clasificacion\": \"01\",\r\n\"id_unidad_compra\": \"UND\",\r\n\"exento_impuesto\": \"NO\",\r\n\"flag_existencia\": \"SI\",\r\n\"flag_dcto_volumen\": \"NO\",\r\n\"saldo_inventario\": \"25800\",\r\n\"item_dctos\": [\r\n{\r\n\"consecutivo\": \"1\",\r\n\"cantidad_inicial\": \"36\",\r\n\"cantidad_final\": \"48\",\r\n\"tasa_dcto\": \"2.5\"\r\n},\r\n{\r\n\"consecutivo\": \"2\",\r\n\"cantidad_inicial\": \"49\",\r\n\"cantidad_final\": \"60\",\r\n\"tasa_dcto\": \"3\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_item\": \"02\",\r\n\"descripcion\": \"Café Aguila Roja Tradicional x 1000 gr\",\r\n\"referencia\": \"\",\r\n\"id_impuesto\": \"IVA 19\",\r\n\"tipo_impuesto\": \"IVA\",\r\n\"dcto_producto\": \"0\",\r\n\"dcto_maximo\": \"5\",\r\n\"flag_serial\": \"NO\",\r\n\"flag_kit\": \"NO\",\r\n\"id_clasificacion\": \"0101\",\r\n\"id_padre_clasificacion\": \"01\",\r\n\"id_unidad_compra\": \"UND\",\r\n\"exento_impuesto\": \"NO\",\r\n\"flag_existencia\": \"SI\",\r\n\"flag_dcto_volumen\": \"NO\",\r\n\"saldo_inventario\": \"1200\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_item\": \"03\",\r\n\"descripcion\": \"Café Aguila Roja Tradicional x 500 gr\",\r\n\"referencia\": \"\",\r\n\"id_impuesto\": \"IVA 19\",\r\n\"tipo_impuesto\": \"IVA\",\r\n\"dcto_producto\": \"0\",\r\n\"dcto_maximo\": \"5\",\r\n\"flag_serial\": \"NO\",\r\n\"flag_kit\": \"NO\",\r\n\"id_clasificacion\": \"0101\",\r\n\"id_padre_clasificacion\": \"01\",\r\n\"id_unidad_compra\": \"UND\",\r\n\"exento_impuesto\": \"NO\",\r\n\"flag_existencia\": \"SI\",\r\n\"flag_dcto_volumen\": \"NO\",\r\n\"saldo_inventario\": \"900\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de kit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"kits\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"k01\",\r\n\"descripcion\": \"Cafe Aguila Roja Tradicional x 1000 gr + gratis tradicional por 500 gr\",\r\n\"precio_kit\": \"10000\",\r\n\"precio_kit_iva\": \"11900\",\r\n\"flag_vigencia\": \"SI\",\r\n\"fecha_inicial\": \"01/01/2022\",\r\n\"fecha_final\": \"2022/03/01\",\r\n\"ultima_actualizacion\": \"2022/04/30\",\r\n\"kits_det\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"k01\",\r\n\"id_item\": \"02\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"tasa_dcto\": \"0\",\r\n\"precio\": \"10000\",\r\n\"valor_total\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"valor_iva\": \"1900\",\r\n\"total\": \"11900\",\r\n\"ultima_actualizacion\": \"2022/04/30\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_kit\": \"03\",\r\n\"id_item\": \"02\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"tasa_dcto\": \"0\",\r\n\"precio\": \"0\",\r\n\"valor_total\": \"0\",\r\n\"tasa_iva\": \"19\",\r\n\"valor_iva\": \"0\",\r\n\"total\": \"0\",\r\n\"ultima_actualizacion\": \"2022/04/30\"\r\n}\r\n]\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_kit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_kit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"pedidos\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"fecha\": \"01/05/2022\",\r\n\"vencimiento\": \"30/05/2022\",\r\n\"fecha_entrega\": \"01/05/2022\",\r\n\"fecha_trm\": \"01/05/2022\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_direccion\": \"1\",\r\n\"id_moneda\": \"COLP\",\r\n\"trm\": \"1\",\r\n\"subtotal\": \"10000\",\r\n\"total_costo\": \"7500\",\r\n\"total_iva\": \"1900\",\r\n\"total_dcto\": \"0\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"orden_compra\": \"OC-254896\",\r\n\"estado\": \"PENDIENTE\",\r\n\"flag_autorizado\": \"SI\",\r\n\"comentario\": \"PRUEBA\",\r\n\"observacion\": \"PRUEBA\",\r\n\"letras\": \"ONCE MIL NOVECIENTOS PESOS MCTE\",\r\n\"id_direccion_factura\": \"2\",\r\n\"usuario\": \"rmurillo\",\r\n\"id_tiempo_entrega\": \"22\",\r\n\"flag_enviado\": \"NO\",\r\n\"pedido_det\": [\r\n\t{\r\n\"nit\": \"900054835\",\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"numero\": \"1201\",\r\n\"consecutivo\": \"1\",\r\n\"id_item\": \"01\",\r\n\"descripcion_item\": \"Cafe Aguila Roja Tradicional x 2500 gr\",\r\n\"id_bodega\": \"01\",\r\n\"cantidad\": \"1\",\r\n\"precio\": \"10000\",\r\n\"precio_lista\": \"10000\",\r\n\"tasa_iva\": \"19\",\r\n\"total_iva\": \"1900\",\r\n\"tasa_dcto_fijo\": \"0\",\r\n\"total_dcto_fijo\": \"0\",\r\n\"total_dcto\": \"0\",\r\n\"costo\": \"7500\",\r\n\"subtotal\": \"10000\",\r\n\"total\": \"11900\",\r\n\"total_item\": \"10000\",\r\n\"id_unidad\": \"Und\",\r\n\"cantidad_kit\": \"0\",\r\n\"cantidad_de_kit\": \"0\",\r\n\"recno\": \"0\",\r\n\"id_precio_item\": \"01\",\r\n\"factor\": \"1\",\r\n\"id_impuesto_iva\": \"IVA19\",\r\n\"total_dcto_adicional\": \"0\",\r\n\"tasa_dcto_adicional\": \"0\",\r\n\"id_kit\": \"\",\r\n\"precio_kit\": \"0\",\r\n\"tasa_dcto_cliente\": \"0\",\r\n\"total_dcto_cliente\": \"0\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_pedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_pedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los pedido",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pedido_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los pedido por Nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pedido/:nit/:observacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						":nit",
+						":observacion"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						},
+						{
+							"key": "observacion",
+							"value": "PRUEBA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los item por descripcion y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Café Aguila Roja Tradicional x 2500 gr"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos las forma pago",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/formapago_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"formapago_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista todos las clasificacionItems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los carteraproveedores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/carteraproveedores_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"carteraproveedores_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar las carteraproveedores :id_empresa/:id_tercero/:nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/carteraproveedores/:id_empresa/:id_tercero/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"carteraproveedores",
+						":id_empresa",
+						":id_tercero",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "id_empresa",
+							"value": "1"
+						},
+						{
+							"key": "id_tercero",
+							"value": "94297397"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinchronizacion precio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"precios\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_precio_item\": \"01\",\r\n\"descripcion\": \"precios distribuidor\",\r\n\"vigencia_desde\": \"01/01/2022\",\r\n\"vigencia_hasta\": \"31/12/2022\",\r\n\"id_margen_item\": \"01\",\r\n\"id_moneda\": \"COLP\",\r\n\"flag_iva_incluido\": \"SI\",\r\n\"flag_lista_base\": \"NO\",\r\n\"flag_mobile\": \"SI\",\r\n\"precios_det\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_precio_item\": \"01\",\r\n\"id_item\": \"01\",\r\n\"precio\": \"10000\",\r\n\"descuento_maximo\": \"2.5\",\r\n\"id_talla\": \"SIN\",\r\n\"id_moneda\": \"SIN\",\r\n\"id_unidad_compra\": \"Und\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_precio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_precio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los precioitem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/precioitem_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"precioitem_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los precioitem por descripcion y nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/precioitem/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"precioitem",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "precios distribuidor"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sinchronizacion_tercero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16499705\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tercero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tercero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de tiempo entrega",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"tiempo_entregas\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_tiempo_entrega\":\"01\",\r\n\"hora_inicial\":\"10:00\",\r\n\"hora_final\":\"11:00\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_tiempo_entrega\":\"02\",\r\n\"hora_inicial\":\"14:00\",\r\n\"hora_final\":\"15:00\"\r\n}\r\n]\r\n}\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_tiempoentrega",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_tiempoentrega"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tiempoentrega",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tiempoentrega_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiempoentrega_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tiempoentrega por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tiempoentrega/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiempoentrega",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tercero",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tercero_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tercero_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los tercero por nombre y nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tercero/:nombre/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tercero",
+						":nombre",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nombre",
+							"value": null
+						},
+						{
+							"key": "nit",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"usuarios\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"rmurillo@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Ricardo Murillo Lemos\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"smurillo@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Sophia Murillo Fernandez\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"correo_electronico\": \"yvalencia@ibla.co\",\r\n\"usuario\": \"rmurillo\",\r\n\"nombre\": \"Yaneth Valencia\",\r\n\"flag_activo\": \"SI\",\r\n\"clave\": \"12345678\",\r\n\"flag_cambia_fp\": \"SI\",\r\n\"flag_cambia_lp\": \"SI\",\r\n\"flag_edita_cliente\": \"NO\",\r\n\"flag_edita_dcto\": \"SI\",\r\n\"id_tipo_doc_pe\": \"P01\",\r\n\"id_tipo_doc_rc\": \"RC1\",\r\n\"id_bodega\": \"01\",\r\n\"edita_consecutivo_rc\": \"SI\",\r\n\"edita_fecha_rc \": \"SI\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los depto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/depto_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"depto_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar los depto por nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/depto/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"depto",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de impuesto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"3.3\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_impuesto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_impuesto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sincronizacion de ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ciudades\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"id_depto\":\"76\",\r\n\"id_ciudad\":\"76001\",\r\n\"nombre\":\"Cali\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_pais\":\"57\",\r\n\"id_depto\":\"76\",\r\n\"id_ciudad\":\"76016\",\r\n\"nombre\":\"Buenaventura\"\r\n}\r\n]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/synchronization_ciudad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"synchronization_ciudad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos kit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/kit_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"kit_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar kit descripcion y  nit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/kit/:descripcion/:nit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"kit",
+						":descripcion",
+						":nit"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Cafe Aguila Roja Tradicional x 1000 gr + gratis tradicional por 500 gr"
+						},
+						{
+							"key": "nit",
+							"value": "900054835"
+						}
 					]
 				}
 			},
