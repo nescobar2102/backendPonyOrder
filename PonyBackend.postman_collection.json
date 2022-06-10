@@ -1385,7 +1385,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"cuentas_por_terceros\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1021\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"66744881\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"44\",\r\n\"debito\": \"1200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"33\"\r\n},\r\n\t{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"954\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"52\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/03/2022\",\r\n\"vencimiento\": \"30/03/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"36\",\r\n\"debito\": \"4400000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"66\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1003\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"\",\r\n\"cuota_cruce\": \"\",\r\n\"debito\": \"2200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"65\"\r\n}\r\n]\r\n}",
+					"raw": "{\r\n\"cuentas_por_terceros\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1021\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"66744881\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"2\",\r\n\"cuota_cruce\": \"44\",\r\n\"debito\": \"1200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"33\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"954\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"52\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/03/2022\",\r\n\"vencimiento\": \"30/03/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"2\",\r\n\"cuota_cruce\": \"36\",\r\n\"debito\": \"4400000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"66\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_empresa\": \"1\",\r\n\"id_sucursal\": \"1\",\r\n\"tipo_doc\": \"FE\",\r\n\"numero\": \"1003\",\r\n\"cuota\": \"1\",\r\n\"dias\": \"22\",\r\n\"id_tercero\": \"900876543\",\r\n\"id_vendedor\": \"16499706\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"fecha\": \"01/04/2022\",\r\n\"vencimiento\": \"30/04/2022\",\r\n\"credito\": \"0\",\r\n\"dctomax\": \"2\",\r\n\"cuota_cruce\": \"22\",\r\n\"debito\": \"2200000\",\r\n\"id_destino\": \"DIA\",\r\n\"id_proyecto\": \"65\"\r\n}\r\n]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1424,7 +1424,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/cuentaportercero/:nit",
+					"raw": "http://localhost:3000/cuentaportercero/:nit/:tipo_doc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1432,12 +1432,17 @@
 					"port": "3000",
 					"path": [
 						"cuentaportercero",
-						":nit"
+						":nit",
+						":tipo_doc"
 					],
 					"variable": [
 						{
 							"key": "nit",
-							"value": null
+							"value": "900054835"
+						},
+						{
+							"key": "tipo_doc",
+							"value": "FE"
 						}
 					]
 				}
@@ -2583,6 +2588,25 @@
 							"key": "nit",
 							"value": "900054835"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los cuenta por tercero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cuentaportercero_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cuentaportercero_all"
 					]
 				}
 			},
