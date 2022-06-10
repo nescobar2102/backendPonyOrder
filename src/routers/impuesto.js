@@ -10,8 +10,7 @@ router.get('/impuesto_all', async (req,res) => {
     let impuesto = await new Impuesto().getImpuesto(); 
     if (impuesto.length > 0){
         response.data = impuesto;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -27,8 +26,7 @@ router.get('/impuesto/:nit/:descripcion', async (req,res) => {
     let impuesto = await new Impuesto().getImpuestoDesc(nit,descripcion);
     if (impuesto.length>0){
         response.data = impuesto;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -38,35 +36,37 @@ router.get('/impuesto/:nit/:descripcion', async (req,res) => {
 // sincronizacion de impuesto
 router.post('/synchronization_impuesto', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de impuesto';
+    response.msg = 'Sincronización de impuestos';
     let status = 201;
     const {impuestos} = req.body
     let bandera = false;
     for (var i=0;i<impuestos.length;i++){ 
-        const {nit,id_impuesto,descripcion,tasa,tipo_impuesto,por} =  impuestos[i]
+        const {
+            nit,
+            id_impuesto,
+            descripcion,
+            tasa,
+            tipo_impuesto,
+            por
+        } =  impuestos[i]
         result1 = await new Impuesto().createImpuesto(nit,id_impuesto,descripcion,tasa,tipo_impuesto,por); 
-    console.log('primer insert', result1?.rowCount);
+    //console.log('primer insert', result1?.rowCount);
     if (!result1?.rowCount || result1?.rowCount == 0) {
-        console.log('no se hizo el inser');
+    // console.log('no se hizo el inser');
         bandera = true;
         break;        
     }
 }     
-    if (impuestos.length>0){
+    if (impuestos.length > 00 && ! bandera){
         response.data = await new Impuesto().getImpuesto();;
-    }
-    else {
+    } else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de forma de pago';
+        response.msg = 'Error en la sincronización de Impuestos';
     }    
     res.status(status).json(response)  
 });
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return {success: true, msg: "", data: []};
 }
 module.exports = router;

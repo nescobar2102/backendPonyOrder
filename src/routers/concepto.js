@@ -4,13 +4,12 @@ const Concepto = require('../controllers/concepto');
 // listar todos los concepto
 router.get('/concepto_all', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar todos los concepto'; 
+    response.msg = 'Listar todos los conceptos'; 
     let status = 200;
     let concepto = await new Concepto().getConcepto(); 
-    if (empresa.length>0){
-        concepto.data = concepto;
-    }
-    else {
+    if (concepto.length>0){
+        response.data = concepto;
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -18,16 +17,15 @@ router.get('/concepto_all', async (req,res) => {
     res.status(status).json(response)
 });
 // listar un concepto por descripcion y nit
-router.get('/concepto/:descripcion/:nit', async (req,res) => {
+router.get('/concepto/:nit/:descripcion', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar un concepto por descripcion y nit'; 
     let status = 200;
-    let {descripcion,nit} = req.params;    
-    let concepto = await new Concepto().getConceptoByDesc(descripcion,nit);
+    let {nit,descripcion} = req.params;    
+    let concepto = await new Concepto().getConceptoByDesc(nit,descripcion);
     if (concepto.length>0){
         response.data = concepto;
-    }
-    else {
+    } else {
         status = 404;
         response.success = false;
         response.mg = 'No existen registros';
@@ -37,15 +35,20 @@ router.get('/concepto/:descripcion/:nit', async (req,res) => {
 // sincronizacion de concepto
 router.post('/synchronization_concepto', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de concepto'; 
+    response.msg = 'Sincronización de conceptos'; 
     let status = 201;
     const {conceptos } = req.body
     let bandera = false;
     for (var i=0;i<conceptos.length;i++){ 
-        const {nit, id_concepto, id_auxiliar, descripcion, naturalezacta } =  conceptos[i]
-        result1 = await new Concepto().createConcepto( nit, id_concepto, id_auxiliar, descripcion, naturalezacta ); 
-        
-        console.log('primer insert', result1?.rowCount);
+        const {
+            nit, 
+            id_concepto, 
+            id_auxiliar, 
+            descripcion, 
+            naturalezacta
+        } =  conceptos[i]
+        result1 = await new Concepto().createConcepto(nit,id_concepto,id_auxiliar,descripcion, naturalezacta ); 
+   //   console.log('primer insert', result1?.rowCount);
     if (!result1?.rowCount || result1?.rowCount == 0) {
         console.log('no se hizo el insert');
         bandera = true;
@@ -54,19 +57,14 @@ router.post('/synchronization_concepto', async (req,res) => {
 }         
      if (conceptos.length>0 && !bandera){
         response.data = await new Concepto().getConcepto();
-    }
-    else {
+    }  else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de concepto';
+        response.msg = 'Error en la sincronización de conceptos';
     }    
     res.status(status).json(response)  
 });
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return {success: true, msg: "", data: []};
 }
 module.exports = router;

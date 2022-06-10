@@ -10,7 +10,7 @@ class Zona
         let results = await db.query('SELECT * FROM zona WHERE nit = $1 and descripcion = $2', [nit,descripcion]).catch(console.log); 
         return results.rows;
     }
-    async createZona(id_zona , descripcion, id_padre, nivel, es_padre, nit) { 
+    async createZona(id_zona,descripcion,id_padre,nivel,es_padre,nit) { 
         let results = await db.query('SELECT * FROM zona WHERE nit = $1 and descripcion = $2', [nit,descripcion]).catch(console.log);
         if (results.rowCount == 0) {     
             return await db
@@ -22,7 +22,9 @@ class Zona
             es_padre, 
             nit
             ])
-            .catch(console.log);         
+            .catch(console.log);  
+        }else{
+            return await db.query('UPDATE zona SET descripcion = $1 ,nivel = $2 ,es_padre = $3 WHERE nit = $4 and id_zona= $5', [descripcion,nivel,es_padre,nit,id_zona]).catch(console.log);   
         }
 }
 }

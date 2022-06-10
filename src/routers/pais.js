@@ -60,7 +60,7 @@ router.post('/synchronization_pais', async (req, res) => {
         status = 400;
         response.msg = 'Error en la sincronización de Paises';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};
