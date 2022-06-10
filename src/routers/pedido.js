@@ -4,13 +4,12 @@ const Pedido = require('../controllers/pedido');
 
 router.get('/pedido_all', async (req,res) => { 
     const response = newResponseJson();
-    response.msg = 'Listar todos los pedido';
+    response.msg = 'Listar todos los Pedido';
     let status = 200;
     let pedido = await new Pedido().getPedido(); 
     if (pedido.length > 0) {
         response.data = pedido;
-    }
-    else {
+    } else {
         status= 404;
         response.success = false;
         response.msg = 'No existen registros';
@@ -21,13 +20,12 @@ router.get('/pedido_all', async (req,res) => {
 router.get('/pedido/:nit/:observacion', async (req,res) => {
     const response = newResponseJson();
     let status = 200;
-    response.msg = 'Listar un pedido por Nit';
+    response.msg = 'Listar un Pedido por Nit';
     let {nit,observacion} = req.params;        
     let pedido = await new Pedido().getPedidoByNit(nit,observacion);
     if (pedido.length > 0) {
         response.data = pedido;
-    }
-    else {
+    }  else {
         status= 404;
         response.success = false;
         response.msg = 'No existen registros';
@@ -37,7 +35,7 @@ router.get('/pedido/:nit/:observacion', async (req,res) => {
 
 router.post('/synchronization_pedido', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de pedido';
+    response.msg = 'Sincronización de Pedido';
     let status = 201;
     const {pedidos} = req.body
     let bandera = false;
@@ -69,22 +67,16 @@ router.post('/synchronization_pedido', async (req,res) => {
 if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
     let pedido_all = await new Pedido().getPedido();
     response.data = pedido_all;
-} 
-else 
-{ 
+} else { 
     await new Pedido().deletePedido();
     response.success = false;
     status = 400;
-    response.msg = 'Error en la  sincronización de Pedido';
+    response.msg = 'Error en la Sincronización de Pedido';
 }
 res.status(status).json(response);
 
 });
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return {success: true, msg: "", data: []};
     }    
 module.exports = router;
