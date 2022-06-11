@@ -6,8 +6,24 @@ class Tercero
         let results = await db.query(`SELECT * FROM tercero ORDER BY nit ASC `).catch(console.log); 
         return results.rows;
     }
+    async getCliente() {
+        let results = await db.query(`SELECT * FROM tercero_cliente ORDER BY id_tercero ASC `).catch(console.log); 
+        return results.rows;
+    }
+    async getDireccion() {
+        let results = await db.query(`SELECT * FROM tercero_direccion ORDER BY id_tercero ASC `).catch(console.log); 
+        return results.rows;
+    }
     async getTerceroByNit(nit,nombre) {
         let results = await db.query('SELECT * FROM tercero WHERE nit = $1 and nombre = $2', [nit,nombre]).catch(console.log); 
+        return results.rows;
+    }
+    async getTercerocliente(id_tercero) {
+        let results = await db.query('SELECT * FROM tercero_cliente WHERE id_tercero = $1', [id_tercero]).catch(console.log); 
+        return results.rows;
+    }
+    async getTercerodireccion(id_tercero) {
+        let results = await db.query('SELECT * FROM tercero_direccion WHERE id_tercero = $1', [id_tercero]).catch(console.log); 
         return results.rows;
     }
     async deleteTercero() {

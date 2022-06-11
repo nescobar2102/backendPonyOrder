@@ -16,7 +16,34 @@ router.get('/tercero_all', async (req, res) => {
     }
     res.status(status).json(response)
 });
-
+router.get('/cliente_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos cliente';
+    let status = 200;
+    let tercero = await new Tercero().getCliente();
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+        status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
+router.get('/direccion_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos direccion';
+    let status = 200;
+    let tercero = await new Tercero().getDireccion();
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+        status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
 router.get('/tercero/:nit/:nombre', async (req, res) => {
     const response = newResponseJson();
     let status = 200;
@@ -32,7 +59,36 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
     }
     res.status(status).json(response)
 });
-
+router.get('/cliente/:id_tercero', async (req, res) => {
+    const response = newResponseJson();
+    let status = 200;
+    response.msg = 'Listar un tercero_cliente por id_tercero';
+    let {id_tercero} = req.params;
+    let tercero = await new Tercero().getTercerocliente(id_tercero);
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+        status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
+router.get('/direccion/:id_tercero', async (req, res) => {
+    const response = newResponseJson();
+    let status = 200;
+    response.msg = 'Listar un tercero_direccion por id_tercero';
+    let {id_tercero} = req.params;
+    let tercero = await new Tercero().getTercerodireccion(id_tercero);
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+        status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
 router.post('/synchronization_tercero', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de tercero';
