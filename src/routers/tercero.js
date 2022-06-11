@@ -79,7 +79,6 @@ router.post('/synchronization_tercero', async (req, res) => {
                 terceros_cliente,
                 terceros_direccion
             } = terceros[i];
-
          
          result1 = await new Tercero().createTercero(  nit,
             id_tercero,
@@ -113,9 +112,9 @@ router.post('/synchronization_tercero', async (req, res) => {
             telefono_celular,
             e_mail_fe);
           
-            if (!result1 ?. rowCount || result1 ?. rowCount == 0) { // se valida si existe el valor rowCount
-                console.log('entra al falase tercero primer inser'); // se se realizo el insert
-                bandera = true; // se levanta la bandera
+            if (!result1 ?. rowCount || result1 ?. rowCount == 0) { 
+                console.log('Entra al false tercero primer insert'); 
+                bandera = true; 
                 break;
             } else {
                 if (terceros_cliente ?. length > 0 && result1 ?. rowCount > 0) {

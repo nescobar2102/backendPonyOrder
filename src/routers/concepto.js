@@ -47,7 +47,7 @@ router.post('/synchronization_concepto', async (req,res) => {
             descripcion, 
             naturalezacta
         } =  conceptos[i]
-        result1 = await new Concepto().createConcepto(nit,id_concepto,id_auxiliar,descripcion, naturalezacta ); 
+        result1 = await new Concepto().createConcepto(nit,id_concepto,id_auxiliar,descripcion,naturalezacta); 
    //   console.log('primer insert', result1?.rowCount);
     if (!result1?.rowCount || result1?.rowCount == 0) {
         console.log('no se hizo el insert');
@@ -60,7 +60,7 @@ router.post('/synchronization_concepto', async (req,res) => {
     }  else {
         response.success = false;
         status = 400;
-        response.msg = 'Error en la sincronización de conceptos';
+        response.msg = 'Error en la Sincronización de Conceptos';
     }    
     res.status(status).json(response)  
 });
