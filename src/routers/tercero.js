@@ -41,9 +41,9 @@ router.post('/synchronization_tercero', async (req, res) => {
     let bandera = false;
     let bandera_cliente= false;
     let bandera_direccion = false;
-    await new Tercero().deleteTercero();
+   await new Tercero().deleteTercero();
     for (var i = 0; i < terceros.length; i++) {
-        if (!bandera_cliente && !bandera_direccion) {
+        if (!bandera_cliente && !bandera_direccion && !bandera) {
             const {
                 nit,
                 id_tercero,
@@ -80,7 +80,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                 terceros_direccion
             } = terceros[i];
          
-         result1 = await new Tercero().createTercero(  nit,
+         result1 = await new Tercero().createTercero(nit,
             id_tercero,
             id_sucursal_tercero,
             id_tipo_identificacion,
@@ -113,7 +113,7 @@ router.post('/synchronization_tercero', async (req, res) => {
             e_mail_fe);
           
             if (!result1 ?. rowCount || result1 ?. rowCount == 0) { 
-                console.log('111111111111111111111111111'); 
+                console.log("entra en bandera tercero",result1)
                 bandera = true; 
                 break;
             } else {
@@ -121,6 +121,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                     console.log('222222222222222222222222', result1 ?. rowCount);
 
                     for (var j = 0; j < terceros_cliente.length; j++) {
+                        console.log('22222222222222222111111111111111',j);
                         const {
                             nit,
                             id_tercero,
@@ -177,11 +178,12 @@ router.post('/synchronization_tercero', async (req, res) => {
                             numero_facturas_vencidas);
                         
                          if (!result2 ?. rowCount || result2 ?. rowCount == 0) { 
+                            console.log("entra en bandera cliente")
                             bandera_cliente = true; 
                             break;
                         } 
                     }
-                    if(!bandera_cliente){ 
+                    if(!bandera_cliente && !bandera){ 
                        if (terceros_direccion ?. length > 0 && result2 ?. rowCount > 0) {
                                 console.log('33333333333333333', result2 ?. rowCount);
 
@@ -198,7 +200,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                                         id_depto,
                                         tipo_direccion
                                     } = terceros_direccion[k];
-                                    result3 = await new Tercero().createTercerodireccion( nit,
+                                   result3 = await new Tercero().createTercerodireccion( nit,
                                         id_tercero,
                                         id_sucursal_tercero,
                                         id_direccion,
@@ -209,6 +211,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                                         id_depto,
                                         tipo_direccion);
                                     if (!result3 ?. rowCount || result3 ?. rowCount == 0) { //
+                                        console.log("entra en bandera direccion")
                                         bandera_direccion = true; // se levanta la bandera
                                         break;
                                     }
@@ -219,12 +222,12 @@ router.post('/synchronization_tercero', async (req, res) => {
                 }            
         }
     }
-    if (! bandera_cliente && ! bandera_direccion) { // no se levanto la bandera (false)
+    if (! bandera_cliente && ! bandera_direccion && !bandera) { // no se levanto la bandera (false)
         let tercero_all = await new Tercero().getTercero();
         response.data = tercero_all;
 
     } else {
-        await new Tercero().deleteTercero();
+      //  await new Tercero().deleteTercero();
         response.success = false;
         status = 400;
         response.msg = 'Error en la  sincronización de Tercero';

@@ -201,8 +201,8 @@ class Tercero
   //  }
 }
 async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) { 
-    let results = await db.query('SELECT * FROM tercero_direccion WHERE nit = $1 and direccion = $2', [nit,direccion]).catch(console.log);
-    if (results.rowCount == 0) {     
+    /*let results = await db.query('SELECT * FROM tercero_direccion WHERE nit = $1 and direccion = $2', [nit,direccion]).catch(console.log);
+    if (results.rowCount == 0) {  */   
         return  await db
         .query('INSERT INTO tercero_direccion (nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)', [
             nit,
@@ -217,7 +217,7 @@ async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,dir
             tipo_direccion            
         ])
         .catch(console.log);  
-    }
+  //  }
 }
 }
 module.exports = Tercero;
