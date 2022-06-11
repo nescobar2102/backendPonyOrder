@@ -45,21 +45,19 @@ router.post('/synchronization_tipopago', async (req,res) => {
         if (!bandera_hijo) {   
         const {id_tipo_pago, descripcion, nit,tipopagosdet} =  tipopagos[i];
            result1 = await new Tipopago().createTipopago(id_tipo_pago, descripcion, nit); 
-           
-           console.log('primer insert', result1?.rowCount);
-           if (!result1?.rowCount || result1?.rowCount == 0) { 
-            console.log('entra al falase'); 
+            
+           if (!result1?.rowCount || result1?.rowCount == 0) {  
             bandera = true;     
             break;
         } else {
-            if (tipopagosdet?.length > 0 && result1?.rowCount > 0) { 
-                console.log('pasa por el dto insert', result1?.rowCount);
+            if (tipopagosdet?.length > 0 && result1?.rowCount > 0) {  
             
                 for (var j=0;j<tipopagosdet.length;j++){ 	            
                 const {nit,id_tipo_pago,id_auxiliar,cuota,clase} =  tipopagosdet[j];
                 result2 = await new Tipopago().createTipopagodet(nit,id_tipo_pago,id_auxiliar,cuota,clase); 
                 
-                if (!result2?.rowCount || result2?.rowCount == 0) {                                         bandera_hijo = true;    
+                if (!result2?.rowCount || result2?.rowCount == 0) {                       
+                    bandera_hijo = true;    
                     break;
                 }
             }

@@ -42,8 +42,7 @@ router.post('/synchronization_tipodoc', async (req,res) => {
     for (var i=0;i<tipodocs.length;i++){ 
         const {nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion } =  tipodocs[i]
         result1 = await new Tipodoc().createTipodoc(nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion); 
-        
-        console.log('primer insert', result1?.rowCount);
+         
         if (!result1?.rowCount || result1?.rowCount == 0) {            
             bandera = true;
             break;        
