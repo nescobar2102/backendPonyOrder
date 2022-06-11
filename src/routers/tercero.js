@@ -113,12 +113,12 @@ router.post('/synchronization_tercero', async (req, res) => {
             e_mail_fe);
           
             if (!result1 ?. rowCount || result1 ?. rowCount == 0) { 
-                console.log('Entra al false tercero primer insert'); 
+                console.log('111111111111111111111111111'); 
                 bandera = true; 
                 break;
             } else {
                 if (terceros_cliente ?. length > 0 && result1 ?. rowCount > 0) {
-                    console.log('pasa por el dto insert', result1 ?. rowCount);
+                    console.log('222222222222222222222222', result1 ?. rowCount);
 
                     for (var j = 0; j < terceros_cliente.length; j++) {
                         const {
@@ -149,7 +149,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                             dcto_adicional,
                             numero_facturas_vencidas
                         } = terceros_cliente[j];
-                       return result2 = await new Tercero().createTercerocliente(nit,
+                        result2 = await new Tercero().createTercerocliente(nit,
                             id_tercero,
                             id_sucursal_tercero,
                             id_forma_pago,
@@ -175,14 +175,15 @@ router.post('/synchronization_tercero', async (req, res) => {
                             dcto_cliente,
                             dcto_adicional,
                             numero_facturas_vencidas);
-                        if (!result2 ?. rowCount || result2 ?. rowCount == 0) { //
-                            bandera_cliente = true; // se levanta la bandera
+                        
+                         if (!result2 ?. rowCount || result2 ?. rowCount == 0) { 
+                            bandera_cliente = true; 
                             break;
                         } 
                     }
                     if(!bandera_cliente){ 
                        if (terceros_direccion ?. length > 0 && result2 ?. rowCount > 0) {
-                                console.log('pasa por el dto insert', result2 ?. rowCount);
+                                console.log('33333333333333333', result2 ?. rowCount);
 
                                 for (var k = 0; k < terceros_direccion.length; k++) {
                                     const {
