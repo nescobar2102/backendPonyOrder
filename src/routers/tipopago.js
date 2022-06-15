@@ -10,7 +10,7 @@ router.get('/tipopago_all', async (req,res) => {
     if (tipopago.length > 0) {
         response.data = tipopago;
     }  else {
-        status= 404;
+       // status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/tipopago/:nit/:descripcion', async (req,res) => {
     if (tipopago.length > 0) {
         response.data = tipopago;
     }  else {
-        status= 404;
+     // status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -71,11 +71,10 @@ if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
 } else {    
     await new Tipopago().deleteTipopago();
     response.success = false;
-    status = 400;
+  //status = 400;
     response.msg = 'Error en la Sincronización de Tipo de Pago';
 }
 res.status(status).json(response);
-
 });
 function newResponseJson() {
 return {success: true, msg: "",data: []};

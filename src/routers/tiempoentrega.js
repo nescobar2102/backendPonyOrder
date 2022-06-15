@@ -10,7 +10,7 @@ router.get('/tiempoentrega_all', async (req, res) => {
     if (tiempoentrega.length > 0) {
         response.data = tiempoentrega;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -25,7 +25,7 @@ router.get('/tiempoentrega/:nit', async (req, res) => {
     if (tiempoentrega.length > 0) {
         response.data = tiempoentrega;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -50,11 +50,10 @@ router.post('/synchronization_tiempoentrega', async (req, res) => {
         response.data = await new Tiempoentrega().getTiempoentrega();
     } else {
         response.success = false;
-        status = 400;
-        response.msg = 'Error en la Sincronización de Tiempo de entrega';
+     //   status = 400;
+        response.msg = 'Error en la Sincronización de Tiempo de Entrega';
     }
     res.status(status).json(response)
-
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};

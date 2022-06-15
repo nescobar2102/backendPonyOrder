@@ -4,13 +4,13 @@ const Tipodoc = require('../controllers/tipodoc');
 //Listar todos los tipo de doc
 router.get('/tipodoc_all', async (req,res) => { 
     const response = newResponseJson();
-    response.msg = 'Listar todos los tipo de doc';
+    response.msg = 'Listar todos los Tipo de Doc';
     let status = 200;
     let tipodoc = await new Tipodoc().getTipodoc(); 
     if (tipodoc.length>0){
         response.data = tipodoc;
     }  else {
-        status = 404;
+    //  status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -19,14 +19,14 @@ router.get('/tipodoc_all', async (req,res) => {
 
 router.get('/tipodoc/:nit/:descripcion', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un tipo de doc por Nit y descripcion';
+    response.msg = 'Listar un Tipo de Doc por Nit y descripcion';
     let status = 200;
     let {nit,descripcion} = req.params;    
     let tipodoc = await new Tipodoc().getTipodocByDesc(nit,descripcion);
     if (tipodoc.length>0){
         response.data = tipodoc;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -35,7 +35,7 @@ router.get('/tipodoc/:nit/:descripcion', async (req,res) => {
 //sincronizacion de tipodoc
 router.post('/synchronization_tipodoc', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de tipo de doc';
+    response.msg = 'Sincronización de Tipo de Doc';
     let status = 201;
     const {tipodocs } = req.body
     let bandera = false;
@@ -52,7 +52,7 @@ router.post('/synchronization_tipodoc', async (req,res) => {
             response.data = await new Tipodoc().getTipodoc();
         } else {
             response.success = false;
-            status = 400;
+         // status = 400;
             response.msg = 'Error en la Sincronización de Tipo doc';    
         }
         res.status(status).json(response)

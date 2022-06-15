@@ -10,7 +10,7 @@ router.get('/tercero_all', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -24,7 +24,7 @@ router.get('/cliente_all', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -38,7 +38,7 @@ router.get('/direccion_all', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+    //  status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -53,7 +53,7 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -68,7 +68,7 @@ router.get('/cliente/:id_tercero', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -83,7 +83,7 @@ router.get('/direccion/:id_tercero', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+    //  status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -174,10 +174,10 @@ router.post('/synchronization_tercero', async (req, res) => {
                 break;
             } else {
                 if (terceros_cliente ?. length > 0 && result1 ?. rowCount > 0) {
-                    console.log('222222222222222222222222', result1 ?. rowCount);
+                   // console.log('222222222222222222222222', result1 ?. rowCount);
 
                     for (var j = 0; j < terceros_cliente.length; j++) {
-                        console.log('22222222222222222111111111111111',j);
+                    //  console.log('22222222222222222111111111111111',j);
                         const {
                             nit,
                             id_tercero,
@@ -241,7 +241,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                     }
                     if(!bandera_cliente && !bandera){ 
                        if (terceros_direccion ?. length > 0 && result2 ?. rowCount > 0) {
-                                console.log('33333333333333333', result2 ?. rowCount);
+                               // console.log('33333333333333333', result2 ?. rowCount);
 
                                 for (var k = 0; k < terceros_direccion.length; k++) {
                                     const {
@@ -285,11 +285,10 @@ router.post('/synchronization_tercero', async (req, res) => {
     } else {
       //  await new Tercero().deleteTercero();
         response.success = false;
-        status = 400;
+     // status = 400;
         response.msg = 'Error en la  sincronización de Tercero';
     }
     res.status(status).json(response);
-
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};
