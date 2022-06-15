@@ -11,7 +11,7 @@ router.get('/carteraproveedores_all', async (req, res) => {
     if (carteraproveedores.length > 0) {
         response.data = carteraproveedores;
     } else {
-        status = 404;
+       //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -27,7 +27,7 @@ router.get('/carteraproveedores/:id_empresa/:id_tercero/:nit', async (req, res) 
     if (carteraproveedores.length > 0) {
         response.data = carteraproveedores;
     } else {
-        status = 404;
+       //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -120,7 +120,7 @@ router.post('/synchronization_carteraproveedores', async (req, res) => {
     if (!bandera && !bandera_hijo) { 
         response.data = await new Carteraproveedores().getCarteraproveedores();
     } else {
-        status = 404;
+       // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }

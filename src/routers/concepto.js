@@ -10,7 +10,7 @@ router.get('/concepto_all', async (req,res) => {
     if (concepto.length>0){
         response.data = concepto;
     } else {
-        status = 404;
+    // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/concepto/:nit/:descripcion', async (req,res) => {
     if (concepto.length>0){
         response.data = concepto;
     } else {
-        status = 404;
+      //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -59,7 +59,7 @@ router.post('/synchronization_concepto', async (req,res) => {
         response.data = await new Concepto().getConcepto();
     }  else {
         response.success = false;
-        status = 400;
+      //status = 400;
         response.msg = 'Error en la Sincronización de Conceptos';
     }    
     res.status(status).json(response)  

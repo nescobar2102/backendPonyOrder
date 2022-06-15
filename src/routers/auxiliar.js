@@ -12,7 +12,7 @@ router.get('/auxiliar_all', async (req, res) => {
     if (auxiliar.length > 0) {
         response.data = auxiliar;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -29,7 +29,7 @@ router.get('/auxiliar/:nit', async (req, res) => {
     if (auxiliar.length > 0) {
         response.data = auxiliar;
     } else {
-        status = 404;
+       //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -63,7 +63,7 @@ router.post('/synchronization_auxiliar', async (req, res) => {
         response.data = await new Auxiliares().getAuxiliares();
     } else {
         response.success = false;
-        status = 400;
+        //status = 400;
         response.msg = 'Error en la sincronización de auxiliar';
     }
     res.status(status).json(response)

@@ -11,7 +11,7 @@ router.get('/banco_all', async (req, res) => {
     if (banco.length > 0) {
         response.data = banco;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -28,7 +28,7 @@ router.get('/banco/:nit', async (req, res) => {
     if (banco.length > 0) {
         response.data = banco;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -58,7 +58,7 @@ router.post('/synchronization_banco', async (req, res) => {
         response.data = await new Banco().getBanco();
     } else {
         response.success = false;
-        status = 400;
+       // status = 400;
         response.msg = 'Error en la sincronización de bancos';
     }
     res.status(status).json(response)

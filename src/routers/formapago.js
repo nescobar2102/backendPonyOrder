@@ -9,9 +9,8 @@ router.get('/formapago_all', async (req,res) => {
     let formapago = await new Formapago().getFormapago(); 
     if (formapago.length>0){
         response.data = formapago;
-    }
-    else {
-        status= 404;
+    } else {
+       // status= 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,9 +25,8 @@ router.get('/formapago/:nit/:descripcion', async (req,res) => {
     let formapago = await new Formapago().getFormapagoByNit(nit,descripcion);
     if (formapago.length > 0){
         response.data = formapago;
-    }
-    else {
-        status = 404;
+    } else {
+       // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -73,17 +71,13 @@ if (!bandera && !bandera_hijo) {
 } else { 
    // await new Formapago().deleteformapago();
     response.success = false;
-    status = 400;
+   // status = 400;
     response.msg = 'Error en la sincronización de forama de pago';
     }
     res.status(status).json(response);
 });
 
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return { success: true, msg: "", data: []};
 } 
 module.exports = router;

@@ -12,7 +12,7 @@ router.get('/clasificacionItems_all', async (req, res) => {
     if (clasificacionItems.length > 0) {
         response.data = clasificacionItems;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -28,7 +28,7 @@ router.get('/clasificacionItems/:descripcion', async (req, res) => {
     if (clasificacionItems.length > 0) {
         response.data = clasificacionItems;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -76,7 +76,7 @@ router.post('/synchronization_clasificacionItems', async (req, res) => {
         response.data = await new ClasificacionItems().getclasificacionItems();
     } else {
         response.success = false;
-        status = 400;
+      //status = 400;
         response.msg = 'Error en la Sincronización de Clasificacion de item';
     }
     res.status(status).json(response)
