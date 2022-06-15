@@ -690,7 +690,7 @@
 			"response": []
 		},
 		{
-			"name": "Listar los concepto por descripcion y nit",
+			"name": "Listar los concepto por id concepto y nit",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -707,7 +707,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/concepto/:nit/:descripcion",
+					"raw": "http://localhost:3000/concepto/:nit/:id_concepto",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -716,7 +716,7 @@
 					"path": [
 						"concepto",
 						":nit",
-						":descripcion"
+						":id_concepto"
 					],
 					"variable": [
 						{
@@ -724,8 +724,8 @@
 							"value": "900054835"
 						},
 						{
-							"key": "descripcion",
-							"value": "AJUSTE AL PESO (CREDITO)"
+							"key": "id_concepto",
+							"value": "01"
 						}
 					]
 				}

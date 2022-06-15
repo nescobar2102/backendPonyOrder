@@ -17,12 +17,12 @@ router.get('/concepto_all', async (req,res) => {
     res.status(status).json(response)
 });
 // listar un concepto por descripcion y nit
-router.get('/concepto/:nit/:descripcion', async (req,res) => {
+router.get('/concepto/:nit/:id_concepto', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un concepto por descripcion y nit'; 
+    response.msg = 'Listar un Concepto por Id y Nit'; 
     let status = 200;
-    let {nit,descripcion} = req.params;    
-    let concepto = await new Concepto().getConceptoByDesc(nit,descripcion);
+    let {nit,id_concepto} = req.params;    
+    let concepto = await new Concepto().getConceptoByDesc(nit,id_concepto);
     if (concepto.length>0){
         response.data = concepto;
     } else {
