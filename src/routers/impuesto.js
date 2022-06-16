@@ -11,7 +11,7 @@ router.get('/impuesto_all', async (req,res) => {
     if (impuesto.length > 0){
         response.data = impuesto;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -27,7 +27,7 @@ router.get('/impuesto/:nit/:descripcion', async (req,res) => {
     if (impuesto.length>0){
         response.data = impuesto;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -61,7 +61,7 @@ router.post('/synchronization_impuesto', async (req,res) => {
         response.data = await new Impuesto().getImpuesto();;
     } else {
         response.success = false;
-        status = 400;
+      //  status = 400;
         response.msg = 'Error en la sincronización de Impuestos';
     }    
     res.status(status).json(response)  

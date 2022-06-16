@@ -12,7 +12,7 @@ class ClasificacionItems {
     async createclasificacionItems(id_clasificacion, descripcion, id_padre, nivel, imagen, nit) {
         let results = await db.query('SELECT * FROM clasificacion_item WHERE nit = $1 and id_clasificacion = $2', [nit, id_clasificacion]).catch(console.log);
         if (results.rowCount == 0) {
-            await db.query('INSERT INTO clasificacion_item (id_clasificacion, descripcion, id_padre, nivel,  imagen, nit) VALUES ($1, $2, $3, $4,$5, $6 )', [
+            return await db.query('INSERT INTO clasificacion_item (id_clasificacion, descripcion, id_padre, nivel,  imagen, nit) VALUES ($1, $2, $3, $4,$5, $6 )', [
                 id_clasificacion,
                 descripcion,
                 id_padre,
@@ -20,7 +20,8 @@ class ClasificacionItems {
                 imagen,
                 nit
             ]).catch(console.log);
-            return;
+        } else {
+            return await db.query('UPDATE clasificacion_item SET descripcion = $1, id_padre =$2 , nivel= $3, imagen =$4 WHERE nit = $5 and id_clasificacion = $6', [descripcion, id_padre, nivel, imagen, nit, id_clasificacion]).catch(console.log);
         }
     }
 }

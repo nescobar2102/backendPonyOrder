@@ -12,7 +12,7 @@ router.get('/cuentaportercero_all', async (req,res) => {
     if (cuentaportercero.length>0){
         response.data = cuentaportercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -28,7 +28,7 @@ router.get('/cuentaportercero/:nit/:tipo_doc', async (req,res) => {
     if (cuentaportercero.length>0){
         response.data = cuentaportercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -72,7 +72,7 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
         response.data = await new Cuentaportercero().getCuentaportercero();
     } else {
         response.success = false;
-        status = 400;
+      //status = 400;
         response.msg = 'Error en la sincronización de cuentas por terceros';
     }
      res.status(status).json(response)  

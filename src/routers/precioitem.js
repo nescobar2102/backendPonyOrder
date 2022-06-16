@@ -10,7 +10,7 @@ router.get('/precioitem_all', async (req,res) => {
     if (precioitem.length>0){
         response.data = precioitem;
     } else {
-        status= 404;
+      //status= 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/precioitem/:descripcion/:nit', async (req,res) => {
     if (precioitem.length > 0){
         response.data = precioitem;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -71,7 +71,7 @@ router.post('/synchronization_precio', async (req,res) => {
         } else { 
             await new PrecioItem().deletePrecioitem();
             response.success = false;
-            status = 400;
+          //status = 400;
             response.msg = 'Error en la sincronización de Precio';
             }
             res.status(status).json(response);

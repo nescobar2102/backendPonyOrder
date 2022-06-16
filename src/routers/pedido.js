@@ -10,7 +10,7 @@ router.get('/pedido_all', async (req,res) => {
     if (pedido.length > 0) {
         response.data = pedido;
     } else {
-        status= 404;
+     // status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/pedido/:nit/:observacion', async (req,res) => {
     if (pedido.length > 0) {
         response.data = pedido;
     }  else {
-        status= 404;
+     // status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -70,7 +70,7 @@ if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
 } else { 
     await new Pedido().deletePedido();
     response.success = false;
-    status = 400;
+ // status = 400;
     response.msg = 'Error en la Sincronización de Pedido';
 }
 res.status(status).json(response);

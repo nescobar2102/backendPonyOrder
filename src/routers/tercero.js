@@ -10,13 +10,40 @@ router.get('/tercero_all', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-
+router.get('/cliente_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos cliente';
+    let status = 200;
+    let tercero = await new Tercero().getCliente();
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+     // status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
+router.get('/direccion_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos direccion';
+    let status = 200;
+    let tercero = await new Tercero().getDireccion();
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+    //  status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
 router.get('/tercero/:nit/:nombre', async (req, res) => {
     const response = newResponseJson();
     let status = 200;
@@ -26,13 +53,42 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
     if (tercero.length > 0) {
         response.data = tercero;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-
+router.get('/cliente/:id_tercero', async (req, res) => {
+    const response = newResponseJson();
+    let status = 200;
+    response.msg = 'Listar un tercero_cliente por id_tercero';
+    let {id_tercero} = req.params;
+    let tercero = await new Tercero().getTercerocliente(id_tercero);
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+     // status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
+router.get('/direccion/:id_tercero', async (req, res) => {
+    const response = newResponseJson();
+    let status = 200;
+    response.msg = 'Listar un tercero_direccion por id_tercero';
+    let {id_tercero} = req.params;
+    let tercero = await new Tercero().getTercerodireccion(id_tercero);
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else {
+    //  status = 404;
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
 router.post('/synchronization_tercero', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de tercero';
@@ -41,9 +97,9 @@ router.post('/synchronization_tercero', async (req, res) => {
     let bandera = false;
     let bandera_cliente= false;
     let bandera_direccion = false;
-    await new Tercero().deleteTercero();
+   await new Tercero().deleteTercero();
     for (var i = 0; i < terceros.length; i++) {
-        if (!bandera_cliente && !bandera_direccion) {
+        if (!bandera_cliente && !bandera_direccion && !bandera) {
             const {
                 nit,
                 id_tercero,
@@ -79,9 +135,8 @@ router.post('/synchronization_tercero', async (req, res) => {
                 terceros_cliente,
                 terceros_direccion
             } = terceros[i];
-
          
-         result1 = await new Tercero().createTercero(  nit,
+         result1 = await new Tercero().createTercero(nit,
             id_tercero,
             id_sucursal_tercero,
             id_tipo_identificacion,
@@ -113,15 +168,16 @@ router.post('/synchronization_tercero', async (req, res) => {
             telefono_celular,
             e_mail_fe);
           
-            if (!result1 ?. rowCount || result1 ?. rowCount == 0) { // se valida si existe el valor rowCount
-                console.log('entra al falase tercero primer inser'); // se se realizo el insert
-                bandera = true; // se levanta la bandera
+            if (!result1 ?. rowCount || result1 ?. rowCount == 0) { 
+                console.log("entra en bandera tercero",result1)
+                bandera = true; 
                 break;
             } else {
                 if (terceros_cliente ?. length > 0 && result1 ?. rowCount > 0) {
-                    console.log('pasa por el dto insert', result1 ?. rowCount);
+                   // console.log('222222222222222222222222', result1 ?. rowCount);
 
                     for (var j = 0; j < terceros_cliente.length; j++) {
+                    //  console.log('22222222222222222111111111111111',j);
                         const {
                             nit,
                             id_tercero,
@@ -150,7 +206,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                             dcto_adicional,
                             numero_facturas_vencidas
                         } = terceros_cliente[j];
-                       return result2 = await new Tercero().createTercerocliente(nit,
+                        result2 = await new Tercero().createTercerocliente(nit,
                             id_tercero,
                             id_sucursal_tercero,
                             id_forma_pago,
@@ -176,14 +232,16 @@ router.post('/synchronization_tercero', async (req, res) => {
                             dcto_cliente,
                             dcto_adicional,
                             numero_facturas_vencidas);
-                        if (!result2 ?. rowCount || result2 ?. rowCount == 0) { //
-                            bandera_cliente = true; // se levanta la bandera
+                        
+                         if (!result2 ?. rowCount || result2 ?. rowCount == 0) { 
+                            console.log("entra en bandera cliente")
+                            bandera_cliente = true; 
                             break;
                         } 
                     }
-                    if(!bandera_cliente){ 
+                    if(!bandera_cliente && !bandera){ 
                        if (terceros_direccion ?. length > 0 && result2 ?. rowCount > 0) {
-                                console.log('pasa por el dto insert', result2 ?. rowCount);
+                               // console.log('33333333333333333', result2 ?. rowCount);
 
                                 for (var k = 0; k < terceros_direccion.length; k++) {
                                     const {
@@ -198,7 +256,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                                         id_depto,
                                         tipo_direccion
                                     } = terceros_direccion[k];
-                                    result3 = await new Tercero().createTercerodireccion( nit,
+                                   result3 = await new Tercero().createTercerodireccion( nit,
                                         id_tercero,
                                         id_sucursal_tercero,
                                         id_direccion,
@@ -209,6 +267,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                                         id_depto,
                                         tipo_direccion);
                                     if (!result3 ?. rowCount || result3 ?. rowCount == 0) { //
+                                        console.log("entra en bandera direccion")
                                         bandera_direccion = true; // se levanta la bandera
                                         break;
                                     }
@@ -219,18 +278,17 @@ router.post('/synchronization_tercero', async (req, res) => {
                 }            
         }
     }
-    if (! bandera_cliente && ! bandera_direccion) { // no se levanto la bandera (false)
+    if (! bandera_cliente && ! bandera_direccion && !bandera) { // no se levanto la bandera (false)
         let tercero_all = await new Tercero().getTercero();
         response.data = tercero_all;
 
     } else {
-        await new Tercero().deleteTercero();
+      //  await new Tercero().deleteTercero();
         response.success = false;
-        status = 400;
+     // status = 400;
         response.msg = 'Error en la  sincronización de Tercero';
     }
     res.status(status).json(response);
-
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};

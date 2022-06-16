@@ -9,9 +9,8 @@ router.get('/item_all', async (req, res) => {
     let item = await new Item().getItemAll();
     if (item.length > 0) {
         response.data = item;
-    }
-    else {
-        status= 404;
+    }  else {
+       // status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -26,9 +25,8 @@ router.get('/item/:descripcion/:nit', async (req, res) => {
     let item = await new Item().getItemByNit(descripcion, nit);
     if (item.length > 0) {
         response.data = item;
-    }
-    else {
-        status= 404;
+    } else {
+      //  status= 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -74,23 +72,16 @@ router.post('/synchronization_item', async (req, res) => {
     }
     if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
         let item_all = await new Item().getItemAll();   ////06-06 porque es getItemall si debeia ser detItem////
-        response.data = item_all;
-
-        
+        response.data = item_all;        
     } else { //bandera ( true)
         await new Item().deleteItem();
         response.success = false;
-        status = 400;
+     // status = 400;
         response.msg = 'Error en la  sincronización de item';
     }
     res.status(status).json(response);
-
 });
 function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return { success: true, msg: "", data: []};
 }
 module.exports = router;

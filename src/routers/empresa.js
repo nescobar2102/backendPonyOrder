@@ -2,33 +2,34 @@ const express = require("express");
 const router = express.Router();
 const Empresa = require('../controllers/empresa');
 
-
 // listar los empresa
 router.get('/empresa_all', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar todas las Empresa';
+    let status = 200;
     let empresa = await new Empresa().getEmpresa();
     if (empresa.length>0){
         response.data = empresa;
-    }
-    else {
+    } else {
         response.success = false;
+        response.msg = 'Error en Listar todas las Empresa';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 // listar una nueva empresa por Nit
 router.get('/empresa/:nit', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar las Empresa por Nit';
+    let status = 200;
     let {nit} = req.params;    
     let empresa = await new Empresa().getEmpresaNit(nit);
     if (empresa.length>0){
         response.data = empresa;
-    }
-    else {
+    }  else {
         response.success = false;
+        response.msg = 'Error en Listar la Empresa';
     }
-    res.status(200).json(response)
+    res.status(status).json(response)
 });
 
 //Create una empresa.
@@ -42,8 +43,8 @@ router.post('/empresa', async (req,res) => { //require mas campos para la creaci
         response.data = await new Empresa().getEmpresaNit(nit);
     }    else {
         response.success = false;
-        status = 400;
-        response.msg = 'Error en la creacion de la empresa';
+       // status = 400;
+        response.msg = 'Error en la Creacion de la Empresa';
     }
     res.status(status).json(response)
 });
@@ -52,6 +53,7 @@ router.post('/empresa', async (req,res) => { //require mas campos para la creaci
 router.put('/empresa/:nit', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Actualizar una Empresa por Nit';
+    let status = 200;
     const nit = parseInt(req.params.nit)
     const {razon_social, correo_electronico } = req.body 
     let empresa = await new Empresa().updateEmpresa( nit,razon_social, correo_electronico ); 
@@ -60,11 +62,11 @@ router.put('/empresa/:nit', async (req,res) => {
     }
     if (empresa.length>0){
         response.data = empresa;
-    }
-    else {
+    } else {
         response.success = false;
+        response.msg = 'Error en la Actualización de Empresa';
     }
-    res.status(200).json(response)    
+    res.status(status).json(response)    
 });
 //Update a todo.
 router.put('/empresa/status/:nit', async (req,res) => {
@@ -78,7 +80,7 @@ router.put('/empresa/status/:nit', async (req,res) => {
             response.msg = `Empresa status modified with nit: ${nit} rowCount:  ${empresa.rowCount}`
         } else {
             response.success = false;
-            status = 400;
+           // status = 400;
             response.msg = 'Error en la actualizacion de estatus de la empresa, (solo permite "true" o "false")';
         }
     res.status(status).json(response);
@@ -102,15 +104,12 @@ router.post('/synchronization_empresa', async (req,res) => {
         }; 
      if (empresas.length>0 && !bandera){
         response.data = await new Empresa().getEmpresa();;
-    }
-    else {
+    } else {
         response.success = false;
-        status = 400;
+      //  status = 400;
         response.msg = 'Error en la sincronización de Empresas';
-    } 
-   
-    res.status(status).json(response)
-  
+    }    
+    res.status(status).json(response)  
 });
 function newResponseJson() {
     return {

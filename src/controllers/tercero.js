@@ -6,8 +6,24 @@ class Tercero
         let results = await db.query(`SELECT * FROM tercero ORDER BY nit ASC `).catch(console.log); 
         return results.rows;
     }
+    async getCliente() {
+        let results = await db.query(`SELECT * FROM tercero_cliente ORDER BY id_tercero ASC `).catch(console.log); 
+        return results.rows;
+    }
+    async getDireccion() {
+        let results = await db.query(`SELECT * FROM tercero_direccion ORDER BY id_tercero ASC `).catch(console.log); 
+        return results.rows;
+    }
     async getTerceroByNit(nit,nombre) {
         let results = await db.query('SELECT * FROM tercero WHERE nit = $1 and nombre = $2', [nit,nombre]).catch(console.log); 
+        return results.rows;
+    }
+    async getTercerocliente(id_tercero) {
+        let results = await db.query('SELECT * FROM tercero_cliente WHERE id_tercero = $1', [id_tercero]).catch(console.log); 
+        return results.rows;
+    }
+    async getTercerodireccion(id_tercero) {
+        let results = await db.query('SELECT * FROM tercero_direccion WHERE id_tercero = $1', [id_tercero]).catch(console.log); 
         return results.rows;
     }
     async deleteTercero() {
@@ -201,8 +217,8 @@ class Tercero
   //  }
 }
 async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) { 
-    let results = await db.query('SELECT * FROM tercero_direccion WHERE nit = $1 and direccion = $2', [nit,direccion]).catch(console.log);
-    if (results.rowCount == 0) {     
+    /*let results = await db.query('SELECT * FROM tercero_direccion WHERE nit = $1 and direccion = $2', [nit,direccion]).catch(console.log);
+    if (results.rowCount == 0) {  */   
         return  await db
         .query('INSERT INTO tercero_direccion (nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)', [
             nit,
@@ -217,7 +233,7 @@ async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,dir
             tipo_direccion            
         ])
         .catch(console.log);  
-    }
+  //  }
 }
 }
 module.exports = Tercero;
