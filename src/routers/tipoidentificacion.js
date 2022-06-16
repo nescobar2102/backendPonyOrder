@@ -10,7 +10,7 @@ router.get('/tipoidentificacion_all', async (req,res) => {
     if (tipoidentificacion.length>0){
         response.data = tipoidentificacion;
     } else {
-        status = 404;
+      //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/tipoidentificacion/:descripcion', async (req,res) => {
     if (tipoidentificacion.length>0){
         response.data = tipoidentificacion;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -51,11 +51,10 @@ router.post('/synchronization_tipoidentificacion', async (req,res) => {
     }
         if (identificaciones.length>0 && !bandera){
             response.data = await new Tipoidentificacion().getTipoidentificacion();
-        }
-        else {
+        }  else {
             response.success = false;
-            status = 400;
-            response.msg = 'Error en la Sincronización de tipo Identificacion';    
+         // status = 400;
+            response.msg = 'Error en la Sincronización de Tipo Identificacion';    
         }
         res.status(status).json(response)
     });

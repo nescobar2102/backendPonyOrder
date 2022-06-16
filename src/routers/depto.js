@@ -11,7 +11,7 @@ router.get('/depto_all', async (req, res) => {
     if (depto.length > 0) {
         response.data = depto;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -28,7 +28,7 @@ router.get('/depto/:nit', async (req, res) => {
     if (depto.length > 0) {
         response.data = depto;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -56,12 +56,11 @@ router.post('/synchronization_depto', async (req, res) => {
     if (deptos.length > 0 && ! bandera) {
         response.data = await new Depto().getDepto();
     } else {
-        status = 400;
+     // status = 400;
         response.success = false;
         response.msg = 'Error en la sincronizacion de departamentos';
     }
     res.status(status).json(response);
-
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};

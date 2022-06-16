@@ -11,7 +11,7 @@ router.get('/barrio_all', async (req, res) => {
     if (barrio.length > 0) {
         response.data = barrio;
     } else {
-        status = 404;
+        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -27,7 +27,7 @@ router.get('/barrio/:nit', async (req, res) => {
     if (barrio.length > 0) {
         response.data = barrio;
     } else {
-        status = 404;
+       // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -60,7 +60,7 @@ router.post('/synchronization_barrio', async (req, res) => {
         response.data = await new Barrio().getBarrio();
     } else {
         response.success = false;
-        status = 400;
+       // status = 400;
         response.msg = 'Error en la sincronización de barrios';
 
     }

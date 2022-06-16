@@ -3,13 +3,33 @@ const router = express.Router();
 const Kit = require('../controllers/kit');
 
 router.get('/kit_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos los Kits';
+    let status = 200;
     let kit = await new Kit().getKit();
-    res.status(200).json(kit)
+    if (kit.length > 0){
+        response.data = kit;
+    } else {
+        //status = 404;
+        response.success = false;
+        response.mg = 'No existen registros de Kits';
+    }
+    res.status(status).json(response)
 });
 router.get('/kit/:descripcion/:nit', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar un Kits por Nit';
+    let status = 200;
     let {descripcion, nit} = req.params;
     let kit = await new Kit().getKitByNit(descripcion, nit);
-    res.status(200).json(kit)
+    if (kit.length > 0){
+        response.data = kit;
+    } else {
+        //status = 404;
+        response.success = false;
+        response.mg = 'No existen registros de Kits';
+    }
+    res.status(status).json(response)
 });
 router.post('/synchronization_kit', async (req, res) => {
 
@@ -72,18 +92,13 @@ router.post('/synchronization_kit', async (req, res) => {
                 response.data = await new Kit().getKit();     
               } else { //bandera ( true) 
                 response.success = false;
-                status = 400;
+             //   status = 400;
                 response.msg = 'Error en la  sincronización de item';
             }
             res.status(status).json(response);
-
         }
     );
     function newResponseJson() {
-        return {
-            success: true,
-            msg: "",
-            data: [],
-        };
+        return {success: true, msg: "",data: []};
     }
     module.exports = router;

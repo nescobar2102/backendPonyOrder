@@ -9,9 +9,8 @@ router.get('/tipoempresa_all', async (req,res) => {
     let tipoempresa = await new Tipoempresa().getTipoempresa(); 
     if (tipoempresa.length>0){
         response.data = tipoempresa;
-    }
-    else {
-        status = 404;
+    }  else {
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,9 +25,8 @@ router.get('/tipoempresa/:nit/', async (req,res) => {
     let tipoempresa = await new Tipoempresa().getTipoempresaByDesc(nit);
     if (tipoempresa.length>0){
         response.data = tipoempresa;
-    }
-    else {
-        status = 404;
+    } else {
+    //  status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -52,20 +50,14 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
     }
         if (tipoempresas.length>0 && !bandera){
             response.data = await new Tipoempresa().getTipoempresa();
-        }
-        else {
+        } else {
             response.success = false;
-            status = 400;
-            response.msg = 'Error en la sincronización de Tipo empresa';
-    
+           // status = 400;
+            response.msg = 'Error en la Sincronización de Tipo empresa';    
         }
         res.status(status).json(response)
     });    
     function newResponseJson() {
-    return {
-        success: true,
-        msg: "",
-        data: [],
-    };
+    return {success: true, msg: "", data: []};
 }
 module.exports = router;

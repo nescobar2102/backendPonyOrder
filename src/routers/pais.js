@@ -10,7 +10,7 @@ router.get('/pais_all', async (req, res) => {
     if (pais.length > 0) {
         response.data = pais;
     } else {
-        status = 404;
+      //  status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,13 +26,13 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     if (pais.length > 0) {
         response.data = pais;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-// / sincronizacion  pais
+// Sincronizacion de pais
 router.post('/synchronization_pais', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de Paises';
@@ -57,7 +57,7 @@ router.post('/synchronization_pais', async (req, res) => {
         response.data = await new Pais().getPais();
     } else {
         response.success = false;
-        status = 400;
+     // status = 400;
         response.msg = 'Error en la sincronización de Paises';
     }
     res.status(status).json(response)

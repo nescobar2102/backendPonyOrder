@@ -9,9 +9,8 @@ router.get('/zona_all', async (req,res) => {
     let zona = await new Zona().getZona(); 
     if (zona.length>0){
         response.data = zona;
-    }
-    else {
-        status = 404;
+    } else {
+       // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -27,7 +26,7 @@ router.get('/zona/:nit/:descripcion', async (req,res) => {
     if (zona.length>0){
         response.data = zona;
     } else {
-        status = 404;
+      //  status = 404;
         response.success = false;
         response.mg = 'No existen registros';  
     }
@@ -62,10 +61,10 @@ router.post('/synchronization_zona', async (req,res) => {
         response.data = await new Zona().getZona();
     }  else {
         response.success = false;
-        status = 400;
+       // status = 400;
         response.msg = 'Error en la sincronización de zonas';
     }
-    res.status(200).json(response)         
+    res.status(status).json(response)         
 });
 function newResponseJson() {
     return {success: true, msg: "", data: [],};

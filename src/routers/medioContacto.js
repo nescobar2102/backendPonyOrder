@@ -10,7 +10,7 @@ router.get('/medioContacto_all', async (req,res) => {
     if (medioContacto.length>0){
         response.data = medioContacto;
     } else {
-        status = 404;
+     //   status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -26,7 +26,7 @@ router.get('/medioContacto/:descripcion/:nit', async (req,res) => {
     if (medioContacto.length>0){
         response.data = medioContacto;
     } else {
-        status = 404;
+      //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -52,12 +52,10 @@ router.post('/synchronization_medioContacto', async (req,res) => {
     }
         if (medio_contacto.length>0 && !bandera){
             response.data = await new MedioContacto().getMedioContacto();
-        }
-        else {
+        } else {
             response.success = false;
-            status = 400;
-            response.msg = 'Error en la sincronización de Medio Contacto';
-    
+         // status = 400;
+            response.msg = 'Error en la sincronización de Medio Contacto';    
         }
         res.status(status).json(response)
     });

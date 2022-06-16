@@ -11,7 +11,7 @@ router.get('/ciudades_all', async (req, res) => {
     if (ciudades.length > 0) {
         response.data = ciudades;
     } else {
-        status = 404;
+      //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -28,7 +28,7 @@ router.get('/ciudades/:nit', async (req, res) => {
     if (ciudades.length > 0) {
         response.data = ciudades;
     } else {
-        status = 404;
+      //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -60,7 +60,7 @@ router.post('/synchronization_ciudad', async (req, res) => {
         response.data = await new Ciudades().getCiudad();
     } else {
         response.success = false;
-        status = 400;
+     // status = 400;
         response.msg = 'Error en la sincronización de ciudades';
     }
     res.status(status).json(response)

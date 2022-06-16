@@ -11,7 +11,7 @@ router.get('/cuotaventas_all', async (req,res) => {
     if (cuotaventas.length>0){
         response.data = cuotaventas;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -27,7 +27,7 @@ router.get('/cuotaventas/:nit/:nombre', async (req,res) => {
     if (cuotaventas.length>0){
         response.data = cuotaventas;
     } else {
-        status = 404;
+     // status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -62,7 +62,7 @@ router.post('/synchronization_cuotaventas', async (req,res) => {
         response.data = await new Cuotaventas().getCuotaventas();
     }  else {
         response.success = false;
-        status = 400;
+      //status = 400;
         response.msg = 'Error en la sincronización de Cuota Ventas';
     }  
     res.status(status).json(response)  

@@ -460,7 +460,10 @@
 			"response": []
 		},
 		{
-			"name": "Listar clasificacion_Items",
+			"name": "Listar  una clasificacion_Items por descripcion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"url": "http://localhost:3000/clasificacionItems_all",
 				"method": "GET",
@@ -469,7 +472,24 @@
 					"mode": "raw",
 					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:3000/clasificacionItems/:descripcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"clasificacionItems",
+						":descripcion"
+					],
+					"variable": [
+						{
+							"key": "descripcion",
+							"value": "Frutas y Verduras"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -534,10 +554,13 @@
 			"response": []
 		},
 		{
-			"name": "Listar los concepto por descripcion y nit",
+			"name": "Listar los concepto por id concepto y nit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"url": {
-					"raw": "http://localhost:3000/concepto/:descripcion/:nit",
+					"raw": "http://localhost:3000/concepto/:nit/:id_concepto",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -545,8 +568,8 @@
 					"port": "3000",
 					"path": [
 						"concepto",
-						":descripcion",
-						":nit"
+						":nit",
+						":id_concepto"
 					],
 					"query": [],
 					"variable": [
@@ -555,7 +578,7 @@
 							"value": "RETEFUENTE A FAVOR 1.5"
 						},
 						{
-							"key": "nit",
+							"key": "id_concepto",
 							"value": "01"
 						}
 					]
@@ -1606,7 +1629,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16499705\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}"
+					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"1\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"1\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"description": ""
 			},
@@ -1690,7 +1718,7 @@
 			"name": "Listar los tercero por nombre y nit",
 			"request": {
 				"url": {
-					"raw": "http://localhost:3000/tercero/:nombre/:nit",
+					"raw": "http://localhost:3000/tercero/:nit/:nombre",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1698,18 +1726,18 @@
 					"port": "3000",
 					"path": [
 						"tercero",
-						":nombre",
-						":nit"
+						":nit",
+						":nombre"
 					],
 					"query": [],
 					"variable": [
 						{
-							"key": "nombre",
-							"value": null
+							"key": "nit",
+							"value": "900054835"
 						},
 						{
-							"key": "nit",
-							"value": null
+							"key": "nombre",
+							"value": "Aura Elena Fernandez Franco"
 						}
 					]
 				},
@@ -1916,6 +1944,96 @@
 					"raw": ""
 				},
 				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todo los tercero_cliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cliente_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos los tercero_direccion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/direccion_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"direccion_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar un tercero_cliente por id_tercero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cliente/:id_tercero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente",
+						":id_tercero"
+					],
+					"variable": [
+						{
+							"key": "id_tercero",
+							"value": "66744581"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar un tercero_direccion por id_tercero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/direccion/:id_tercero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"direccion",
+						":id_tercero"
+					],
+					"variable": [
+						{
+							"key": "id_tercero",
+							"value": "66744581"
+						}
+					]
+				}
 			},
 			"response": []
 		}
