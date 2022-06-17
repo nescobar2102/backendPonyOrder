@@ -41,8 +41,9 @@ router.post('/users', async (req,res) => {
     let usuarios = await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc); 
     response.msg = `Se ha creado el usuario usuario, con el nit  ${usuario} -  ${nombre}`;
      if (!usuarios?.rowCount || usuarios?.rowCount == 0) { 
-          response.success = false;
-          response.msg = 'Ha ocurrido un error al intentar crear un usuario.';       
+          response.success = false;  
+          response.msg += result1 ?  result1 :' Ha ocurrido un error al intentar crear un usuario.  - '; 
+          status = 500;  
     } else{
         let usuario_insert = await new Usuario().getUserByNit(nit);
         response.data = usuario_insert;           
