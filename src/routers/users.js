@@ -42,7 +42,7 @@ router.post('/users', async (req,res) => {
     response.msg = `Se ha creado el usuario usuario, con el nit  ${usuario} -  ${nombre}`;
      if (!usuarios?.rowCount || usuarios?.rowCount == 0) { 
           response.success = false;  
-          response.msg += result1 ?  result1 :' Ha ocurrido un error al intentar crear un usuario.  - '; 
+          response.msg += usuarios ?  usuarios :' Ha ocurrido un error al intentar crear un usuario.  - '; 
           status = 500;  
     } else{
         let usuario_insert = await new Usuario().getUserByNit(nit);
