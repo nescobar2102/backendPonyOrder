@@ -35,15 +35,15 @@ router.get('/tipoempresa/:nit/', async (req,res) => {
 
 router.post('/synchronization_tipoempresa', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de tipo de empresa';
+    response.msg = 'Sincronización de tipo de empresa - ';
     let status = 201;
     const {tipoempresas } = req.body
     let bandera = false;
     for (var i=0;i<tipoempresas.length;i++){ 
         const { id_tipo_empresa, descripcion, nit} =  tipoempresas[i]
         result1 = await new Tipoempresa().createTipoempresa(id_tipo_empresa, descripcion, nit); 
-         
-        if (!result1?.rowCount || result1?.rowCount == 0) { 
+ 
+        if (!result1?.rowCount || result1?.rowCount == 0 ) { 
             bandera = true;
             break;        
         }
@@ -52,8 +52,8 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
             response.data = await new Tipoempresa().getTipoempresa();
         } else {
             response.success = false;
-           // status = 400;
-            response.msg = 'Error en la Sincronización de Tipo empresa';    
+            response.msg += result1 ?  result1 :'Error en la Sincronización de Tipo empresa  - '; 
+            status = 500;
         }
         res.status(status).json(response)
     });    
