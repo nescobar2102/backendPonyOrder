@@ -35,27 +35,51 @@ router.get('/tipodoc/:nit/:descripcion', async (req,res) => {
 //sincronizacion de tipodoc
 router.post('/synchronization_tipodoc', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de Tipo de Doc';
     let status = 201;
     const {tipodocs } = req.body
     let bandera = false;
-    for (var i=0;i<tipodocs.length;i++){ 
-        const {nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion } =  tipodocs[i]
-        result1 = await new Tipodoc().createTipodoc(nit, id_empresa,id_sucursal, id_clase_doc, id_tipo_doc, consecutivo, descripcion); 
-         
-        if (!result1?.rowCount || result1?.rowCount == 0) {            
+
+    for (var i = 0; i < tipodocs.length; i++) {  
+        const {nit,
+            id_empresa,
+            id_sucursal,
+            id_clase_doc,
+            id_tipo_doc, 
+            consecutivo,
+            descripcion 
+        } =  tipodocs[i]
+
+        if (nit == '' || id_empresa == '' || id_sucursal == '' ||id_clase_doc == '' || id_tipo_doc == '' || consecutivo == '' || descripcion == ''){
             bandera = true;
-            break;        
-        }
-    }
-        if (tipodocs.length>0 && !bandera){
-            response.data = await new Tipodoc().getTipodoc();
-        } else {
             response.success = false;
-         // status = 400;
-            response.msg = 'Error en la Sincronización de Tipo doc';    
+            response.msg = `El Nit,id_empresa,id_sucursal, id_clase_doc,id_tipo_doc,consecutivo y descripcion no puede estar vacio`;
+            status= 500;
+            break;
+            }
+            let exist = await new Tipodoc().getTipodocNitId(nit,id_tipo_doc);
+            if (exist.length > 0){
+                bandera = true;
+                response.success = false;
+                response.msg =  `El Tipo documento ya existe con este Nit ${nit}, id_tipo_doc: ${id_tipo_doc}`;
+                status = 500;
+                break;
+            }
+            if (!bandera) {
+                let tipodocs = await new Tipodoc().createTipodoc(nit,id_tipo_doc);
+                if (!tipodocs ?. rowCount ||tipodocs?. rowCount == 0) {
+                    bandera = true;
+                    response.success= false;
+                    response.msg = `Ha ocurrido un erro al insertar un Tipo de documentos: BD ${tipodocs}`;
+                    status = 500;
+                    break;   
+                }else {
+                    response.msg = `Se ha creado un Tipo de documentos, con el Nit ${tipodocs} - ${descripcion}`;
+                    let insert = await new Tipodoc().createTipodoc(nit);
+                    response.data = insert;            
+                }     
         }
-        res.status(status).json(response)
+}
+    res.status(status).json(response)
     });
     function newResponseJson() {
         return {success: true,msg: "", data: []};
