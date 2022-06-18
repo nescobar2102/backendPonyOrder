@@ -60,15 +60,14 @@ router.post('/users', async (req, res) => {
         bandera = true;
         response.success = false;
         response.msg = 'El nit no puede estar vacio';
-        status = 200;
+        status = 500;
     }
-    exist =  await new Usuario().getUserByNit(nit);
- 
+    exist =  await new Usuario().getUserByNit(nit); 
     if(exist.length>0){
         bandera = true;
         response.success = false;
         response.msg = `El usuario  con el nit ${nit} ya existe`;
-        status = 200;
+        status = 500;
     }
     if (!bandera){
         let usuarios = await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave, flag_cambia_fp,
