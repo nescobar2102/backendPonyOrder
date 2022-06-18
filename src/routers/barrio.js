@@ -36,10 +36,10 @@ router.get('/barrio/:nit', async (req, res) => {
 // Create a todo.
 router.post('/synchronization_barrio', async (req, res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronizacion del Barrio';
     let status = 201;
     const {barrios} = req.body
-    let bandera = false;
+    let bandera = false;   
+
     for (var i = 0; i < barrios.length; i++) {
         const {
             nit,
@@ -49,23 +49,40 @@ router.post('/synchronization_barrio', async (req, res) => {
             id_barrio,
             nombre
         } = barrios[i]
-        result1 = await new Barrio().createBarrio(nit, id_pais, id_depto, id_ciudad, id_barrio, nombre);
 
-        if (!result1 ?. rowCount || result1 ?. rowCount == 0) {
+        if (nit=='' || id_pais =='' || id_depto =='' || id_ciudad == '' || id_barrio == '' || nombre == '') {
             bandera = true;
+            response.success = false;
+            response.msg = `El Nit,id_pais,id_depto,id_cuidad,id_barrio y nombre no puede estar vacio`;
+            status= 500;
             break;
         }
-    }
-    if (barrios.length > 0 && ! bandera) {
-        response.data = await new Barrio().getBarrio();
-    } else {
-        response.success = false;
-       // status = 400;
-        response.msg = 'Error en la sincronización de barrios';
-
-    }
-    res.status(status).json(response)
+       let exist = await new Barrio().getBarrioNitId(nit,id_barrio);
+        if (exist.length>0){
+            bandera = true;
+            response.success = false;
+            response.msg = `El Barrio ya existe con este Nit ${nit}, id_barrio: ${id_barrio}`;
+            status = 500;
+            break;
+        }        
+        if (!bandera){
+            let barrios = await new Barrio().createBarrio(nit, id_pais, id_depto, id_ciudad, id_barrio, nombre);
+            if (!barrios ?. rowCount || barrios ?. rowCount == 0) {
+                bandera = true;
+                response.success= false;
+                response.msg = `Ha ocurrido un erro al insertar un Barrio: BD ${barrios}`;
+                status = 500;
+                break;
+        } else {
+            response.msg = `Se ha creado el Barrio, con el Nit ${barrios} - ${nombre}`;
+            let insert = await new Barrio().createBarrio(nit);
+            response.data = insert;            
+        }         
+    }    
+}
+res.status(status).json(response)
 });
+
 function newResponseJson() {
     return {success: true, msg: "", data: []};
 }
