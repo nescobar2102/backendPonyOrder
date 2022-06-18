@@ -7,7 +7,7 @@ router.get('/zona_all', async (req,res) => {
     response.msg = 'Listar todas las zonas';
     let status = 200;
     let zona = await new Zona().getZona(); 
-    if (zona.length>0){
+    if (zona.length > 0) {
         response.data = zona;
     } else {
        // status = 404;
@@ -23,7 +23,7 @@ router.get('/zona/:nit/:descripcion', async (req,res) => {
     let status = 200;
     let {nit,descripcion} = req.params;    
     let zona = await new Zona().getZonaByDesc(nit,descripcion);
-    if (zona.length>0){
+    if (zona.length > 0) {
         response.data = zona;
     } else {
       //  status = 404;
@@ -34,12 +34,11 @@ router.get('/zona/:nit/:descripcion', async (req,res) => {
 });
 
 router.post('/synchronization_zona', async (req,res) => {
-    const response = newResponseJson();
-    response.msg = 'Sincronización de zonas';
+    const response = newResponseJson();   
     let status = 201;
     const {zonas } = req.body
     let bandera = false;
-    for (var i=0;i<zonas.length;i++){ 
+    for (var i =0 ; i < zonas.length; i++) { 
         const {
             id_zona,
             descripcion, 
@@ -48,22 +47,37 @@ router.post('/synchronization_zona', async (req,res) => {
             es_padre, 
             nit
         } =  zonas[i]
-        result1 = await new Zona().createZona(id_zona , descripcion, 
-            id_padre, nivel, es_padre, nit );        
-        //console.log('primer insert', result1?.rowCount);
-        if (!result1?.rowCount || result1?.rowCount == 0) {
-        //console.log('no se hizo el insert');
+
+        if (nit =='' || id_zona =='' || descripcion =='' || id_padre =='' || nivel =='' || es_padre == '') {
         bandera = true;
-        break;        
-        }
-    }
-        if (zonas.length>0 && !bandera){
-        response.data = await new Zona().getZona();
-    }  else {
         response.success = false;
-       // status = 400;
-        response.msg = 'Error en la sincronización de zonas';
-    }
+        response.msg = 'El Nit, id_zona, descripcion, id_padre, nivel y es_padre no pueden estar vacio';
+        status = 500;
+        break; 
+        }        
+        let exist = await new Zona().getZonaNitId(nit,id_zona);  
+            if (exist.length > 0){
+                bandera = true;
+                response.success = false;
+                response.msg = `La Zona ya existe con ese Nit: ${nit} y id_zona: ${id_zona}`;
+                status = 500;
+                break;
+            }
+            if (!bandera){
+                let zonas = await new Zona().createZona(id_zona,descripcion,id_padre,nivel,es_padre,nit);
+                if (zonas ?.rowCount || zonas ?. rowCount == 0) {
+                    bandera = true;
+                    response.success = false;
+                    response.msg = `Ha ocurrido un error en el insert de una Zona: BD ${zonas}`;
+                    status=500;
+                    break;                                    
+            } else{
+                response.msg =  `Se ha creado una Zona, con el Nit ${zonas} - ${descripcion}`;
+                let insert = await new Zona().createZona(nit);
+                response.data = insert;
+            }
+        }
+ }    
     res.status(status).json(response)         
 });
 function newResponseJson() {
