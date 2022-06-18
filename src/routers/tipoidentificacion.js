@@ -35,29 +35,49 @@ router.get('/tipoidentificacion/:descripcion', async (req,res) => {
 
 router.post('/synchronization_tipoidentificacion', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de Tipo Identificacion';
+    //response.msg = 'Sincronización de Tipo Identificacion';
     let status = 201;
     const {identificaciones } = req.body
     let bandera = false;
-    for (var i=0;i<identificaciones.length;i++){ 
-        const {id_tipo_identificacion, descripcion } =  identificaciones[i]
-        result1 = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion, descripcion); 
-        console.log('primer insert', result1?.rowCount);
-        if (!result1?.rowCount || result1?.rowCount == 0) {
-           //console.log('no se hizo el insert');
-            bandera = true;
-            break;        
+
+    for (var i = 0; i < identificaciones.length; i++) { 
+        const {
+            id_tipo_identificacion,
+             descripcion 
+            } =  identificaciones[i]
+
+            if (id_tipo_identificacion=='' || descripcion =='') {
+                bandera = true;
+                response.success = false;
+                response.msg = `El id_tipo_identificacion y descripcion no puede estar vacio`;
+                status= 500;
+                break;
+            }
+            let exist = await new Tipoidentificacion().getTipoidentificacion(id_tipo_identificacion,descripcion);
+            if (exist.length > 0 ) {
+                bandera = true;
+                response.success = false;
+                response.msg =  `El Tipo identificacion ya existe con este id_tipo_identificacion ${id_tipo_identificacion}, descripcion: ${descripcion}`;
+                status = 500;
+                break;
+            }
+            if (!bandera) {
+                let identificaciones = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion,descripcion);
+                if (!identificaciones?.rowCount || identificaciones?. rowCount == 0){
+                bandera = true;
+                response.success= false;
+                response.msg = `Ha ocurrido un erro al insertar un Tipo Identificacion: BD ${identificaciones}`;
+                status = 500;
+                break;
+        } else {
+            response.msg = `Se ha creado un Tipo Identificacion, con el id_tipo_identificacion ${identificaciones} - ${descripcion}`;
+            let insert = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion);
+            response.data = insert; 
         }
-    }
-        if (identificaciones.length>0 && !bandera){
-            response.data = await new Tipoidentificacion().getTipoidentificacion();
-        }  else {
-            response.success = false;
-         // status = 400;
-            response.msg = 'Error en la Sincronización de Tipo Identificacion';    
-        }
-        res.status(status).json(response)
-    });
+  }        
+}
+    res.status(status).json(response)
+});
     function newResponseJson() {
         return {success: true, msg: "", data: []};
     }    
