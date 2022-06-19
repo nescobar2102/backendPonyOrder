@@ -34,8 +34,7 @@ router.get('/tipoidentificacion/:descripcion', async (req,res) => {
 });
 
 router.post('/synchronization_tipoidentificacion', async (req,res) => {
-    const response = newResponseJson();
-    //response.msg = 'Sincronización de Tipo Identificacion';
+    const response = newResponseJson();  
     let status = 201;
     const {identificaciones } = req.body
     let bandera = false;
@@ -46,14 +45,14 @@ router.post('/synchronization_tipoidentificacion', async (req,res) => {
              descripcion 
             } =  identificaciones[i]
 
-            if (id_tipo_identificacion=='' || descripcion =='') {
+            if (id_tipo_identificacion.trim() =='' || descripcion.trim() =='') {
                 bandera = true;
                 response.success = false;
                 response.msg = `El id_tipo_identificacion y descripcion no puede estar vacio`;
                 status= 500;
                 break;
             }
-            let exist = await new Tipoidentificacion().getTipoidentificacion(id_tipo_identificacion,descripcion);
+            let exist = await new Tipoidentificacion().getTipoidentificacionIdDesc(id_tipo_identificacion,descripcion);
             if (exist.length > 0 ) {
                 bandera = true;
                 response.success = false;
@@ -61,24 +60,27 @@ router.post('/synchronization_tipoidentificacion', async (req,res) => {
                 status = 500;
                 break;
             }
-            if (!bandera) {
+            if (! bandera) {
+
                 let identificaciones = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion,descripcion);
-                if (!identificaciones?.rowCount || identificaciones?. rowCount == 0){
+                if (! identificaciones ?. rowCount || identificaciones ?. rowCount == 0) {
                 bandera = true;
                 response.success= false;
                 response.msg = `Ha ocurrido un erro al insertar un Tipo Identificacion: BD ${identificaciones}`;
                 status = 500;
                 break;
         } else {
-            response.msg = `Se ha creado un Tipo Identificacion, con el id_tipo_identificacion ${identificaciones} - ${descripcion}`;
-            let insert = await new Tipoidentificacion().createTipoidentificacion(id_tipo_identificacion);
+            response.msg = `Sincronización exitosa.`;
+            let insert = await new Tipoidentificacion().getTipoidentificacion();
             response.data = insert; 
         }
   }        
 }
+
     res.status(status).json(response)
 });
+
     function newResponseJson() {
         return {success: true, msg: "", data: []};
     }    
-module.exports = router;
+module.exports = router; 
