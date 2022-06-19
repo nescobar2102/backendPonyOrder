@@ -11,9 +11,8 @@ router.get('/barrio_all', async (req, res) => {
     if (barrio.length > 0) {
         response.data = barrio;
     } else {
-        //status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -26,10 +25,9 @@ router.get('/barrio/:nit', async (req, res) => {
     let barrio = await new Barrio().getBarrioByNit(nit);
     if (barrio.length > 0) {
         response.data = barrio;
-    } else {
-       // status = 404;
+    } else { // status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -38,7 +36,7 @@ router.post('/synchronization_barrio', async (req, res) => {
     const response = newResponseJson();
     let status = 201;
     const {barrios} = req.body
-    let bandera = false;   
+    let bandera = false;
 
     for (var i = 0; i < barrios.length; i++) {
         const {
@@ -50,37 +48,40 @@ router.post('/synchronization_barrio', async (req, res) => {
             nombre
         } = barrios[i]
 
-        if (nit=='' || id_pais =='' || id_depto =='' || id_ciudad == '' || id_barrio == '' || nombre == '') {
+        if (nit.trim() == '' || id_pais.trim() == '' || id_depto.trim() == '' || id_ciudad.trim() == '' || id_barrio.trim() == '' || nombre.trim() == '') {
             bandera = true;
             response.success = false;
-            response.msg = `El Nit,id_pais,id_depto,id_cuidad,id_barrio y nombre no puede estar vacio`;
-            status= 500;
+            response.msg = `El Nit,id_pais,id_depto,id_cuidad,id_barrio o nombre no puede estar vacio`;
+            status = 500; 
             break;
         }
-       let exist = await new Barrio().getBarrioNitId(nit,id_barrio);
-        if (exist.length>0){
+        let exist = await new Barrio().getBarrioNitId(nit, id_barrio);
+        if (exist.length > 0) {
             bandera = true;
             response.success = false;
             response.msg = `El Barrio ya existe con este Nit ${nit}, id_barrio: ${id_barrio}`;
             status = 500;
             break;
-        }        
-        if (!bandera){
+        }
+        if (! bandera) { 
+
             let barrios = await new Barrio().createBarrio(nit, id_pais, id_depto, id_ciudad, id_barrio, nombre);
-            if (!barrios ?. rowCount || barrios ?. rowCount == 0) {
+            if (! barrios ?. rowCount || barrios ?. rowCount == 0) { // await new Barrio().rollback();
                 bandera = true;
-                response.success= false;
+                response.success = false;
                 response.msg = `Ha ocurrido un erro al insertar un Barrio: BD ${barrios}`;
                 status = 500;
                 break;
-        } else {
-            response.msg = `Se ha creado el Barrio, con el Nit ${barrios} - ${nombre}`;
-            let insert = await new Barrio().createBarrio(nit);
-            response.data = insert;            
-        }         
-    }    
-}
-res.status(status).json(response)
+            } else {  
+                response.msg = `Sincronización exitosa.`;
+                let insert = await new Barrio().getBarrio(); 
+                response.data = insert;
+            }
+        }
+    }
+
+    
+    res.status(status).json(response)
 });
 
 function newResponseJson() {

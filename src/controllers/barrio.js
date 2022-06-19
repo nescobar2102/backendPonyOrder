@@ -13,8 +13,10 @@ class Barrio {
         let results = await db.query('SELECT * FROM barrio WHERE nit = $1 and id_barrio= $2', [nit,id_barrio]).catch(console.log);
         return results.rows;
     }
+  
     async createBarrio(nit, id_pais, id_depto, id_ciudad, id_barrio, nombre) {
         let response
+     
         try {        
             const insert = await db.query('INSERT INTO barrio (nit,id_pais,id_depto,id_ciudad,id_barrio,nombre) VALUES ($1, $2, $3, $4,$5, $6)', [
                 nit,
