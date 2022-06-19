@@ -17,13 +17,13 @@ class Zona
     async createZona(id_zona,descripcion,id_padre,nivel,es_padre,nit) { 
         let response 
         try     {     
-         const insert = await db.query('INSERT INTO zona (id_zona , descripcion, id_padre, nivel, es_padre, nit) VALUES ($1, $2, $3, $4, $5, $6)', [
+         const insert = await db.query('INSERT INTO zona (nit,id_zona , descripcion, id_padre, nivel, es_padre) VALUES ($1, $2, $3, $4, $5, $6)', [
+            nit,
             id_zona ,
             descripcion, 
             id_padre,
             nivel,
-            es_padre, 
-            nit
+            es_padre            
         ]);
         response = insert;
     } catch (err) { 

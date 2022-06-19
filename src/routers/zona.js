@@ -36,51 +36,55 @@ router.get('/zona/:nit/:descripcion', async (req,res) => {
 router.post('/synchronization_zona', async (req,res) => {
     const response = newResponseJson();   
     let status = 201;
-    const {zonas } = req.body
+    const {zonas} = req.body
     let bandera = false;
+
     for (var i =0 ; i < zonas.length; i++) { 
         const {
+            nit,
             id_zona,
             descripcion, 
             id_padre, 
             nivel, 
-            es_padre, 
-            nit
+            es_padre
         } =  zonas[i]
 
-        if (nit =='' || id_zona =='' || descripcion =='' || id_padre =='' || nivel =='' || es_padre == '') {
+        if (nit.trim() == '' || id_zona.trim() == '' || descripcion.trim() == '' || id_padre.trim() == '' || nivel.trim() == '' || es_padre.trim() == '') {
         bandera = true;
         response.success = false;
-        response.msg = 'El Nit, id_zona, descripcion, id_padre, nivel y es_padre no pueden estar vacio';
+        response.msg = `El nit, id_zona, descripcion, id_padre, nivel y es_padre no pueden estar vacio`;
         status = 500;
         break; 
         }        
         let exist = await new Zona().getZonaNitId(nit,id_zona);  
-            if (exist.length > 0){
+            if (exist.length > 0) {
                 bandera = true;
                 response.success = false;
                 response.msg = `La Zona ya existe con ese Nit: ${nit} y id_zona: ${id_zona}`;
                 status = 500;
                 break;
             }
-            if (!bandera){
-                let zonas = await new Zona().createZona(id_zona,descripcion,id_padre,nivel,es_padre,nit);
-                if (zonas ?.rowCount || zonas ?. rowCount == 0) {
+            if (! bandera) {
+
+                let zonas = await new Zona().createZona(nit, id_zona, descripcion, id_padre, nivel, es_padre);
+                if (! zonas ?. rowCount || zonas ?. rowCount == 0) {
                     bandera = true;
                     response.success = false;
                     response.msg = `Ha ocurrido un error en el insert de una Zona: BD ${zonas}`;
-                    status=500;
+                    status = 500;
                     break;                                    
-            } else{
-                response.msg =  `Se ha creado una Zona, con el Nit ${zonas} - ${descripcion}`;
-                let insert = await new Zona().createZona(nit);
-                response.data = insert;
+                } else{
+                    response.msg =  `Sincronización exitosa.`;
+                    let insert = await new Zona().getZona();
+                    response.data = insert;
             }
         }
  }    
+
     res.status(status).json(response)         
 });
+
 function newResponseJson() {
-    return {success: true, msg: "", data: [],};
+    return {success: true, msg: "", data: []};
 }
 module.exports = router;
