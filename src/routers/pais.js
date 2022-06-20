@@ -22,7 +22,8 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     let status = 200;
     let bandera = false;
 
-    let {nit, nombre} = req.params;
+    let {nit, nombre} = req?.params;
+ 
     if (nit.trim() == ''   || nombre.trim() == ''){
         bandera = true;
         response.success = false;

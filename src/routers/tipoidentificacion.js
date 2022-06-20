@@ -21,7 +21,7 @@ router.get('/tipoidentificacion/:id_tipo_identificacion', async (req, res) => {
     response.msg = 'Listar un Tipo Identificacion por  Tipo identificacion ';
     let status = 200;
     let bandera = false;
-    let {id_tipo_identificacion} = req.params;
+    let {id_tipo_identificacion} = req?.params;
 
     if (id_tipo_identificacion.trim() == '' || id_tipo_identificacion.trim() == null) {
         bandera = true;

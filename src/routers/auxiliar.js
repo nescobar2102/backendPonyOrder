@@ -24,7 +24,7 @@ router.get('/auxiliar/:nit', async (req, res) => {
     response.msg = 'Listar los Auxiliar por Nit';
     let status = 200;
     let bandera = false;
-    let {nit} = req.params;
+    let {nit} = req?.params;
     if (nit.trim() == '' || nit == null) {
         bandera = true;
         response.success = false;
