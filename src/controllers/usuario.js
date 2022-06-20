@@ -14,8 +14,9 @@ class Usuario {
     }
 
     async createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc) {
-      
-          return  await db.query('INSERT INTO usuario (nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)', [
+        let response
+        try {
+            const result_insert = await db.query('INSERT INTO usuario (nit, correo_electronico,usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)', [
                 nit, 
                 correo_electronico,
                 usuario,
@@ -31,9 +32,14 @@ class Usuario {
                 id_bodega,
                 edita_consecutivo_rc,
                 edita_fecha_rc
-            ])
-            .catch(console.log);
-        }    
+            ]);
+            response = result_insert
+       
+     } catch (err) { 
+        response = err;
+       }  
+       return response
+    }
         async updateUser(nit, correo_electronico, usuario, nombre, flag_activo, clave) {
           let results =  await db.query('UPDATE usuario SET nombre = $1, correo_electronico = $2, usuario = $3, flag_activo = $4, clave = $5 WHERE nit = $6',
              [nombre, correo_electronico, usuario, flag_activo, clave, nit]).catch(console.log);               
