@@ -74,13 +74,13 @@ router.post('/synchronization_tipoidentificacion', async (req, res) => {
                 status = 500;
                 break;
             } else {
-                response.msg = `Sincronización exitosa.`;
-                let insert = await new Tipoidentificacion().getTipoidentificacion();
-                response.data = insert;
+                response.msg = `Sincronización exitosa.`; 
+           
             }
         }
     }
-
+     
+    response.data =await new Tipoidentificacion().getTipoidentificacion();
     res.status(status).json(response)
 });
 

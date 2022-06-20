@@ -193,13 +193,13 @@ router.post('/synchronization_empresa', async (req, res) => {
                 response.msg = `Ha ocurrido un error al intentar crear la empresa:  BD ${result}`;
                 status = 500;
                 break;
-            } else {
-                response.data = await new Empresa().getEmpresaNit(nit);
+            } else {            
                 response.msg = `Sincronizacion de empresa existosa.`;
             }
         }
     }
-
+    
+    response.data =  await new Empresa().getEmpresa();
     res.status(status).json(response)
 });
 function newResponseJson() {
