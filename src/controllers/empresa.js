@@ -12,13 +12,16 @@ class Empresa {
         return results.rows;
     }
 
-    async createEmpresaUnica(nit, dv, razon_social, correo_electronico) {
-        let results = await db.query('SELECT * FROM empresa WHERE nit = $1', [nit]).catch(console.log);
-        if (results?.rowCount > 0) {
-            return results.rows;
-        } else {
-            return await db.query('INSERT INTO empresa (nit,dv,razon_social, correo_electronico) VALUES ($1, $2, $3, $4)', [nit, dv, razon_social, correo_electronico]).catch(console.log);
+    async createEmpresaUnica(nit, dv, razon_social, correo_electronico,id_tipo_empresa) {
+        let response
+        try{ 
+         const insert = await db.query('INSERT INTO empresa (nit,dv,razon_social, correo_electronico,id_tipo_empresa) VALUES ($1, $2, $3, $4,$5)', [nit, dv, razon_social, correo_electronico,id_tipo_empresa]);
+           response = insert
+        }catch(err){
+            response = err
         }
+        return response 
+        
     }
 
     async createEmpresa(nit, razon_social, id_tipo_empresa, pre_actividad_economica, pre_cuenta, pre_medio_contacto, id_moneda, direccion, telefono, dv, fax, id_pais, id_depto, id_ciudad, regimen_tributario, flag_iva, flag_forma_pago_efectivo, correo_electronico, id_empresa) {
