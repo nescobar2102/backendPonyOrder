@@ -34,11 +34,11 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
 });
 // Sincronizacion de pais
 router.post('/synchronization_pais', async (req, res) => {
-    const response = newResponseJson();
-    response.msg = 'Sincronización de Paises';
+    const response = newResponseJson();   
     let status = 201;
     const {paises} = req.body
     let bandera = false;
+
     for (var i = 0; i < paises.length; i++) {
         const {
             nit,
@@ -47,18 +47,37 @@ router.post('/synchronization_pais', async (req, res) => {
             nacionalidad,
             nombre
         } = paises[i]
-        result1 = await new Pais().createPais(nit, id_pais, ie_pais, nacionalidad, nombre); 
-        if (!result1 ?. rowCount || result1 ?. rowCount == 0) { 
+
+        if (nit.trim() == '' || id_pais.trim() == '' || ie_pais.trim() == '' || nacionalidad.trim() == '' || nombre.trim() == ''){
             bandera = true;
+            response.success = false;
+            response.msg = `El nit,id_pais, ie_pais, nacionalidad y nombre no pueden estar vacio`;
+            status = 500;
+            break;
+        } 
+        let exist = await new Pais().getPaisNitId(nit,id_pais);
+        if (exist.length > 0) {
+            bandera = true;
+            response.success = false;
+            response.msg = `El Pais ya existe con este Nit ${nit}, id_pais: ${id_pais}`;
+            status = 500;
             break;
         }
-    }
-    if (paises.length > 0 && ! bandera) {
-        response.data = await new Pais().getPais();
-    } else {
-        response.success = false;
-     // status = 400;
-        response.msg = 'Error en la sincronización de Paises';
+        if (! bandera) { 
+
+            let paises = await new Pais().createPais(nit,id_pais,ie_pais, nacionalidad,nombre);
+            if (! paises ?. rowCount || paises ?. rowCount == 0) {
+                bandera = true;
+                response.success = false;
+                response.msg = `Ha ocurrido un erro al insertar un Pais: BD ${paises}`;
+                status = 500;
+                break;
+            } else {  
+                response.msg = `Sincronización exitosa.`;
+                let insert = await new Pais().getPais(); 
+                response.data = insert;
+            }
+        }
     }
     res.status(status).json(response)
 });
