@@ -23,10 +23,10 @@ router.get('/empresa/:nit', async (req, res) => {
     response.msg = 'Listar las Empresa por Nit';
     let status = 200;
     let {nit} = req.params;
-
-    if (nit.trim() == "") {
+ 
+    if (nit ?. trim() == '' || nit == null) {
         response.success = false;
-        response.msg = 'El nit no puede estar vacío';
+        response.msg = 'El nit  esta vacío';
         status = 400;
     } else {
         let empresa = await new Empresa().getEmpresaNit(nit);
@@ -45,12 +45,12 @@ router.post('/empresa', async (req, res) => { // require mas campos para la crea
     const response = newResponseJson();
     response.msg = 'Crear una Empresa';
     let status = 201;
-    const {nit, dv, razon_social, correo_electronico} = req.body
-
-    if (nit.trim() == "") {
+    const {nit, dv, razon_social, correo_electronico,id_tipo_empresa} = req.body
+    let bandera = false;
+    if (nit ?. trim() == '' || nit == null) {
         bandera = true;
         response.success = false;
-        response.msg = 'El nit no puede estar vacio';
+        response.msg = 'El nit  esta vacío';
         status = 400;
     }
     let exist = await new Empresa().getEmpresaNit(nit);
@@ -61,13 +61,13 @@ router.post('/empresa', async (req, res) => { // require mas campos para la crea
         status = 200;
     }
     if (!bandera) {
-        let result = await new Empresa().createEmpresaUnica(nit, dv, razon_social, correo_electronico);
+        let result = await new Empresa().createEmpresaUnica(nit, dv, razon_social, correo_electronico,id_tipo_empresa);
         if (! result ?. rowCount || result ?. rowCount == 0) {
-            response.data = await new Empresa().getEmpresaNit(nit);
-        } else {
             response.success = false;
             response.msg = `Ha ocurrido un error al intentar crear la empresa:  BD ${result}`;
             status = 500;
+        } else {
+           response.data = await new Empresa().getEmpresaNit(nit);
         }
     }
     res.status(status).json(response)
@@ -172,7 +172,7 @@ router.post('/synchronization_empresa', async (req, res) => {
         if (nit.trim() == '' || nit == null || razon_social.trim() == '' || razon_social == null || id_tipo_empresa.trim() == '' || correo_electronico.trim() == '' || correo_electronico == null) {
             bandera = true;
             response.success = false;
-            response.msg = 'El nit,razon_social,id_tipo_empresa,correo_electronico están vacíos';
+            response.msg = 'El nit,razon_social,id_tipo_empresa o correo_electronico están vacíos';
             status = 400;
             break;
         }
@@ -180,7 +180,7 @@ router.post('/synchronization_empresa', async (req, res) => {
         if (exist.length > 0) {
             bandera = true;
             response.success = false;
-            response.msg = `La empresa con el nit: (${nit}) ya existe`;
+            response.msg = `La empresa con el nit: (${nit}) ya existe.`;
             status = 200;
             break;
         }
