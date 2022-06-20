@@ -20,6 +20,8 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Listar los paises por País y nombre';
     let status = 200;
+    let bandera = false;
+
     let {nit, nombre} = req.params;
     if (nit.trim() == ''   || nombre.trim() == ''){
         bandera = true;
@@ -27,6 +29,7 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
         response.msg = `El nit ó nombre estan vacios`;
         status = 400; 
     } 
+    if (!bandera) { 
     let pais = await new Pais().getPaisByNit(nit, nombre);
     if (pais.length > 0) {
         response.data = pais;
@@ -34,6 +37,7 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
         response.success = false;
         response.msg = 'No existen registros';
     }
+}
     res.status(status).json(response)
 });
 // Sincronizacion de pais
@@ -76,15 +80,15 @@ router.post('/synchronization_pais', async (req, res) => {
                 response.msg = `Ha ocurrido un erro al insertar un Pais: BD ${paises}`;
                 status = 500;
                 break;
-            } else {  
-                response.msg = `Sincronización exitosa.`;
-                let insert = await new Pais().getPais(); 
-                response.data = insert;
             }
         }
     }
+
+    response.data = await new Pais().getPais();
+
     res.status(status).json(response)
 });
+
 function newResponseJson() {
     return {success: true, msg: "", data: []};
 }
