@@ -2,15 +2,287 @@
 	"variables": [],
 	"info": {
 		"name": "PonyBackend",
-		"_postman_id": "35fbb28d-1c3d-986c-b56e-5c7acd4f6ad9",
+		"_postman_id": "60b65736-cf6b-7546-f56b-d27cb9a6920c",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "Empresa",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar todas las empresas",
+					"request": {
+						"url": "{{ulr-api}}/empresa_all",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar una empresa por  nit",
+					"request": {
+						"url": "{{ulr-api}}/empresa/900054835",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "174e282c-2781-4ea8-bd3f-e288673cb82f",
+							"name": "Listar una empresa por  nit",
+							"originalRequest": {
+								"url": "http://localhost:3000/empresa/90005483",
+								"method": "GET",
+								"header": [],
+								"body": {}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plainText",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"name": "access-control-allow-origin",
+									"key": "access-control-allow-origin",
+									"value": "*",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"name": "connection",
+									"key": "connection",
+									"value": "keep-alive",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"name": "date",
+									"key": "date",
+									"value": "Sat, 18 Jun 2022 22:39:07 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "etag",
+									"key": "etag",
+									"value": "W/\"54-zdLdWc/7+UKWYMFmeLUufvM6+8E\"",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"name": "keep-alive",
+									"key": "keep-alive",
+									"value": "timeout=5",
+									"description": "Custom header"
+								},
+								{
+									"name": "x-powered-by",
+									"key": "x-powered-by",
+									"value": "Express",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [],
+							"responseTime": 25,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Actualizacion del estado de empresa ",
+					"request": {
+						"url": "{{ulr-api}}/empresa/status/900054835",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"estado\":\"false\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizacion_ de las EMPRESA",
+					"request": {
+						"url": "{{ulr-api}}/synchronization_empresa",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"empresas\": [\r\n\t{\r\n\t\"nit\": \"900054835\",\r\n\t\"razon_social\": \"NANE DISTRIBUCIONES SAS\",\r\n\t\"id_tipo_empresa\": \"RC\",\r\n\t\"pre_actividad_economica\": \"0082\",\r\n\t\"pre_cuenta\": \"13050502\",\r\n\t\"pre_medio_contacto\": \"02\",\r\n\t\"id_moneda\": \"COLP\",\r\n\t\"direccion\": \"KM 11 VIA CALI CANDELARIA LC 4\",\r\n\t\"telefono\": \"6024484019\",\r\n\t\"dv\": \"1\",\r\n\t\"fax\": \"\",\r\n\t\"id_pais\": \"57\",\r\n\t\"id_depto\": \"76\",\r\n\t\"id_ciudad\": \"76001\",\r\n\t\"regimen_tributario\": \"\",\r\n\t\"flag_iva\": \"SI\",\r\n\t\"flag_forma_pago_efectivo\": \"SI\",\r\n\t\"correo_electronico\": \"gerencia@pddistribuciones.com\",\r\n\t\"id_empresa\": \"04\"\r\n\t}\r\n\t]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo documento",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar los tipo documento por clase doc y nit",
+					"request": {
+						"url": {
+							"raw": "{{ulr-api}}/tipodoc/:nit/:id_tipo_doc",
+							"host": [
+								"{{ulr-api}}"
+							],
+							"path": [
+								"tipodoc",
+								":nit",
+								":id_tipo_doc"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "nit",
+									"value": "900054835"
+								},
+								{
+									"key": "id_tipo_doc",
+									"value": "P01"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los tipo documento ",
+					"request": {
+						"url": "{{ulr-api}}/tipodoc_all",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizacion tipo documento ",
+					"request": {
+						"url": "{{ulr-api}}/synchronization_tipodoc",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"tipodocs\": [\r\n\t{\r\n\t\"id_empresa\": \"01\",\r\n\t\"id_sucursal\": \"01\",\r\n\t\"id_clase_doc\": \"PA\",\r\n\t\"id_tipo_doc\": \"P04\",\r\n\t\"consecutivo\": \"1221\",\r\n\t\"descripcion\": \"Pedido Ruta 2000\",\r\n\t\"nit\": \"900054835\"\r\n\t} \r\n \r\n  ]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo identificación",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar todo los tipo identificacion",
+					"request": {
+						"url": "{{ulr-api}}/tipoidentificacion_all",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un tipo identificacion por d_tipo_identificacion",
+					"request": {
+						"url": {
+							"raw": "{{ulr-api}}/tipoidentificacion/:id_tipo_identificacion",
+							"host": [
+								"{{ulr-api}}"
+							],
+							"path": [
+								"tipoidentificacion",
+								":id_tipo_identificacion"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "id_tipo_identificacion",
+									"value": " 13"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizacion de tipo identificacion",
+					"request": {
+						"url": "{{ulr-api}}/synchronization_tipoidentificacion",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"identificaciones\": [\r\n\t\t{ \r\n\t\t\"id_tipo_identificacion\": \"13\",\r\n\t\t\"descripcion\": \"Cédula de Ciudadanía\"\r\n\t\t},\r\n\t\t{ \r\n\t\t\"id_tipo_identificacion\": \"31\",\r\n\t\t\"descripcion\": \"Número de indentificación Tributaria - Nit\"\r\n\t\t}\r\n\t]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Listado de todos los usuarios",
 			"request": {
-				"url": "http://localhost:3000/users_all",
+				"url": "{{ulr-api}}/users_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -89,7 +361,7 @@
 		{
 			"name": "Crear un usuario",
 			"request": {
-				"url": "http://localhost:3000/users",
+				"url": "{{ulr-api}}/users",
 				"method": "POST",
 				"header": [
 					{
@@ -100,33 +372,8 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"nit\":\"19314687\",\n\"correo_electronico\": \"norbe@qwerty.co\",\n\"usuario\": \"rmurillo\",\n\"nombre\": \"NORBELYS NAGUANAGUA\",\n\"flag_activo\": \"SI\",\n\"clave\": \"12345678\",\n\"flag_cambia_fp\": \"SI\",\n\"flag_cambia_lp\": \"SI\",\n\"flag_edita_cliente\": \"NO\",\n\"flag_edita_dcto\": \"SI\",\n\"id_tipo_doc_pe\": \"P01\",\n\"id_tipo_doc_rc\": \"RC1\",\n\"id_bodega\": \"01\",\n\"edita_consecutivo_rc\": \"SI\",\n\"edita_fecha_rc \": \"SI\"\n}\n"
+					"raw": "{\n\"nit\":\"9000548351A\",\n\"correo_electronico\": \"NORBELYS@GAMILC.\",\n\"usuario\": \"NNAGUANAGUA\",\n\"nombre\": \"NORBELYS NAGUANAGUA\",\n\"flag_activo\": \"SI\",\n\"clave\": \"12345678\",\n\"flag_cambia_fp\": \"SIAAAA\",\n\"flag_cambia_lp\": \"SI\",\n\"flag_edita_cliente\": \"NO\",\n\"flag_edita_dcto\": \"SI\",\n\"id_tipo_doc_pe\": \"P01\",\n\"id_tipo_doc_rc\": \"RC1\",\n\"id_bodega\": \"0s\",\n\"edita_consecutivo_rc\": \"SI\",\n\"edita_fecha_rc \": \"SI\"\n}\n"
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar todas las empresas",
-			"request": {
-				"url": "http://localhost:3000/empresa_all",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar una empresa por  nit",
-			"request": {
-				"url": "http://localhost:3000/empresa/900054835",
-				"method": "GET",
-				"header": [],
-				"body": {},
 				"description": ""
 			},
 			"response": []
@@ -134,7 +381,7 @@
 		{
 			"name": "listado de barrio",
 			"request": {
-				"url": "http://localhost:3000/barrio_all",
+				"url": "{{ulr-api}}/barrio_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -166,29 +413,9 @@
 			"response": []
 		},
 		{
-			"name": "Actualizacion del estado de empresa ",
-			"request": {
-				"url": "http://localhost:3000/empresa/status/900054835",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"estado\":\"false\"\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "Listar ciudad todas las ciudades",
 			"request": {
-				"url": "http://localhost:3000/ciudades_all",
+				"url": "{{ulr-api}}/ciudades_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -219,7 +446,10 @@
 				"url": "http://localhost:3000/ciudades/900054835",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -230,26 +460,9 @@
 				"url": "http://localhost:3000/barrio/900054835",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Crear empresa",
-			"request": {
-				"url": "http://localhost:3000/empresa",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nit\": \"19314687\",\r\n         \"dv\": \"r\",\r\n        \"correo_electronico\": \"nane@gmail.com\",\r\n        \"razon_social\": \"NANE15\"\r\n    }"
+					"raw": ""
 				},
 				"description": ""
 			},
@@ -258,25 +471,7 @@
 		{
 			"name": "Listar los auxiliares",
 			"request": {
-				"url": {
-					"raw": "http://localhost:3000/auxiliar/:nit",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auxiliar",
-						":nit"
-					],
-					"query": [],
-					"variable": [
-						{
-							"key": "nit",
-							"value": ""
-						}
-					]
-				},
+				"url": "{{ulr-api}}/auxiliar/3123",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -304,7 +499,7 @@
 			},
 			"response": [
 				{
-					"id": "2854d8f5-7fe6-4b01-b61f-39e20161bf7a",
+					"id": "9cdf3421-444e-45cf-a8fa-6e08b94045f6",
 					"name": "Sincronizacion de auxiliar",
 					"originalRequest": {
 						"url": "http://localhost:3000/synchronization_auxiliar",
@@ -320,7 +515,8 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n\"auxiliares\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"13050501\" ,\r\n\"descripcion\" : \"Clientes Nacionales\" ,\r\n\"flag_flujo_caja\" : \"NO\" ,\r\n\"id_tipo_cuenta\" : \"CC\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"11050501\" ,\r\n\"descripcion\" : \"Caja General\" ,\r\n\"flag_flujo_caja\" : \"SI\" ,\r\n\"id_tipo_cuenta\" : \"CA\"\r\n}\r\n]\r\n}"
-						}
+						},
+						"description": ""
 					},
 					"status": "Created",
 					"code": 201,
@@ -426,7 +622,10 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -434,7 +633,7 @@
 		{
 			"name": "listado de banco",
 			"request": {
-				"url": "http://localhost:3000/banco_all/",
+				"url": "{{ulr-api}}/banco_all/",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -448,7 +647,7 @@
 		{
 			"name": "Listar  todos los auxiliar",
 			"request": {
-				"url": "http://localhost:3000/auxiliar_all/",
+				"url": "{{ulr-api}}/auxiliar_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -461,17 +660,7 @@
 		},
 		{
 			"name": "Listar  una clasificacion_Items por descripcion",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"url": "http://localhost:3000/clasificacionItems_all",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}"
-				},
 				"url": {
 					"raw": "http://localhost:3000/clasificacionItems/:descripcion",
 					"protocol": "http",
@@ -483,13 +672,21 @@
 						"clasificacionItems",
 						":descripcion"
 					],
+					"query": [],
 					"variable": [
 						{
 							"key": "descripcion",
 							"value": "Frutas y Verduras"
 						}
 					]
-				}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clasificacionItems\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"01\" ,\r\n\"descripcion\" : \"Abarrotes\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-540.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0101\" ,\r\n\"descripcion\" : \"Arroz\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0102\" ,\r\n\"descripcion\" : \"Aceite\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0103\" ,\r\n\"descripcion\" : \"Azúcares\" ,\r\n\"id_padre\" : \"01\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"02\" ,\r\n\"descripcion\" : \"Frutas y Verduras\" ,\r\n\"id_padre\" : \"-\" ,\r\n\"nivel\" : \"1\" ,\r\n\"imagen\" : \"900054835-ci-61573f445e29a574671a7e0e-500.jpg\" ,\r\n\"subclasificacionItem\" :[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0201\" ,\r\n\"descripcion\" : \"Legumbres\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_clasificacion\" : \"0202\" ,\r\n\"descripcion\" : \"Frutas\" ,\r\n\"id_padre\" : \"02\" ,\r\n\"nivel\" : \"2\"\r\n}\r\n]\r\n}\r\n]\r\n}"
+				},
+				"description": ""
 			},
 			"response": []
 		},
@@ -542,7 +739,7 @@
 		{
 			"name": "Listar los concepto",
 			"request": {
-				"url": "http://localhost:3000/concepto_all",
+				"url": "{{ulr-api}}/concepto_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -555,9 +752,6 @@
 		},
 		{
 			"name": "Listar los concepto por id concepto y nit",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"url": {
 					"raw": "http://localhost:3000/concepto/:nit/:id_concepto",
@@ -661,7 +855,7 @@
 		{
 			"name": "Listar todos los medioContacto",
 			"request": {
-				"url": "http://localhost:3000/medioContacto_all",
+				"url": "{{ulr-api}}/medioContacto_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -726,77 +920,12 @@
 		{
 			"name": "Listar todo las zona",
 			"request": {
-				"url": "http://localhost:3000/zona_all",
+				"url": "{{ulr-api}}/zona_all",
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar los tipo documento por descripcion y por nit",
-			"request": {
-				"url": {
-					"raw": "http://localhost:3000/tipodoc/:nit/:descripcion",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"tipodoc",
-						":nit",
-						":descripcion"
-					],
-					"query": [],
-					"variable": [
-						{
-							"key": "nit",
-							"value": "900054835"
-						},
-						{
-							"key": "descripcion",
-							"value": "Pedido Ruta 1"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar los tipo documento ",
-			"request": {
-				"url": "http://localhost:3000/tipodoc_all",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Sincronizacion tipo documento ",
-			"request": {
-				"url": "http://localhost:3000/synchronization_tipodoc",
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"tipodocs\": [\r\n{\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_clase_doc\": \"PE\",\r\n\"id_tipo_doc\": \"P01\",\r\n\"consecutivo\": \"1221\",\r\n\"descripcion\": \"Pedido Ruta 1\",\r\n\"nit\": \"900054835\"\r\n},\r\n{\r\n\"id_empresa\": \"01\",\r\n\"id_sucursal\": \"01\",\r\n\"id_clase_doc\": \"RC\",\r\n\"id_tipo_doc\": \"RC1\",\r\n\"consecutivo\": \"1125\",\r\n\"descripcion\": \"Recibo de Caja Ruta 1\",\r\n\"nit\": \"900054835\"\r\n}\r\n]\r\n}"
 				},
 				"description": ""
 			},
@@ -842,7 +971,7 @@
 		{
 			"name": "Listar todos los tipo pago",
 			"request": {
-				"url": "http://localhost:3000/tipopago_all",
+				"url": "{{ulr-api}}/tipopago_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -870,7 +999,7 @@
 		{
 			"name": "Listar todos los tipo empresa",
 			"request": {
-				"url": "http://localhost:3000/tipoempresa_all",
+				"url": "{{ulr-api}}/tipoempresa_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -884,7 +1013,7 @@
 		{
 			"name": "Sincronizacion de tipo empresa",
 			"request": {
-				"url": "http://localhost:3000/synchronization_tipoempresa",
+				"url": "{{ulr-api}}/synchronization_tipoempresa",
 				"method": "POST",
 				"header": [
 					{
@@ -905,12 +1034,10 @@
 			"name": "Listar los tipo empresa por descripcion y por nit",
 			"request": {
 				"url": {
-					"raw": "http://localhost:3000/tipoempresa/:nit",
-					"protocol": "http",
+					"raw": "{{ulr-api}}/tipoempresa/:nit",
 					"host": [
-						"localhost"
+						"{{ulr-api}}"
 					],
-					"port": "3000",
 					"path": [
 						"tipoempresa",
 						":nit"
@@ -928,86 +1055,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar todo los tipo identificacion",
-			"request": {
-				"url": "http://localhost:3000/tipoidentificacion_all",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Sincronizacion de tipo identificacion",
-			"request": {
-				"url": "http://localhost:3000/synchronization_tipoidentificacion",
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"identificaciones\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"descripcion\": \"Cédula de Ciudadanía\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tipo_identificacion\": \"31\",\r\n\"descripcion\": \"Número de indentificación Tributaria - Nit\"\r\n}\r\n]\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar un tipo identificacion por descripcion",
-			"request": {
-				"url": {
-					"raw": "http://localhost:3000/tipoidentificacion/:descripcion",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"tipoidentificacion",
-						":descripcion"
-					],
-					"query": [],
-					"variable": [
-						{
-							"key": "descripcion",
-							"value": "Cédula de Ciudadanía"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Sincronizacion_ de las EMPRESA",
-			"request": {
-				"url": "http://localhost:3000/synchronization_empresa",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"empresas\": [\r\n\t{\r\n\t\"nit\": \"900054835\",\r\n\t\"razon_social\": \"NANE DISTRIBUCIONES SAS\",\r\n\t\"id_tipo_empresa\": \"RC\",\r\n\t\"pre_actividad_economica\": \"0082\",\r\n\t\"pre_cuenta\": \"13050502\",\r\n\t\"pre_medio_contacto\": \"02\",\r\n\t\"id_moneda\": \"COLP\",\r\n\t\"direccion\": \"KM 11 VIA CALI CANDELARIA LC 4\",\r\n\t\"telefono\": \"6024484019\",\r\n\t\"dv\": \"1\",\r\n\t\"fax\": \"\",\r\n\t\"id_pais\": \"57\",\r\n\t\"id_depto\": \"76\",\r\n\t\"id_ciudad\": \"76001\",\r\n\t\"regimen_tributario\": \"\",\r\n\t\"flag_iva\": \"SI\",\r\n\t\"flag_forma_pago_efectivo\": \"SI\",\r\n\t\"correo_electronico\": \"gerencia@pddistribuciones.com\",\r\n\t\"id_empresa\": \"04\"\r\n\t}\r\n\t]\r\n}"
 				},
 				"description": ""
 			},
@@ -1629,12 +1676,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"1\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"1\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\r\n\"terceros\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_tipo_identificacion\": \"13\",\r\n\"dv\": \"1\",\r\n\"nombre\": \"Aura Elena Fernandez Franco\",\r\n\"direccion\": \"Calle 9 CBIS 29A 108\",\r\n\"id_pais\": \"57\",\r\n\"id_depto\": \"76\",\r\n\"id_ciudad\": \"76001\",\r\n\"id_barrio\": \"76001001\",\r\n\"telefono\": \"602589654\",\r\n\"id_actividad\": \"0081\",\r\n\"id_tipo_empresa\": \"RC\",\r\n\"cliente\": \"SI\",\r\n\"fecha_creacion\": \"01/01/2019\",\r\n\"nombre_sucursal\": \"Aura Elena Fernandez Franco\",\r\n\"primer_apellido\": \"Fernandez\",\r\n\"segundo_apellido\": \"Franco\",\r\n\"primer_nombre\": \"Aura\",\r\n\"segundo_nombre\": \"Elena\",\r\n\"flag_persona_nat\": \"SI\",\r\n\"estado_tercero\": \"ACTIVO\",\r\n\"vendedor\": \"16\",\r\n\"id_lista_precio\": \"01\",\r\n\"id_forma_pago\": \"01\",\r\n\"usuario\": \"rmurillo\",\r\n\"flag_enviado\": \"SI\",\r\n\"e_mail\": \"afernandez@gmail.com\",\r\n\"telefono_celular\": \"3203252569\",\r\n\"e_mail_fe\": \"afernandez@gmail.com\",\r\n\"terceros_cliente\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_forma_pago\": \"01\",\r\n\"id_precio_item\": \"01\",\r\n\"id_vendedor\": \"16499705\",\r\n\"id_suc_vendedor\": \"1\",\r\n\"id_medio_contacto\": \"01\",\r\n\"id_zona\": \"01\",\r\n\"flag_exento_iva\": \"NO\",\r\n\"dia_cierre\": \"0\",\r\n\"id_impuesto_reteiva\": \"\",\r\n\"id_agente_reteiva\": \"\",\r\n\"id_impuesto_reteica\": \"\",\r\n\"id_agente_reteica\": \"\",\r\n\"id_impuesto_retefuente\": \"\",\r\n\"id_agente_retefuente\": \"\",\r\n\"id_agente_retecree\": \"\",\r\n\"id_impuesto_retecree\": \"\",\r\n\"id_tamanno\": \"1\",\r\n\"limite_credito\": \"0\",\r\n\"dias_gracia\": \"5\",\r\n\"flag_cartera_vencida\": \"SI\",\r\n\"dcto_cliente\": \"0\",\r\n\"dcto_adicional\": \"0\",\r\n\"numero_facturas_vencidas\": \"2\"\r\n}\r\n],\r\n\"terceros_direccion\": [\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"1\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Mercancia\"\r\n},\r\n{\r\n\"nit\": \"900054835\",\r\n\"id_tercero\": \"66744581\",\r\n\"id_sucursal_tercero\": \"1\",\r\n\"id_direccion\": \"2\",\r\n\"direccion\": \"Calle 9C BIS 29A 108\",\r\n\"telefono\": \"6023698521\",\r\n\"id_pais\": \"57\",\r\n\"id_ciudad\": \"76\",\r\n\"id_depto\": \"76001\",\r\n\"tipo_direccion\": \"Factura\"\r\n}\r\n]\r\n}\r\n]\r\n}"
 				},
 				"description": ""
 			},
@@ -1950,46 +1992,34 @@
 		{
 			"name": "Listar todo los tercero_cliente",
 			"request": {
+				"url": "http://localhost:3000/cliente_all",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/cliente_all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"cliente_all"
-					]
-				}
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "Listar todos los tercero_direccion",
 			"request": {
+				"url": "http://localhost:3000/direccion_all",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/direccion_all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"direccion_all"
-					]
-				}
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "Listar un tercero_cliente por id_tercero",
 			"request": {
-				"method": "GET",
-				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/cliente/:id_tercero",
 					"protocol": "http",
@@ -2001,21 +2031,27 @@
 						"cliente",
 						":id_tercero"
 					],
+					"query": [],
 					"variable": [
 						{
 							"key": "id_tercero",
 							"value": "66744581"
 						}
 					]
-				}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "Listar un tercero_direccion por id_tercero",
 			"request": {
-				"method": "GET",
-				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/direccion/:id_tercero",
 					"protocol": "http",
@@ -2027,13 +2063,21 @@
 						"direccion",
 						":id_tercero"
 					],
+					"query": [],
 					"variable": [
 						{
 							"key": "id_tercero",
 							"value": "66744581"
 						}
 					]
-				}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		}
