@@ -9,8 +9,7 @@ router.get('/pais_all', async (req, res) => {
     let pais = await new Pais().getPais();
     if (pais.length > 0) {
         response.data = pais;
-    } else {
-      //  status = 404;
+    } else { 
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -22,13 +21,18 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     response.msg = 'Listar los paises por País y nombre';
     let status = 200;
     let {nit, nombre} = req.params;
+    if (nit.trim() == ''   || nombre.trim() == ''){
+        bandera = true;
+        response.success = false;
+        response.msg = `El nit ó nombre estan vacios`;
+        status = 400; 
+    } 
     let pais = await new Pais().getPaisByNit(nit, nombre);
     if (pais.length > 0) {
         response.data = pais;
-    } else {
-     // status = 404;
+    } else { 
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -52,7 +56,7 @@ router.post('/synchronization_pais', async (req, res) => {
             bandera = true;
             response.success = false;
             response.msg = `El nit,id_pais, ie_pais, nacionalidad y nombre no pueden estar vacio`;
-            status = 500;
+            status = 400;
             break;
         } 
         let exist = await new Pais().getPaisNitId(nit,id_pais);
@@ -60,7 +64,7 @@ router.post('/synchronization_pais', async (req, res) => {
             bandera = true;
             response.success = false;
             response.msg = `El Pais ya existe con este Nit ${nit}, id_pais: ${id_pais}`;
-            status = 500;
+            status = 200;
             break;
         }
         if (! bandera) { 
