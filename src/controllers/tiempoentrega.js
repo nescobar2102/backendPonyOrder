@@ -10,6 +10,7 @@ class Tiempoentrega
             let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1', [nit]).catch(console.log); 
             return results.rows;
         }
+        
         async createTiempoentregan(nit,id_tiempo_entrega,hora_inicial,hora_final){ 
             let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1 and id_tiempo_entrega= $2', [nit,id_tiempo_entrega]).catch(console.log);
             if (results.rowCount == 0) {     
