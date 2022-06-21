@@ -23,7 +23,7 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     let bandera = false;
 
     let {nit, nombre} = req.params;
-    if (nit.trim() == ''   || nombre.trim() == ''){
+    if (nit.trim() == ''  || nombre.trim() == ''){
         bandera = true;
         response.success = false;
         response.msg = `El nit ó nombre estan vacios`;
