@@ -10,20 +10,25 @@ class Tiempoentrega
             let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1', [nit]).catch(console.log); 
             return results.rows;
         }
-        
+        async getTiempoentregaNitId(nit,id_tiempo_entrega) {
+            let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1 and id_tiempo_entrega = $2', [nit,id_tiempo_entrega]).catch(console.log); 
+            return results.rows;
+        }
         async createTiempoentregan(nit,id_tiempo_entrega,hora_inicial,hora_final){ 
-            let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1 and id_tiempo_entrega= $2', [nit,id_tiempo_entrega]).catch(console.log);
-            if (results.rowCount == 0) {     
-              return  await db
+            let response
+            try {
+                const insert = await db
                 .query('INSERT INTO tiempo_entrega (nit,id_tiempo_entrega,hora_inicial,hora_final) VALUES ($1,$2,$3,$4)', [
                     nit,
                     id_tiempo_entrega,
                     hora_inicial,
                     hora_final
-                ])
-                .catch(console.log);
-            
+                ]);
+                response = insert;
+            }  catch (err) {
+                response = err
             }
+            return response
     }        
 }
 module.exports = Tiempoentrega; 
