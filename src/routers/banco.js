@@ -11,7 +11,6 @@ router.get('/banco_all', async (req, res) => {
     if (banco.length > 0) {
         response.data = banco;
     } else {
-        //status = 404;
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -23,14 +22,23 @@ router.get('/banco/:nit', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Listar los Bancos por Nit';
     let status = 200;
-    let {nit} = req.params;
-    let banco = await new Banco().getBancoByNit(nit);
-    if (banco.length > 0) {
-        response.data = banco;
-    } else {
-        //status = 404;
+    let bandera = false;
+    let {nit} = req?.params;
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    }
+    
+    if (! bandera) {
+        let bancos = await new Banco().getBancoByNit(nit);
+        if (bancos.length > 0){
+            response.data = bancos;
+        } else {
+            response.success = false;
+            response.msg = 'No existen registros';
+        }
     }
     res.status(status).json(response)
 });
@@ -41,26 +49,42 @@ router.post('/synchronization_banco', async (req, res) => {
     let status = 201;
     const {bancos} = req.body
     let bandera = false;
-    await new Banco().deleteBanco(); 
+
+    //await new Banco().deleteBanco(); 
     for (var i = 0; i < bancos.length; i++) {
         const { 
             nit,
             id_banco,
             descripcion 
         } = bancos[i]
-        result1 = await new Banco().createBanco(nit, id_banco, descripcion); 
-        if (!result1 ?.rowCount || result1 ?.rowCount == 0) {       
+       
+        if (nit.trim() == '' || nit == null || id_banco.trim() == '' || id_banco == null || descripcion.trim() == '' || descripcion == null) {       
             bandera = true;
+            response.success = false;
+            response.msg = 'El nit, id_banco y descripcion no puede estra vacio';
+            status = 400;
             break;
         }
+        exist = await new Banco().getBancoNitId(nit,id_banco);
+        if (exist.length > 0) {
+            bandera = true;
+            response.success = false;
+            response.msg = `El Banco con le nit: (${nit}) y el id_banco (${id_banco}) ya existe.`;
+            status = 200;
+            break;
+        }
+        if(!bandera){
+                result = await new Banco().createBanco(nit, id_banco, descripcion);
+                if (!result ?. rowCount || result ?. rowCount == 0) {
+                    bandera = true;
+                    response.success = false;
+                    response.msg = `Ha ocurrido un error al intentar crear un Banco:  BD ${result}`;
+                    status = 500;
+                    break;
+                }
+        }
     }
-    if (bancos.length > 0 && !bandera) {
-        response.data = await new Banco().getBanco();
-    } else {
-        response.success = false;
-       // status = 400;
-        response.msg = 'Error en la sincronización de bancos';
-    }
+    response.data = await new Banco().getBanco();
     res.status(status).json(response)
 });
 function newResponseJson() {

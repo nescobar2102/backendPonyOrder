@@ -11,20 +11,25 @@ class Banco
         let results = await db.query('SELECT * FROM banco WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
-    async deleteBanco() {
-        await db.query(`DELETE FROM banco`).catch(console.log);  
+    async getBancoNitId(nit,id_banco)  {
+    let results = await db.query('SELECT * FROM banco WHERE nit = $1 and id_banco = $2', [nit,id_banco]).catch(console.log); 
+    return results.rows;        
     }
+
     async createBanco (nit, id_banco, descripcion ) {
-        let results = await db.query('SELECT * FROM banco WHERE nit = $1 and descripcion = $2', [nit, descripcion]).catch(console.log);
-        if (results.rowCount == 0) { 
-            return await db
-            .query('INSERT INTO banco (nit, id_banco, descripcion ) VALUES ($1, $2, $3 )', [
+        let response
+
+        try {
+            const insert = await db.query('INSERT INTO banco (nit, id_banco, descripcion ) VALUES ($1, $2, $3 )', [
                 nit, 
                 id_banco,
                 descripcion 
-            ])
-            .catch(console.log);         
-         }
+            ]);
+            response = insert;
+            }  catch (err) {
+                response = err;
+            }
+            return response
         }
 }
 module.exports = Banco;
