@@ -24,9 +24,9 @@ class Ciudades {
                 nombre
             ]);
             response = insert;
-        }  catch (err) {
-            response = err;
-        }
+    }  catch (err) {
+        response = err;
+    }
         return response
     }
 }
