@@ -22,7 +22,7 @@ router.get('/tipodoc/:nit/:id_tipo_doc', async (req, res) => {
     let status = 200;
     let bandera = false;
     
-    let {nit, id_tipo_doc} = req.params;   
+    let {nit, id_tipo_doc} = req?.params;   
     if (nit ?. trim() == '' || nit == null || id_tipo_doc ?. trim() == '' || id_tipo_doc == null) {
         bandera = true;
         response.success = false;

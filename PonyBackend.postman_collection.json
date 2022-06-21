@@ -36,7 +36,7 @@
 					},
 					"response": [
 						{
-							"id": "174e282c-2781-4ea8-bd3f-e288673cb82f",
+							"id": "650d9991-7f48-4797-bf6e-84fb48db0387",
 							"name": "Listar una empresa por  nit",
 							"originalRequest": {
 								"url": "http://localhost:3000/empresa/90005483",
@@ -280,6 +280,212 @@
 			]
 		},
 		{
+			"name": "Pais",
+			"description": "",
+			"item": [
+				{
+					"name": "Sincronizacion de pais",
+					"request": {
+						"url": "{{ulr-api}}/synchronization_pais",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"paises\":\r\n[\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"52\",\r\n\t\"ie_pais\":\"52\",\r\n\t\"nacionalidad\":\"Mexicano\",\r\n\t\"nombre\":\"Mexico\"\r\n\t},\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"51\",\r\n\t\"ie_pais\":\"51\",\r\n\t\"nacionalidad\":\"Peruano\",\r\n\t\"nombre\":\"Perú\"\r\n\t},\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"58\",\r\n\t\"ie_pais\":\"58\",\r\n\t\"nacionalidad\":\"Venezolana\",\r\n\t\"nombre\":\"Venezuela\"\r\n\t}\r\n]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todo los pais",
+					"request": {
+						"url": "{{ulr-api}}/pais_all",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los pais por nit",
+					"request": {
+						"url": {
+							"raw": "{{ulr-api}}/pais/:nit/:nombre",
+							"host": [
+								"{{ulr-api}}"
+							],
+							"path": [
+								"pais",
+								":nit",
+								":nombre"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "nit",
+									"value": " "
+								},
+								{
+									"description": "",
+									"key": "nombre",
+									"value": " asd"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auxiliar",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar los auxiliares",
+					"request": {
+						"url": "{{ulr-api}}/auxiliar/900054835",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizacion de auxiliar",
+					"request": {
+						"url": "{{ulr-api}}/synchronization_auxiliar",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"auxiliares\" :\r\n[\r\n\t{\r\n\t\"nit\" : \"9000548351\" ,\r\n\t\"id_auxiliar\" : \"130505011\" ,\r\n\t\"descripcion\" : \"Clientes Nacionales\" ,\r\n\t\"flag_flujo_caja\" : \"NO\" ,\r\n\t\"id_tipo_cuenta\" : \"CC\"\r\n\t},\r\n\t{\r\n\t\"nit\" : \"9000548135\" ,\r\n\t\"id_auxiliar\" : \"110505011\" ,\r\n\t\"descripcion\" : \"Caja General\" ,\r\n\t\"flag_flujo_caja\" : \"SI\" ,\r\n\t\"id_tipo_cuenta\" : \"CA\"\r\n\t}\r\n]\r\n}"
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "066bc081-9417-46fc-adf8-11ec2e4c3766",
+							"name": "Sincronizacion de auxiliar",
+							"originalRequest": {
+								"url": "http://localhost:3000/synchronization_auxiliar",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"auxiliares\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"13050501\" ,\r\n\"descripcion\" : \"Clientes Nacionales\" ,\r\n\"flag_flujo_caja\" : \"NO\" ,\r\n\"id_tipo_cuenta\" : \"CC\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"11050501\" ,\r\n\"descripcion\" : \"Caja General\" ,\r\n\"flag_flujo_caja\" : \"SI\" ,\r\n\"id_tipo_cuenta\" : \"CA\"\r\n}\r\n]\r\n}"
+								},
+								"description": ""
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"name": "access-control-allow-origin",
+									"key": "access-control-allow-origin",
+									"value": "*",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"name": "connection",
+									"key": "connection",
+									"value": "keep-alive",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"name": "content-length",
+									"key": "content-length",
+									"value": "306",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"name": "content-type",
+									"key": "content-type",
+									"value": "application/json; charset=utf-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "date",
+									"key": "date",
+									"value": "Wed, 08 Jun 2022 23:12:25 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "etag",
+									"key": "etag",
+									"value": "W/\"132-H76aTrHCHjt3EAN2Y6H+tSB7AwU\"",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"name": "keep-alive",
+									"key": "keep-alive",
+									"value": "timeout=5",
+									"description": "Custom header"
+								},
+								{
+									"name": "x-powered-by",
+									"key": "x-powered-by",
+									"value": "Express",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [],
+							"responseTime": 35,
+							"body": "{\n    \"success\": true,\n    \"msg\": \"Sincronización de Auxiliar\",\n    \"data\": [\n        {\n            \"id_auxiliar\": \"13050501\",\n            \"descripcion\": \"Clientes Nacionalessss\",\n            \"flag_flujo_caja\": \"NO\",\n            \"id_tipo_cuenta\": \"CC\",\n            \"nit\": \"900054835\"\n        },\n        {\n            \"id_auxiliar\": \"11050501\",\n            \"descripcion\": \"Caja General\",\n            \"flag_flujo_caja\": \"SI\",\n            \"id_tipo_cuenta\": \"CA\",\n            \"nit\": \"900054835\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Listar  todos los auxiliar",
+					"request": {
+						"url": "{{ulr-api}}/auxiliar_all",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Listado de todos los usuarios",
 			"request": {
 				"url": "{{ulr-api}}/users_all",
@@ -469,116 +675,6 @@
 			"response": []
 		},
 		{
-			"name": "Listar los auxiliares",
-			"request": {
-				"url": "{{ulr-api}}/auxiliar/3123",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Sincronizacion de auxiliar",
-			"request": {
-				"url": "http://localhost:3000/synchronization_auxiliar",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"auxiliares\" :\r\n[\r\n\t{\r\n\t\"nit\" : \"900054835\" ,\r\n\t\"id_auxiliar\" : \"13050501\" ,\r\n\t\"descripcion\" : \"Clientes Nacionales\" ,\r\n\t\"flag_flujo_caja\" : \"NO\" ,\r\n\t\"id_tipo_cuenta\" : \"CC\"\r\n\t},\r\n\t{\r\n\t\"nit\" : \"900054835\" ,\r\n\t\"id_auxiliar\" : \"11050501\" ,\r\n\t\"descripcion\" : \"Caja General\" ,\r\n\t\"flag_flujo_caja\" : \"SI\" ,\r\n\t\"id_tipo_cuenta\" : \"CA\"\r\n\t}\r\n]\r\n}"
-				},
-				"description": ""
-			},
-			"response": [
-				{
-					"id": "9cdf3421-444e-45cf-a8fa-6e08b94045f6",
-					"name": "Sincronizacion de auxiliar",
-					"originalRequest": {
-						"url": "http://localhost:3000/synchronization_auxiliar",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"auxiliares\" :\r\n[\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"13050501\" ,\r\n\"descripcion\" : \"Clientes Nacionales\" ,\r\n\"flag_flujo_caja\" : \"NO\" ,\r\n\"id_tipo_cuenta\" : \"CC\"\r\n},\r\n{\r\n\"nit\" : \"900054835\" ,\r\n\"id_auxiliar\" : \"11050501\" ,\r\n\"descripcion\" : \"Caja General\" ,\r\n\"flag_flujo_caja\" : \"SI\" ,\r\n\"id_tipo_cuenta\" : \"CA\"\r\n}\r\n]\r\n}"
-						},
-						"description": ""
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"_postman_previewtype": "text",
-					"header": [
-						{
-							"name": "access-control-allow-origin",
-							"key": "access-control-allow-origin",
-							"value": "*",
-							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
-						},
-						{
-							"name": "connection",
-							"key": "connection",
-							"value": "keep-alive",
-							"description": "Options that are desired for the connection"
-						},
-						{
-							"name": "content-length",
-							"key": "content-length",
-							"value": "306",
-							"description": "The length of the response body in octets (8-bit bytes)"
-						},
-						{
-							"name": "content-type",
-							"key": "content-type",
-							"value": "application/json; charset=utf-8",
-							"description": "The mime type of this content"
-						},
-						{
-							"name": "date",
-							"key": "date",
-							"value": "Wed, 08 Jun 2022 23:12:25 GMT",
-							"description": "The date and time that the message was sent"
-						},
-						{
-							"name": "etag",
-							"key": "etag",
-							"value": "W/\"132-H76aTrHCHjt3EAN2Y6H+tSB7AwU\"",
-							"description": "An identifier for a specific version of a resource, often a message digest"
-						},
-						{
-							"name": "keep-alive",
-							"key": "keep-alive",
-							"value": "timeout=5",
-							"description": "Custom header"
-						},
-						{
-							"name": "x-powered-by",
-							"key": "x-powered-by",
-							"value": "Express",
-							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
-						}
-					],
-					"cookie": [],
-					"responseTime": 35,
-					"body": "{\n    \"success\": true,\n    \"msg\": \"Sincronización de Auxiliar\",\n    \"data\": [\n        {\n            \"id_auxiliar\": \"13050501\",\n            \"descripcion\": \"Clientes Nacionalessss\",\n            \"flag_flujo_caja\": \"NO\",\n            \"id_tipo_cuenta\": \"CC\",\n            \"nit\": \"900054835\"\n        },\n        {\n            \"id_auxiliar\": \"11050501\",\n            \"descripcion\": \"Caja General\",\n            \"flag_flujo_caja\": \"SI\",\n            \"id_tipo_cuenta\": \"CA\",\n            \"nit\": \"900054835\"\n        }\n    ]\n}"
-				}
-			]
-		},
-		{
 			"name": "Sincrronizacion de los banco",
 			"request": {
 				"url": "http://localhost:3000/synchronization_banco",
@@ -634,20 +730,6 @@
 			"name": "listado de banco",
 			"request": {
 				"url": "{{ulr-api}}/banco_all/",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar  todos los auxiliar",
-			"request": {
-				"url": "{{ulr-api}}/auxiliar_all",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -1251,54 +1333,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n\"impuestos\":\r\n[\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"IVA 19%\",\r\n\"tasa\":\"19\",\r\n\"tipo_impuesto\":\"IVA\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"02\",\r\n\"descripcion\":\"RETEFUENTE 2.5%\",\r\n\"tasa\":\"2.5\",\r\n\"tipo_impuesto\":\"RETEFUENTE\",\r\n\"por\":\"100\"\r\n},\r\n{\r\n\"nit\":\"900054835\",\r\n\"id_impuesto\":\"01\",\r\n\"descripcion\":\"RETENCION DE ICA 7.7 x 1000\",\r\n\"tasa\":\"7.7\",\r\n\"tipo_impuesto\":\"RETEICA\",\r\n\"por\":\"1000\"\r\n}\r\n]\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Sincronizacion de pais",
-			"request": {
-				"url": "http://localhost:3000/synchronization_pais",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"paises\":\r\n[\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"57\",\r\n\t\"ie_pais\":\"57\",\r\n\t\"nacionalidad\":\"Colombiano\",\r\n\t\"nombre\":\"Colombia\"\r\n\t},\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"51\",\r\n\t\"ie_pais\":\"51\",\r\n\t\"nacionalidad\":\"Peruano\",\r\n\t\"nombre\":\"Perú\"\r\n\t},\r\n\t{\r\n\t\"nit\":\"900054835\",\r\n\t\"id_pais\":\"58\",\r\n\t\"ie_pais\":\"58\",\r\n\t\"nacionalidad\":\"Venezolana\",\r\n\t\"nombre\":\"Venezuela\"\r\n\t}\r\n]\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar todo los pais",
-			"request": {
-				"url": "http://localhost:3000/pais_all",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Listar los pais por nit",
-			"request": {
-				"url": "http://localhost:3000/pais/900054835/Colombia",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
 				},
 				"description": ""
 			},

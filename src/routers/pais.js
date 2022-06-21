@@ -24,6 +24,10 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
 
     let {nit, nombre} = req.params;
     if (nit.trim() == ''  || nombre.trim() == ''){
+
+    let {nit, nombre} = req?.params;
+ 
+    if (nit.trim() == ''   || nombre.trim() == ''){
         bandera = true;
         response.success = false;
         response.msg = `El nit ó nombre estan vacios`;
@@ -38,6 +42,7 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
         response.msg = 'No existen registros';
     }
 }
+    }
     res.status(status).json(response)
 });
 // Sincronizacion de pais
