@@ -25,7 +25,7 @@ router.get('/medioContacto/:nit', async (req,res) => {
     let bandera = false;
     let {nit} = req?.params;    
     if (nit.trim() == '' || nit == null) {
-        bandera = true:
+        bandera = true;
         response.success = false;
         response.msg = 'El nit esta vacio';
         status = 400;
