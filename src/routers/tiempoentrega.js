@@ -66,11 +66,20 @@ router.post('/synchronization_tiempoentrega', async (req, res) => {
             status = 400;
             break;
         }
-        exist = await new Tiempoentrega().getTiempoentregaNitId(nit,id_tiempo_entrega);
-        if (exist.length > 0) {
+       
+        if (isNaN(id_tiempo_entrega)) {
             bandera = true;
             response.success = false;
-            response.msg = `El Tiempo de entrega con el nit: (${nit}) y el id_tiempo_entrega (${id_tiempo_entrega})  ya existe.`;
+            response.msg = `El campo id_tiempo_entrega (${id_tiempo_entrega}) debe ser un entero. `;
+            status = 200;
+            break;   
+        }
+
+        exist = await new Tiempoentrega().getTiempoentregaNitId(nit,id_tiempo_entrega);
+        if (exist?.length > 0) {
+            bandera = true;
+            response.success = false;
+            response.msg = `El Tiempo de entrega con el nit: (${nit}) y el id_tiempo_entrega (${id_tiempo_entrega})  ya existe .`;
             status = 200;
             break;        
         }
@@ -85,7 +94,7 @@ router.post('/synchronization_tiempoentrega', async (req, res) => {
             }
     }
 }
-    response.date = await new Tiempoentrega().getTiempoentrega();        
+    response.data = await new Tiempoentrega().getTiempoentrega();        
     res.status(status).json(response)
 });
 function newResponseJson() {
