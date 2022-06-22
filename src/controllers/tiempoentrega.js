@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const db = require('../config/db')
 
 class Tiempoentrega 
@@ -11,8 +12,14 @@ class Tiempoentrega
             return results.rows;
         }
         async getTiempoentregaNitId(nit,id_tiempo_entrega) {
-            let results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1 and id_tiempo_entrega = $2', [nit,id_tiempo_entrega]).catch(console.log); 
-            return results.rows;
+            let response 
+            try{
+              const  results = await db.query('SELECT * FROM tiempo_entrega WHERE nit = $1 and id_tiempo_entrega = $2', [nit,id_tiempo_entrega]);
+              response = results.rows
+            }catch (err){
+                response = err
+            }
+            return response
         }
         async createTiempoentregan(nit,id_tiempo_entrega,hora_inicial,hora_final){ 
             let response

@@ -10,10 +10,9 @@ router.get('/tipoempresa_all', async (req,res) => {
 
     if (tipoempresa.length>0){
         response.data = tipoempresa;
-    }  else {
-     
+    }  else { 
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -62,6 +61,7 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
             status = 400;
             break;
         }   
+     
         exist = await  new Tipoempresa().getTipoempresaNitId(nit,id_tipo_empresa);
         if (exist.length > 0) {
             bandera = true;
@@ -71,7 +71,7 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
             break;
         }
         if(!bandera){
-            result = await new Tipoempresa().createAuxiliares(nit, id_tipo_empresa, descripcion);
+            result = await new Tipoempresa().createTipoempresa(nit, id_tipo_empresa, descripcion);
             if (!result ?. rowCount || result ?. rowCount == 0) {
                 bandera = true;
                 response.success = false;
