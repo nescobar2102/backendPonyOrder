@@ -24,6 +24,7 @@ router.get('/cuotaventas/:nit', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar una Cuota de Ventas por Nit';
     let status = 200;
+    let bandera = false;
     let {nit} = req?.params;    
     
     if (nit.trim() == '' || nit == null) {
