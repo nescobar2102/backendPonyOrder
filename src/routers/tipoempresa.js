@@ -6,11 +6,12 @@ router.get('/tipoempresa_all', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar todas las tipo de empresa';
     let status = 200;
-    let tipoempresa = await new Tipoempresa().getTipoempresa(); 
+    let tipoempresa = await new Tipoempresa().getTipoempresa();
+
     if (tipoempresa.length>0){
         response.data = tipoempresa;
     }  else {
-     // status = 404;
+     
         response.success = false;
         response.mg = 'No existen registros';
     }
@@ -21,14 +22,23 @@ router.get('/tipoempresa/:nit/', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Listar una tipo empresa por Nit';
     let status = 200;
-    let {nit} = req.params;    
-    let tipoempresa = await new Tipoempresa().getTipoempresaByDesc(nit);
-    if (tipoempresa.length>0){
-        response.data = tipoempresa;
-    } else {
-    //  status = 404;
+    let bandera = false:
+    let {nit} = req?.params;    
+   
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    } 
+    if (! bandera) {
+        let tipoempresa = await new Tipoempresa().getTipoempresaByNit(nit);
+        if (tipoempresa.length > 0) {
+            response.data = tipoempresa;
+        } else {
+            response.success = false;
+            response.msg = 'No existe registros';
+        }
     }
     res.status(status).json(response)
 });
@@ -39,22 +49,39 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
     let status = 201;
     const {tipoempresas } = req.body
     let bandera = false;
-    for (var i=0;i<tipoempresas.length;i++){ 
-        const { id_tipo_empresa, descripcion, nit} =  tipoempresas[i]
-        result1 = await new Tipoempresa().createTipoempresa(id_tipo_empresa, descripcion, nit); 
- 
-        if (!result1?.rowCount || result1?.rowCount == 0 ) { 
+
+    for (var i = 0; i < tipoempresas.length; i++) { 
+        const {
+            nit,
+            id_tipo_empresa, 
+            descripcion
+        } =  tipoempresas[i]
+        if (nit.trim() == '' || nit == null || id_tipo_empresa.trim() == '' || id_tipo_empresa == null || descripcion.trim() == '' || descripcion == null) {
             bandera = true;
-            break;        
-        }
-    }
-        if (tipoempresas.length>0 && !bandera){
-            response.data = await new Tipoempresa().getTipoempresa();
-        } else {
+            response.msg = 'El nit,id_tipo_empresa ó descripcion esta vacio';
+            status = 400;
+            break;
+        }   
+        exist = await  new Tipoempresa().getTipoempresaNitId(nit,id_tipo_empresa);
+        if (exist.length > 0) {
+            bandera = true;
             response.success = false;
-            response.msg += result1 ?  result1 :'Error en la Sincronización de Tipo empresa  - '; 
-            status = 500;
+            response.msg = `El Tipo de empresa con el nit: (${nit}) y el id_tipo_empresa (${id_tipo_empresa})  ya existe.`;
+            status = 200;
+            break;
         }
+        if(!bandera){
+            result = await new Tipoempresa().createAuxiliares(nit, id_tipo_empresa, descripcion);
+            if (!result ?. rowCount || result ?. rowCount == 0) {
+                bandera = true;
+                response.success = false;
+                response.msg = `Ha ocurrido un error al intentar crear el tipo de empresa:  BD ${result}`;
+                status = 500;
+                break;
+            }
+        }
+   }
+        response.data = await new Tipoempresa().getTipoempresa();
         res.status(status).json(response)
     });    
     function newResponseJson() {
