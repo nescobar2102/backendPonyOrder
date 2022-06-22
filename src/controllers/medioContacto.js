@@ -1,28 +1,31 @@
 const db = require('../config/db')
 
-class MedioContacto 
-{
+class MedioContacto {
     async getMedioContacto() {
         let results = await db.query(`SELECT * FROM medio_contacto  ORDER BY nit ASC`).catch(console.log); 
         return results.rows;
     }
-    async getMedioContactoByDesc(descripcion,nit) {
-        let results = await db.query('SELECT * FROM medio_contacto WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log); 
+    async getMedioContactoByNit(nit) {
+        let results = await db.query('SELECT * FROM medio_contacto WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
-    async createMedioContacto(id_medio_contacto, descripcion, nit) { 
-        let results = await db.query('SELECT * FROM medio_contacto WHERE descripcion = $1 and nit = $2', [descripcion,nit]).catch(console.log);
-        if (results.rowCount == 0) {     
-            return await db
-            .query('INSERT INTO medio_contacto (id_medio_contacto, descripcion, nit) VALUES ($1, $2, $3)', [
+    async getMedioContactoNitId(nit,id_medio_contacto) {
+        let results = await db.query('SELECT * FROM medio_contacto WHERE nit = $1 and id_medio_contacto = $2', [nit,id_medio_contacto]).catch(console.log); 
+        return results.rows;
+    }
+    async createMedioContacto(nit, id_medio_contacto, descripcion) { 
+        let response
+        try {   
+            const insert = await db.query('INSERT INTO medio_contacto (nit, id_medio_contacto, descripcion) VALUES ($1, $2, $3)', [
+                nit,
                 id_medio_contacto,
-                descripcion,
-                nit
-            ])
-            .catch(console.log);     
-        }else{
-            return await db.query('UPDATE medio_contacto SET id_medio_contacto = $1 WHERE descripcion = $2 and nit= $3', [id_medio_contacto,descripcion,nit]).catch(console.log);   
+                descripcion
+            ]);
+            response = insert;
+        } catch (err) {
+            response = err;
         }
-}
+            return response   
+    }
 }
 module.exports = MedioContacto;
