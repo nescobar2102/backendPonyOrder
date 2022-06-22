@@ -61,7 +61,7 @@ router.post('/synchronization_banco', async (req, res) => {
         if (nit.trim() == '' || nit == null || id_banco.trim() == '' || id_banco == null || descripcion.trim() == '' || descripcion == null) {       
             bandera = true;
             response.success = false;
-            response.msg = 'El nit, id_banco y descripcion no puede estra vacio';
+            response.msg = 'El nit, id_banco ò descripcion no puede estar vacios';
             status = 400;
             break;
         }
@@ -69,7 +69,7 @@ router.post('/synchronization_banco', async (req, res) => {
         if (exist.length > 0) {
             bandera = true;
             response.success = false;
-            response.msg = `El Banco con le nit: (${nit}) y el id_banco (${id_banco}) ya existe.`;
+            response.msg = `El Banco con el nit: (${nit}) y el id_banco (${id_banco}) ya existe.`;
             status = 200;
             break;
         }

@@ -11,26 +11,26 @@ router.get('/concepto_all', async (req,res) => {
         response.data = concepto;
     } else {
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-// listar un concepto por descripcion y nit
-router.get('/concepto/:nit/:descripcion', async (req,res) => {
+// listar un concepto por id_concepto y nit
+router.get('/concepto/:nit/:id_concepto', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un Concepto por Nit y descripcion'; 
+    response.msg = 'Listar un Concepto por Nit y id_concepto'; 
     let status = 200;
     let bandera = false;
 
-    let {nit,descripcion} = req?.params;   
-    if (nit.trim() == '' || nit == null || descripcion.trim() == '' || descripcion == null) {
+    let {nit,id_concepto} = req?.params;   
+    if (nit.trim() == '' || nit == null || id_concepto.trim() == '' || id_concepto == null) {
         bandera = true;
         response.success = false;
-        response.msg = 'El nit, id_concepto, id_auxiliar,descripcion ó naturalezacta estan vacíos';
+        response.msg = 'El nit ò id_concepto  estan vacíos';
         status = 400;
     }
     if (!bandera) {
-        let concepto = await new Concepto().getConceptoByNitDes(nit,descripcion);
+        let concepto = await new Concepto().getConceptoNitId(nit,id_concepto);
         if (concepto.length > 0) {
             response.data = concepto;
         } else {

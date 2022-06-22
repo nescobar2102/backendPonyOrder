@@ -21,7 +21,7 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
     response.msg = 'Listar los paises por País y nombre';
     let status = 200;
     let bandera = false;
-    let {nit, nombre} = req.params;
+    let {nit, nombre} = req?.params;
     if (nit.trim() == ''  || nombre.trim() == ''){     
         bandera = true;
         response.success = false;
@@ -37,7 +37,31 @@ router.get('/pais/:nit/:nombre', async (req, res) => {
         response.msg = 'No existen registros';
     }
 }
-
+res.status(status).json(response)
+});
+// // listar  los paises por nit y id_pais
+router.get('/paisby/:nit/:id_pais', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar los paises por País y id_pais';
+    let status = 200;
+    let bandera = false;
+    let {nit, id_pais} = req?.params;
+    
+    if (nit.trim() == ''  || id_pais.trim() == ''){     
+        bandera = true;
+        response.success = false;
+        response.msg = `El nit ó id_pais estan vacios`;
+        status = 400; 
+    } 
+    if (!bandera) { 
+    let pais = await new Pais().getPaisNitId(nit, id_pais);  
+    if (pais.length > 0) {
+        response.data = pais;
+    } else { 
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+}
     res.status(status).json(response)
 });
 // Sincronizacion de pais
@@ -77,7 +101,7 @@ router.post('/synchronization_pais', async (req, res) => {
             if (! paises ?. rowCount || paises ?. rowCount == 0) {
                 bandera = true;
                 response.success = false;
-                response.msg = `Ha ocurrido un erro al insertar un Pais: BD ${paises}`;
+                response.msg = `Ha ocurrido un error al insertar un Pais: BD ${paises}`;
                 status = 500;
                 break;
             }

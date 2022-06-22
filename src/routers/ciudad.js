@@ -23,21 +23,21 @@ router.get('/ciudades/:nit', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Listar una Ciudades por Nit';
     let status = 200;
-    let bandera = true;
-    let {nit} = req?.params;
+    let bandera = false;
+    let {nit} = req?.params; 
     if (nit.trim() == '' || nit == null) {
         bandera= true;
         response.success = false;
         response.msg = 'El nit esta vacio';
-        status = 400;
-    } 
-    if (! bandera) {
+        status = 400; 
+    }  
+    if (! bandera) { 
         let ciudades = await new Ciudades().getCiudadByNit(nit);
         if (ciudades.length > 0) {
             response.data = ciudades;
         } else {
             response.success = false;
-            response.mg = 'No existen registros';
+            response.msg = 'No existen registros';
         }    
     }
     res.status(status).json(response)

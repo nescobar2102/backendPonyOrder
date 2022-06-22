@@ -6,7 +6,7 @@ const Cuentaportercero = require('../controllers/cuentaportercero');
 // listar todos las Cuenta por tercero
 router.get('/cuentaportercero_all', async (req,res) => { 
     const response = newResponseJson();
-    response.msg = 'Listar todas las Cuenta';
+    response.msg = 'Listar todas las Cuentas';
     let status = 200;
     let cuentaportercero = await new Cuentaportercero().getCuentaportercero(); 
     
@@ -14,7 +14,7 @@ router.get('/cuentaportercero_all', async (req,res) => {
         response.data = cuentaportercero;
     } else {     
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -51,9 +51,7 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
     let status = 201;
     const {cuentas_por_terceros} = req.body
     let bandera = false;
-
-   // await new Cuentaportercero().deleteCuentaportercero();
-
+ 
     for (var i = 0; i < cuentas_por_terceros.length; i++) { 
         const {
             nit,

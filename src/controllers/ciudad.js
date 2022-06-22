@@ -6,6 +6,7 @@ class Ciudades {
         return results.rows;
     }
     async getCiudadByNit(nit) {
+        console.log("--------------asd",nit)
         let results = await db.query('SELECT * FROM ciudad WHERE nit = $1', [nit]).catch(console.log);
         return results.rows;
     }
