@@ -2,6 +2,7 @@ const express = require("express");
 const { status } = require("express/lib/response");
 const router = express.Router();
 const Impuesto = require('../controllers/impuesto');
+
 // Listar todos los impuestos 
 router.get('/impuesto_all', async (req,res) => { 
     const response = newResponseJson();
@@ -11,36 +12,48 @@ router.get('/impuesto_all', async (req,res) => {
     if (impuesto.length > 0){
         response.data = impuesto;
     } else {
-        //status = 404;
+        
         response.success = false;
         response.mg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-// Listar un impuestos por descripcion y nit
-router.get('/impuesto/:nit/:descripcion', async (req,res) => {
+
+// Listar un impuestos por nit
+router.get('/impuesto/:nit', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar un impuesto por Nit y Descripcion';
+    response.msg = 'Listar un impuesto por Nit';
     let status = 200;
-    let {nit,descripcion} = req.params;    
-    let impuesto = await new Impuesto().getImpuestoDesc(nit,descripcion);
-    if (impuesto.length>0){
+    let bandera = false;
+    let {nit} = req?.params;    
+    
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    } 
+if (! bandera) {
+    let impuesto = await new Impuesto().getImpuestoByNit(nit);
+    if (impuesto.length > 0) {
         response.data = impuesto;
     } else {
-        //status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
+}
     res.status(status).json(response)
 });
-// sincronizacion de impuesto
+
+// Crear a todo.
 router.post('/synchronization_impuesto', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de impuestos';
     let status = 201;
     const {impuestos} = req.body
     let bandera = false;
-    for (var i=0;i<impuestos.length;i++){ 
+
+    for (var i = 0; i < impuestos.length; i++) { 
         const {
             nit,
             id_impuesto,
@@ -49,21 +62,34 @@ router.post('/synchronization_impuesto', async (req,res) => {
             tipo_impuesto,
             por
         } =  impuestos[i]
-        result1 = await new Impuesto().createImpuesto(nit,id_impuesto,descripcion,tasa,tipo_impuesto,por); 
-    //console.log('primer insert', result1?.rowCount);
-    if (!result1?.rowCount || result1?.rowCount == 0) {
-    // console.log('no se hizo el inser');
+        
+    if (nit.trim() == '' || nit == null || id_impuesto.trim() == '' || id_impuesto == null || descripcion.trim() == '' || descripcion == null || tasa.trim() == '' || tasa == null || tipo_impuesto.trim() == '' || tipo_impuesto == null || por.trim() == '' || por == null) {
         bandera = true;
+        response.success = false;
+        response.msg = 'El nit, id_impuesto, descripcion,tasa,tipo_impuesto ó por esta vacio';
+        status = 400;
         break;        
     }
-}     
-    if (impuestos.length > 00 && ! bandera){
-        response.data = await new Impuesto().getImpuesto();;
-    } else {
+    exist = await new Impuesto().getImpuestoNitId(nit, id_impuesto);
+    if (exist.length > 0) {
+        bandera = true;
         response.success = false;
-      //  status = 400;
-        response.msg = 'Error en la sincronización de Impuestos';
-    }    
+        response.msg = `El Impuesto con el nit: (${nit}) y el id_impuesto: (${id_impuesto}) ya existe`;
+        status = 200;
+        break;
+    }
+    if (!bandera){
+        result = await new Impuesto().createImpuesto(nit,id_impuesto,descripcion,tasa,tipo_impuesto,por);
+        if (!result ?. rowCount || result ?. rowCount == 0) {
+            bandera = true;
+            response.success = false;
+            response.msg = `Ha ocurrido un error al intentar crear un Impuesto: BD ${result}`;
+            status = 500;
+            break;
+        }
+    }
+}
+    response.data = await new Impuesto().getImpuesto();
     res.status(status).json(response)  
 });
 function newResponseJson() {
