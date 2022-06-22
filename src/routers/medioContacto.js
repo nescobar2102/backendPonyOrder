@@ -47,15 +47,15 @@ router.post('/synchronization_medioContacto', async (req,res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización de Medio Contacto';
     let status = 201;
-    const {medio_contacto } = req.body
+    const {medio_contactos } = req.body
     let bandera = false;
 
-    for (var i = 0 ; i < medio_contacto.length; i++) { 
+    for (var i = 0 ; i < medio_contactos.length; i++) { 
         const {
             nit,
             id_medio_contacto, 
             descripcion
-        } =  medio_contacto[i]
+        } =  medio_contactos[i]
 
         if (nit.trim() == '' || nit == null ||id_medio_contacto.trim() == '' || id_medio_contacto == null || descripcion.trim() == '' || descripcion == null) {
             bandera = true;
