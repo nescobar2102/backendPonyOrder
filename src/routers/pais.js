@@ -11,7 +11,7 @@ router.get('/pais_all', async (req, res) => {
         response.data = pais;
     } else { 
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });

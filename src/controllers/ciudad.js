@@ -5,8 +5,7 @@ class Ciudades {
         let results = await db.query(`SELECT * FROM ciudad ORDER BY nit ASC`).catch(console.log);
         return results.rows;
     }
-    async getCiudadByNit(nit) {
-        console.log("--------------asd",nit)
+    async getCiudadByNit(nit) {       
         let results = await db.query('SELECT * FROM ciudad WHERE nit = $1', [nit]).catch(console.log);
         return results.rows;
     }

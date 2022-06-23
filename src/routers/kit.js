@@ -12,7 +12,7 @@ router.get('/kit_all', async (req, res) => {
     } else {
         //status = 404;
         response.success = false;
-        response.mg = 'No existen registros de Kits';
+        response.msg = 'No existen registros de Kits';
     }
     res.status(status).json(response)
 });
@@ -27,7 +27,7 @@ router.get('/kit/:descripcion/:nit', async (req, res) => {
     } else {
         //status = 404;
         response.success = false;
-        response.mg = 'No existen registros de Kits';
+        response.msg = 'No existen registros de Kits';
     }
     res.status(status).json(response)
 });

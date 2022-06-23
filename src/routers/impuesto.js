@@ -1,5 +1,4 @@
-const express = require("express");
-const { status } = require("express/lib/response");
+const express = require("express"); 
 const router = express.Router();
 const Impuesto = require('../controllers/impuesto');
 
@@ -14,7 +13,7 @@ router.get('/impuesto_all', async (req,res) => {
     } else {
         
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
