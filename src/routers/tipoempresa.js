@@ -4,22 +4,22 @@ const Tipoempresa = require('../controllers/tipoempresa');
 
 router.get('/tipoempresa_all', async (req,res) => { 
     const response = newResponseJson();
-    response.msg = 'Listar todas las tipo de empresa';
+    response.msg = 'Listar todas las Tipo de Empresa';
     let status = 200;
     let tipoempresa = await new Tipoempresa().getTipoempresa();
-
     if (tipoempresa.length>0){
         response.data = tipoempresa;
     }  else { 
+
         response.success = false;
         response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
 
-router.get('/tipoempresa/:nit/', async (req,res) => {
+router.get('/tipoempresa/:nit', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Listar una tipo empresa por Nit';
+    response.msg = 'Listar una Tipo Empresa por Nit';
     let status = 200;
     let bandera = false;
     let {nit} = req?.params;    
@@ -44,7 +44,7 @@ router.get('/tipoempresa/:nit/', async (req,res) => {
 
 router.post('/synchronization_tipoempresa', async (req,res) => {
     const response = newResponseJson();
-    response.msg = 'Sincronización de tipo de empresa - ';
+    response.msg = 'Sincronización de Tipo de Empresa';
     let status = 201;
     const {tipoempresas } = req.body
     let bandera = false;
@@ -66,7 +66,7 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
         if (exist.length > 0) {
             bandera = true;
             response.success = false;
-            response.msg = `El Tipo de empresa con el nit: (${nit}) y el id_tipo_empresa (${id_tipo_empresa})  ya existe.`;
+            response.msg = `El Tipo de Empresa con el nit: (${nit}) y el id_tipo_empresa (${id_tipo_empresa})  ya existe.`;
             status = 200;
             break;
         }
@@ -75,7 +75,7 @@ router.post('/synchronization_tipoempresa', async (req,res) => {
             if (!result ?. rowCount || result ?. rowCount == 0) {
                 bandera = true;
                 response.success = false;
-                response.msg = `Ha ocurrido un error al intentar crear el tipo de empresa:  BD ${result}`;
+                response.msg = `Ha ocurrido un error al intentar crear el Tipo de Empresa:  BD ${result}`;
                 status = 500;
                 break;
             }

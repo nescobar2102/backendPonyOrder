@@ -17,13 +17,12 @@ class Tipoempresa
     async createTipoempresa(nit,id_tipo_empresa, descripcion) {
       let response        
             try {
-                const result_insert = await db
-                    .query('INSERT INTO tipo_empresa (nit,id_tipo_empresa, descripcion) VALUES ($1, $2, $3 )', [
+                const insert = await db.query('INSERT INTO tipo_empresa (nit,id_tipo_empresa, descripcion) VALUES ($1, $2, $3 )', [
                         nit,
                         id_tipo_empresa,
                         descripcion
                     ]);  
-                    response = result_insert
+                    response = insert;
             } catch (err) { 
                  response = err;
             }   
