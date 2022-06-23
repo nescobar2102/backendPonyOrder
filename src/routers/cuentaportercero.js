@@ -1,5 +1,4 @@
-const express = require("express");
-const { status } = require("express/lib/response");
+const express = require("express"); 
 const router = express.Router();
 const Cuentaportercero = require('../controllers/cuentaportercero');
 

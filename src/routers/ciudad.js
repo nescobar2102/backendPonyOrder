@@ -31,7 +31,7 @@ router.get('/ciudades/:nit', async (req, res) => {
         response.msg = 'El nit esta vacio';
         status = 400; 
     }  
-    if (! bandera) { 
+    if (!bandera) { 
         let ciudades = await new Ciudades().getCiudadByNit(nit);
         if (ciudades.length > 0) {
             response.data = ciudades;

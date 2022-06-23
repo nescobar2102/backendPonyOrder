@@ -1,5 +1,4 @@
-const express = require("express");
-const { status } = require("express/lib/response");
+const express = require("express"); 
 const router = express.Router();
 const ClasificacionItems = require('../controllers/clasificacionItems');
 
@@ -14,7 +13,7 @@ router.get('/clasificacionItems_all', async (req, res) => {
     } else {
      // status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -30,7 +29,7 @@ router.get('/clasificacionItems/:descripcion', async (req, res) => {
     } else {
      // status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });

@@ -12,7 +12,7 @@ router.get('/precioitem_all', async (req,res) => {
     } else {
       //status= 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
@@ -28,7 +28,7 @@ router.get('/precioitem/:descripcion/:nit', async (req,res) => {
     } else {
      // status = 404;
         response.success = false;
-        response.mg = 'No existen registros';
+        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
