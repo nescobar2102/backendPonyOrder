@@ -76,7 +76,7 @@ router.post('/synchronization_barrio', async (req, res) => {
         }
         if (! bandera) { 
                result  = await new Barrio().createBarrio(nit, id_pais, id_depto, id_ciudad, id_barrio, nombre);
-            if (!result ?. rowCount || result ?. rowCount == 0) { // await new Barrio().rollback();
+            if (!result ?. rowCount || result ?. rowCount == 0) {  
                 bandera = true;
                 response.success = false;
                 response.msg = `Ha ocurrido un erro al intentar crear un Barrio: BD ${result}`;

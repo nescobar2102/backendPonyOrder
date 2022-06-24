@@ -62,7 +62,8 @@ router.post('/synchronization_impuesto', async (req,res) => {
             por
         } =  impuestos[i]
         
-    if (nit.trim() == '' || nit == null || id_impuesto.trim() == '' || id_impuesto == null || descripcion.trim() == '' || descripcion == null || tasa.trim() == '' || tasa == null || tipo_impuesto.trim() == '' || tipo_impuesto == null || por.trim() == '' || por == null) {
+    if (nit.trim() == '' || nit == null || id_impuesto.trim() == '' || id_impuesto == null || descripcion.trim() == '' || descripcion == null
+     || tasa.trim() == '' || tasa == null || tipo_impuesto.trim() == '' || tipo_impuesto == null || por.trim() == '' || por == null) {
         bandera = true;
         response.success = false;
         response.msg = 'El nit, id_impuesto, descripcion,tasa,tipo_impuesto ó por esta vacio';
