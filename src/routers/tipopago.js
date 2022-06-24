@@ -25,8 +25,7 @@ router.get('/tipopago/:nit/:descripcion', async (req,res) => {
     let tipopago = await new Tipopago().getTipopagoByDesc(nit,descripcion);
     if (tipopago.length > 0) {
         response.data = tipopago;
-    }  else {
-     // status= 404;
+    }  else { 
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -40,7 +39,7 @@ router.post('/synchronization_tipopago', async (req,res) => {
     const {tipopagos} = req.body
     let bandera = false;
     let bandera_hijo = false;
-    await new Tipopago().deleteTipopago(); 
+  //  await new Tipopago().deleteTipopago(); 
     for (var i=0;i<tipopagos.length;i++){     
         if (!bandera_hijo) {   
         const {id_tipo_pago, descripcion, nit,tipopagosdet} =  tipopagos[i];
@@ -69,7 +68,7 @@ if (!bandera && !bandera_hijo) { //no se levanto la bandera (false)
     let tipopago_all = await new Tipopago().getTipopago();
     response.data = tipopago_all;
 } else {    
-    await new Tipopago().deleteTipopago();
+   // await new Tipopago().deleteTipopago();
     response.success = false;
   //status = 400;
     response.msg = 'Error en la Sincronización de Tipo de Pago';

@@ -3,8 +3,7 @@
 class Usuario {
 
     async getUsers() {
-        let results = await db.query(`SELECT * FROM usuario ORDER BY nit ASC`).catch(console.log);
-        //console.log("-------", results.rows)
+        let results = await db.query(`SELECT * FROM usuario ORDER BY nit ASC`).catch(console.log);        
         return results.rows;
     }
 
@@ -12,7 +11,10 @@ class Usuario {
         let results = await db.query('SELECT * FROM usuario WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
-
+    async getUserByNitUs(nit,usuario) {
+        let results = await db.query('SELECT * FROM usuario WHERE nit = $1 and usuario = $2', [nit,usuario]).catch(console.log); 
+        return results.rows;
+    }
     async createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc) {
         let response
         try {
