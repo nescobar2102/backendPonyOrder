@@ -83,7 +83,7 @@ router.post('/synchronization_pais', async (req, res) => {
         if (nit.trim() == '' || id_pais.trim() == '' || ie_pais.trim() == '' || nacionalidad.trim() == '' || nombre.trim() == ''){
             bandera = true;
             response.success = false;
-            response.msg = `El nit,id_pais, ie_pais, nacionalidad y nombre no pueden estar vacio`;
+            response.msg = `El nit,id_pais, ie_pais, nacionalidad y nombre esta vacio`;
             status = 400;
             break;
         } 
