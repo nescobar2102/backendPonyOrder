@@ -5,13 +5,13 @@ const Depto = require('../controllers/depto');
 // listar todos los departamentos
 router.get('/depto_all', async (req, res) => {
     const response = newResponseJson();
+    response.msg = 'Listar todos los Departamentos';
     let status = 200;
-    response.msg = 'Listar todos los departamentos';
     let depto = await new Depto().getDepto();
     if (depto.length > 0) {
         response.data = depto;
     } else {
-     // status = 404;
+   
         response.success = false;
         response.msg = 'No existen registros';
     }
@@ -23,21 +23,30 @@ router.get('/depto/:nit', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Listar un Departamento pot Nit';
     let status = 200;
-    let {nit} = req.params;
-    let depto = await new Depto().getDeptoByNit(nit);
-    if (depto.length > 0) {
-        response.data = depto;
-    } else {
-     // status = 404;
+    let bandera = false;
+    let {nit} = req?.params;
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
         response.success = false;
-        response.msg = 'No existen registros';
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    } 
+    if (!bandera) {
+        let depto = await new Depto().getDeptoByNit(nit);
+        if(depto.length > 0){
+            response.data = depto;
+        } else {
+            response.success = false;
+            response.msg = 'No existe registros.';
+        }
     }
     res.status(status).json(response);
 });
 
-// sincronizacion de departamentos
+// CREATE A TODO
 router.post('/synchronization_depto', async (req, res) => {
     const response = newResponseJson();   
+    response.msg = 'Sincronización de Departamento';
     let status = 201;
     const {deptos} = req.body;
     let bandera = false;
@@ -50,37 +59,35 @@ router.post('/synchronization_depto', async (req, res) => {
             nombre
         } = deptos[i]
       
-        if (nit.trim() == '' || id_pais.trim() == '' || id_depto.trim() == '' || nombre.trim() == '') { 
+        if (nit.trim() == '' || nit == null || id_pais.trim() == '' || id_pais == null || id_depto.trim() == '' || id_depto == null || nombre.trim() == '' || nombre == null) { 
             bandera = true;
             response.success = false;
-            response.msg = `El nit, id_pais, id_depto y nombre no puede estar vacio`;
-            status = 500;
+            response.msg = `El nit, id_pais, id_depto ó nombre esta vacio`;
+            status = 400;
             break;
         }
-        let exist = await new Depto().getDeptoNitId(nit,id_depto);
+        
+        exist = await new Depto().getDeptoNitId(nit,id_depto);
         if (exist.length > 0) {
             bandera= true;
             response.success = false;
-            response.msg = `El depto ya existe con este Nit ${nit} y el id_depto ${id_depto}`;
-            status = 500;
+            response.msg = `El depto con el Nit (${nit}) y el id_depto (${id_depto}) ya existe.`;
+            status = 200;
             break;
         }
         if (!bandera) {
-            let deptos = await new Depto().createDepto(nit,id_pais,id_depto,nombre);
-            if (! deptos ?. rowCount || deptos ?. rowCount == 0){
+            result = await new Depto().createDepto(nit,id_pais,id_depto,nombre);
+            if (!result ?. rowCount || result ?. rowCount == 0) {
                 bandera = true;
                 response.success = false;
-                response.msg = `Ha ocurrido un erro al insertar un Departamento: BD ${deptos}`;
+                response.msg = `Ha ocurrido un erro al intentar crear un Departamento: BD ${result}`;
                 status = 500;
                 break;
-        } else {
-            response.msg = `Sincronización exitosa.`;
-            let insert = await new Depto().getDepto(); 
-            response.data = insert;
-        }
+        } 
     }
 }
-    res.status(status).json(response);
+    response.data = await new Depto().getDepto();
+    res.status(status).json(response)
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};
