@@ -14,6 +14,10 @@ class Tercero
         let results = await db.query(`SELECT * FROM tercero_direccion ORDER BY id_tercero ASC `).catch(console.log); 
         return results.rows;
     }
+    async getTerceroByNitID(nit) {
+        let results = await db.query('SELECT * FROM tercero WHERE nit = $1 ', [nit]).catch(console.log); 
+        return results.rows;
+    }
     async getTerceroByNit(nit,nombre) {
         let results = await db.query('SELECT * FROM tercero WHERE nit = $1 and nombre = $2', [nit,nombre]).catch(console.log); 
         return results.rows;
@@ -62,9 +66,10 @@ class Tercero
         e_mail,
         telefono_celular,
         e_mail_fe) { 
-        let results = await db.query('SELECT * FROM tercero WHERE nit = $1 and id_tercero = $2', [nit,id_tercero]).catch(console.log);
-        if (results.rowCount == 0) {     
-            return  await db
+ 
+        let response
+        try {
+        const insert = await db
             .query(`INSERT INTO tercero (  nit,
                 id_tercero,
                 id_sucursal_tercero,
@@ -128,9 +133,13 @@ class Tercero
                     e_mail,
                     telefono_celular,
                     e_mail_fe
-            ])
-            .catch(console.log);      
+            ]);
+            response = insert
+        }catch(err){
+            response = err
         }
+          return response
+        
 }
     async createTercerocliente(nit,
         id_tercero,
@@ -158,9 +167,10 @@ class Tercero
         dcto_cliente,
         dcto_adicional,
         numero_facturas_vencidas) {
-       // let results = await db.query('SELECT * FROM tercero_cliente WHERE nit = $1 and id_tercero =$2', [nit,id_tercero]).catch(console.log);
-       // if (results.rowCount == 0) {
-            return await db.query(`INSERT INTO tercero_cliente (nit,
+      
+        let response
+        try {
+        const insert =  await db.query(`INSERT INTO tercero_cliente (nit,
                 id_tercero,
                 id_sucursal_tercero,
                 id_forma_pago,
@@ -213,13 +223,18 @@ class Tercero
                     dcto_cliente,
                     dcto_adicional,
                     numero_facturas_vencidas       
-        ]).catch(console.log);     
-  //  }
+        ]);
+        response = insert
+    } catch(err)  {
+        response = err
+    }
+    return response 
 }
 async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) { 
-    /*let results = await db.query('SELECT * FROM tercero_direccion WHERE nit = $1 and direccion = $2', [nit,direccion]).catch(console.log);
-    if (results.rowCount == 0) {  */   
-        return  await db
+ 
+    let response
+    try {
+    const insert = await db
         .query('INSERT INTO tercero_direccion (nit,id_tercero,id_sucursal_tercero,id_direccion,direccion,telefono,id_pais,id_ciudad,id_depto,tipo_direccion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)', [
             nit,
             id_tercero,
@@ -231,9 +246,13 @@ async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,dir
             id_ciudad,
             id_depto,
             tipo_direccion            
-        ])
-        .catch(console.log);  
-  //  }
+        ]);  
+        response = insert
+    }catch(err){
+        response = err
+    }
+    return response
+ 
 }
 }
 module.exports = Tercero;
