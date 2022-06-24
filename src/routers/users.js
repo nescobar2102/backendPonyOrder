@@ -8,36 +8,26 @@ router.get('/users_all', async (req, res) => {
     response.msg = 'Listado de Usuarios';
     let status = 200;
     let usuarios = await new Usuario().getUsers();
+    // console.log (usuarios);
     if (usuarios.length > 0) {
         response.data = usuarios;
     } else {
         response.success = false;
-        response.msg = 'No existen registros';
     }
     res.status(status).json(response)
 });
-
 // listar un nuevo usuario por Nit
 router.get('/users/:nit', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Listar un Usuario por Nit';
     let status = 200;
-    let bandera = false;
-    let {nit} = req?.params;
-    if (nit.trim() == '' || nit == null) {
-        bandera = true;
+    let {nit} = req.params;
+    let usuarios = await new Usuario().getUserByNit(nit);
+
+    if (usuarios.length > 0) {
+        response.data = usuarios;
+    } else {
         response.success = false;
-        response.msg = 'El nit esta vacio';
-        status = 400;
-    } 
-    if (!bandera) {
-        let usuarios = await new Usuario().getUserByNit(nit);
-        if (usuarios.length > 0) {
-            response.data = usuarios;
-        } else {
-            response.success =false;
-            response.msg = 'No existe registros.';
-        }
     }
     res.status(status).json(response)
 });
@@ -165,7 +155,7 @@ router.post('/login', async (req, res) => {
 router.post('/synchronization_users', async (req, res) => {
     const response = newResponseJson();
     response.msg = 'Sincronización del Usuario';
-    let status = 201;
+    let status = 200;
     const {usuarios} = req.body
     for (var i = 0; i < usuarios.length; i++) {
         const {
@@ -185,34 +175,16 @@ router.post('/synchronization_users', async (req, res) => {
             edita_consecutivo_rc,
             edita_fecha_rc
         } = usuarios[i]
-
-        if (nit.trim() == '' || nit == null || correo_electronico.trim() == '' || correo_electronico == null || usuario.trim() == '' || usuario == null || nombre.trim() == '' || nombre == null || flag_activo.trim() == '' || flag_activo == null || clave.trim() == '' || clave == null || flag_cambia_fp.trim() == '' || flag_cambia_fp == null || flag_cambia_lp.trim() == '' || flag_cambia_lp == null || flag_edita_cliente.trim() == '' || flag_edita_cliente  == null || flag_edita_dcto.trim() == '' || flag_edita_dcto  == null || id_tipo_doc_pe.trim() == '' || id_tipo_doc_pe == null || id_tipo_doc_rc.trim() == '' || id_tipo_doc_rc == null || id_bodega.trim() == '' || id_bodega == null || edita_consecutivo_rc.trim() == '' || edita_consecutivo_rc == null || edita_fecha_rc.trim() == '' || edita_fecha_rc == null) {  
-        bandera = false;
+        await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave, flag_cambia_fp, flag_cambia_lp, flag_edita_cliente, flag_edita_dcto, id_tipo_doc_pe, id_tipo_doc_rc, id_bodega, edita_consecutivo_rc, edita_fecha_rc);
+    };
+    if (usuarios.length > 0) {
+        response.data = usuarios;
+    } else {
         response.success = false;
-        response.msg = `El nit, correo_electronico, usuario, nombre,flag_activo, clave, flag_cambia_fp, flag_cambia_lp, flag_edita_cliente,flag_edita_dcto, id_tipo_doc_pe,id_tipo_doc_rc,id_bodega, edita_consecutivo_rc ó edita_fecha_rc esta vacio`;
-        status = 400;
-        break;
     }
-    exist = await new Usuario().getUserByNitUs(nit,usuario);
-        if (exist.length > 0) {
-            response.success = false;
-            response.msg = `El Usuario con el nit: (${nit}) y el usuario (${usuario})  ya existe.`;
-            status = 200;
-            break;
-        }
-        if(!bandera){
-            result = await new Usuario().createUser(nit, correo_electronico, usuario, nombre, flag_activo, clave,flag_cambia_fp,flag_cambia_lp,flag_edita_cliente,flag_edita_dcto,id_tipo_doc_pe,id_tipo_doc_rc,id_bodega,edita_consecutivo_rc,edita_fecha_rc);
-            if (!result ?. rowCount || result ?. rowCount == 0) {
-                bandera = true;
-                response.success = false;
-                response.msg = `Ha ocurrido un error al intentar crear el Usuario:  BD ${result}`;
-                status = 500;
-                break;
-            }
-        }
-    }
-    response.data = await new Usuario().getUsers();
     res.status(status).json(response)
+    let usuarios_all = await new Usuario().getUsers();
+    res.status(status).json(usuarios_all)
 });
 function newResponseJson() {
     return {success: true, msg: "", data: []};
