@@ -61,13 +61,13 @@ router.post('/synchronization_zona', async (req,res) => {
         } =  zonas[i]
 
         if (nit.trim() == '' || nit == null || id_zona.trim() == '' || id_zona == null || descripcion.trim() == '' || descripcion == null || id_padre.trim() == '' || id_padre == null || nivel.trim() == '' || nivel == null || es_padre.trim() == '' || es_padre == null) {
-        bandera = true;
-        response.success = false;
-        response.msg = 'El nit, id_zona, descripcion, id_padre, nivel ó es_padre esta vacio';
-        status = 400;
-        break; 
+            bandera = true;
+            response.success = false;
+            response.msg = 'El nit, id_zona, descripcion, id_padre, nivel ó es_padre esta vacio';
+            status = 400;
+            break; 
     
-    }        
+          }        
         exist = await new Zona().getZonaNitId(nit,id_zona);  
             if (exist.length > 0) {
                 bandera = true;

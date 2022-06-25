@@ -190,12 +190,11 @@ router.post('/synchronization_tercero', async (req, res) => {
                 terceros_direccion
             } = terceros[i];
             let tercero = await new Tercero().getTercerocliente(id_tercero);
-            if (tercero.length > 0) {
-               
+            if (tercero.length > 0) {               
                 bandera = true; 
                 response.success = false; 
                 response.msg = `El Tercero con el id_tercero ${id_tercero} ya existe`;
-                status = 500;
+                status = 200;
                 break;
                 } 
             let result1 = await new Tercero().createTercero(nit,
@@ -235,7 +234,7 @@ router.post('/synchronization_tercero', async (req, res) => {
                 bandera = true; 
                 response.success = false;
                 response.msg = `Ha ocurrido un error al insertar un tercero: BD ${result1}`;
-                status = 200;
+                status = 500;
                 break;
             } else {
                 if (terceros_cliente ?. length > 0 && result1 ?. rowCount > 0) {  
@@ -305,7 +304,6 @@ router.post('/synchronization_tercero', async (req, res) => {
                     }
                     if(!bandera_cliente && !bandera){ 
                        if (terceros_direccion ?. length > 0 ) { 
-
                                 for (var k = 0; k < terceros_direccion.length; k++) {
                                     const {
                                         nit,

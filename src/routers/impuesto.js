@@ -10,8 +10,7 @@ router.get('/impuesto_all', async (req,res) => {
     let impuesto = await new Impuesto().getImpuesto(); 
     if (impuesto.length > 0){
         response.data = impuesto;
-    } else {
-        
+    } else { 
         response.success = false;
         response.msg = 'No existen registros';
     }

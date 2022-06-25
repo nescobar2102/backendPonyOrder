@@ -5,8 +5,12 @@ class ClasificacionItems {
         let results = await db.query(`SELECT * FROM clasificacion_item ORDER BY descripcion ASC`).catch(console.log);
         return results.rows;
     }
-    async getclasificacionItemsByDesc(descripcion) {
-        let results = await db.query('SELECT * FROM clasificacion_item WHERE descripcion = $1', [descripcion]).catch(console.log);
+    async getclasificacionItemsByDesc(descripcion,nit) {
+        let results = await db.query('SELECT * FROM clasificacion_item WHERE descripcion = $1  and nit = $2', [descripcion,nit]).catch(console.log);
+        return results.rows;
+    }
+    async getclasificacionItemsById(id_clasificacion,nit) {
+        let results = await db.query('SELECT * FROM clasificacion_item WHERE id_clasificacion = $1 and nit = $2', [id_clasificacion,nit]).catch(console.log);
         return results.rows;
     }
     async createclasificacionItems(id_clasificacion, descripcion, id_padre, nivel, imagen, nit) {
