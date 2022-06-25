@@ -97,11 +97,11 @@ router.post('/synchronization_cuentaportercero', async (req,res) => {
             status = 400;
             break;
         }
-        exist = await   new Cuentaportercero().getCuentaporterceroNitId(nit,id_proyecto);
+        exist = await   new Cuentaportercero().getCuentaporterceroNitId(nit,numero);
         if (exist.length > 0) {
             bandera = true;
             response.success = false;
-            response.msg = `La Cuenta por tercero con el nit: (${nit}) y el id_proyecto (${id_proyecto})  ya existe.`;
+            response.msg = `La Cuenta por tercero con el nit: (${nit}) y el numero (${numero})  ya existe.`;
             status = 200;
             break;
         }

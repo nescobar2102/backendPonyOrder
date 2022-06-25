@@ -44,6 +44,7 @@ router.get('/tipodoc/:nit/:id_tipo_doc', async (req, res) => {
 router.post('/synchronization_tipodoc', async (req, res) => {
     const response = newResponseJson();
     let status = 201;
+    response.msg = 'Sincronización de Tipo de Doc';
     const {tipodocs} = req.body
     let bandera = false;
      
