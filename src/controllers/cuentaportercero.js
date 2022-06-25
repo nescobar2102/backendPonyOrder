@@ -10,7 +10,7 @@ class Cuentaportercero
         let results = await db.query('SELECT * FROM cuentas_por_tercero WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
-    async getCuentaporterceroNitId(nit,id_proyecto) {
+    async getCuentaporterceroNitId(nit,numero) {
         let results = await db.query('SELECT * FROM cuentas_por_tercero WHERE nit = $1 and numero = $2', [nit,numero]).catch(console.log); 
         return results.rows;
     }    
