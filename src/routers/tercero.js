@@ -89,7 +89,7 @@ router.post('/clientes', async (req, res) => { //appmovil
         response.data = tercero;
     } else { 
         response.success = false;
-        response.msg = 'No existen el cliente!';
+        response.msg = 'No se encontro el cliente!';
     }
     res.status(status).json(response)
 });
