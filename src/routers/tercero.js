@@ -49,6 +49,7 @@ router.get('/direccion_all', async (req, res) => {
     }
     res.status(status).json(response)
 });
+//backend
 router.get('/tercero/:nit/:nombre', async (req, res) => {
     const response = newResponseJson();
     let status = 200;
@@ -67,6 +68,28 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
     } else { 
         response.success = false;
         response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
+
+router.post('/clientes', async (req, res) => { //appmovil
+    const response = newResponseJson();
+    let status = 200;
+    let bandera = false; 
+    response.msg = 'Listar un tercero por Nit y nombre';    
+    let {nit, nombre} = req.body;    
+    if (nit.trim() == "" || nombre.trim() == ""  ) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit o nombre están vacios';
+        status = 400;
+    }
+    let tercero = await new Tercero().getTerceroByNitIlike(nit, nombre);
+    if (tercero.length > 0) {
+        response.data = tercero;
+    } else { 
+        response.success = false;
+        response.msg = 'No existen el cliente!';
     }
     res.status(status).json(response)
 });

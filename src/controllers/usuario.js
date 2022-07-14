@@ -53,6 +53,11 @@ class Usuario {
             [nit]).catch(console.log);               
                 return results;
             }  
+
+        async getUserByUser(usuario) {
+            let results = await db.query('SELECT * FROM usuario WHERE usuario = $1', [usuario]).catch(console.log); 
+            return results.rows;
+        }
         async login( usuario, clave) {
         let results =  await db.query('SELECT * FROM usuario WHERE usuario = $1 and clave = $2',
         [usuario , clave]).catch(console.log);               

@@ -177,21 +177,24 @@ router.delete('/users/:nit', async (req, res) => {
 // inicio de sesion app
 router.post('/login', async (req, res) => {
     const response = newResponseJson();
-    response.msg = 'Iniciar sesión';
+    response.msg = 'Bienvenido!';
     let status = 200;
-    const {usuario, clave} = req.body
-    let usuarios = await new Usuario().login(usuario, clave);
-    if (usuarios.length > 0) {
-        response.date = usuarios;
-    } else {
+    const {username, password} = req.body
+    exist = await new Usuario().getUserByUser(username);
+    if (exist.length == 0) {      
         response.success = false;
+        response.msg = `Usuario ${username} no existe!`;  
+    } else{
+        let usuarios = await new Usuario().login(username, password);        
+        if (usuarios.rowCount > 0) {
+            response.data = usuarios.rows; 
+        } else {
+            response.success = false;
+            response.msg = `Contraseña incorrecta!`; 
+        }
     }
+ 
     res.status(status).json(response)
-    if (usuarios.rowCount > 0) {
-        res.status(status).json(usuarios.rows)
-    } else {
-        res.status(404).json('El usuario o la clave es invalida')
-    }
 });
 
 // Create a todo.

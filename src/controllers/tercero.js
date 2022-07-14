@@ -22,6 +22,13 @@ class Tercero
         let results = await db.query('SELECT * FROM tercero WHERE nit = $1 and nombre = $2', [nit,nombre]).catch(console.log); 
         return results.rows;
     }
+
+    async getTerceroByNitIlike(nit,nombre) { //ikili        
+        const sql = `SELECT * FROM tercero WHERE nit = '${nit}' and nombre ILIKE '%${nombre}%' `;
+        const results = await db.query(sql).catch(console.log);  
+        return results.rows;
+    }
+    
     async getTercerocliente(id_tercero) {
         let results = await db.query('SELECT * FROM tercero_cliente WHERE id_tercero = $1', [id_tercero]).catch(console.log); 
         return results.rows;
