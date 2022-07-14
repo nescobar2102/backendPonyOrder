@@ -52,18 +52,17 @@ router.get('/direccion_all', async (req, res) => {
 //backend
 router.get('/tercero/:nit/:nombre', async (req, res) => {
     const response = newResponseJson();
-    let status = 200;
-    let bandera = false; 
+    let status = 200; 
     response.msg = 'Listar un tercero por Nit y nombre';
     let {nit, nombre} = req.params;
-    if (nit.trim() == "" || nombre.trim() == ""  ) {
-        bandera = true;
+    if (nit.trim() == "" || nombre.trim() == ""  ) { 
         response.success = false;
         response.msg = 'El nit o nombre están vacios';
         status = 400;
     }
     let tercero = await new Tercero().getTerceroByNit(nit, nombre);
     if (tercero.length > 0) {
+        response.count = tercero.length;
         response.data = tercero;
     } else { 
         response.success = false;
@@ -74,9 +73,7 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
 
 router.post('/clientes', async (req, res) => { //appmovil
     const response = newResponseJson();
-    let status = 200;
-    let bandera = false; 
-    response.msg = 'Listar un tercero por Nit y nombre';    
+    let status = 200;  
     let {nit, nombre} = req.body;    
     if (nit.trim() == "" || nombre.trim() == ""  ) {
         bandera = true;
@@ -85,7 +82,10 @@ router.post('/clientes', async (req, res) => { //appmovil
         status = 400;
     }
     let tercero = await new Tercero().getTerceroByNitIlike(nit, nombre);
-    if (tercero.length > 0) {
+    console.log("count",tercero.length)
+   
+    if (tercero.length > 0) {      
+        response.count = tercero.length;
         response.data = tercero;
     } else { 
         response.success = false;
@@ -108,6 +108,7 @@ router.get('/tercero/:nit', async (req, res) => {
      if (!bandera) {
         let tercero = await new Tercero().getTerceroByNitID(nit);
         if (tercero.length > 0) {
+            response.count = tercero.length;
             response.data = tercero;
         } else { 
             response.success = false;
@@ -132,6 +133,7 @@ router.get('/cliente/:id_tercero', async (req, res) => {
     if (!bandera) {
     let tercero = await new Tercero().getTercerocliente(id_tercero);
     if (tercero.length > 0) {
+        response.count = tercero.length;
         response.data = tercero;
     } else { 
         response.success = false;
@@ -156,6 +158,7 @@ router.get('/direccion/:id_tercero', async (req, res) => {
     if (!bandera) {
     let tercero = await new Tercero().getTercerodireccion(id_tercero);
     if (tercero.length > 0) {
+        response.count = tercero.length;
         response.data = tercero;
     } else { 
         response.success = false;
@@ -370,6 +373,6 @@ router.post('/synchronization_tercero', async (req, res) => {
     res.status(status).json(response);
 });
 function newResponseJson() {
-    return {success: true, msg: "", data: []};
+    return {success: true, msg: "", data: [],count: 0};
 }
 module.exports = router;
