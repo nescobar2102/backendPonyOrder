@@ -9,6 +9,11 @@ class Depto {
         let results = await db.query('SELECT * FROM depto WHERE  nit = $1', [nit]).catch(console.log);
         return results.rows;
     }
+
+    async getDeptoByNitApp(nit) {
+        let results = await db.query('select id_depto as value, nombre as label from depto   WHERE  nit = $1', [nit]).catch(console.log);
+        return results.rows;
+    }
     async getDeptoNitId(nit,id_depto) {
         let results = await db.query('SELECT * FROM depto WHERE  nit = $1 and id_depto = $2', [nit,id_depto]).catch(console.log);
         return results.rows;

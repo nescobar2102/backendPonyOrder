@@ -9,6 +9,10 @@ class Ciudades {
         let results = await db.query('SELECT * FROM ciudad WHERE nit = $1', [nit]).catch(console.log);
         return results.rows;
     }
+    async getCiudadByNitApp(nit) {       
+        let results = await db.query('select id_ciudad as value, nombre as label from ciudad WHERE nit = $1', [nit]).catch(console.log);
+        return results.rows;
+    }
     async getCiudadNitId(nit,id_ciudad) {
         let results = await db.query('SELECT * FROM ciudad WHERE nit = $1 and id_ciudad = $2', [nit,id_ciudad]).catch(console.log);
         return results.rows;

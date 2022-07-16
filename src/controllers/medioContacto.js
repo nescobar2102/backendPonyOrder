@@ -9,6 +9,10 @@ class MedioContacto {
         let results = await db.query('SELECT * FROM medio_contacto WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
+    async getMedioContactoByNitApp(nit) {
+        let results = await db.query('select id_medio_contacto as value, descripcion as label from medio_contacto WHERE nit = $1', [nit]).catch(console.log); 
+        return results.rows;
+    }
     async getMedioContactoNitId(nit,id_medio_contacto) {
         let results = await db.query('SELECT * FROM medio_contacto WHERE nit = $1 and id_medio_contacto = $2', [nit,id_medio_contacto]).catch(console.log); 
         return results.rows;

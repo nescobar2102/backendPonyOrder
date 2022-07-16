@@ -43,6 +43,31 @@ router.get('/ciudades/:nit', async (req, res) => {
     res.status(status).json(response)
 });
 
+
+// listar una nueva Ciudad por Nit
+router.get('/app_ciudades/:nit', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar una Ciudades por Nit';
+    let status = 200;
+    let bandera = false;
+    let {nit} = req?.params; 
+    if (nit.trim() == '' || nit == null) {
+        bandera= true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400; 
+    }  
+    if (!bandera) { 
+        let ciudades = await new Ciudades().getCiudadByNitApp(nit);
+        if (ciudades.length > 0) {
+            response.data = ciudades;
+        } else {
+            response.success = false;
+            response.msg = 'No existen registros';
+        }    
+    }
+    res.status(status).json(response)
+});
 // Create a todo.
 router.post('/synchronization_ciudad', async (req, res) => {
     const response = newResponseJson();

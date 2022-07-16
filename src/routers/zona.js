@@ -41,6 +41,29 @@ router.get('/zona/:nit', async (req,res) => {
     }    
     res.status(status).json(response)
 });
+router.get('/app_zona/:nit', async (req,res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar la Zona por Nit';
+    let status = 200;
+    bandera = false;
+    let {nit} = req?.params;      
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    }
+    if (! bandera) {
+        let zona = await new Zona().getZonaByNitApp(nit);
+        if (zona.length > 0) {
+            response.data = zona;
+        } else {
+            response.success = false;
+            response.msg = 'No existe registros';
+        }
+    }    
+    res.status(status).json(response)
+});
 
 // Create a todo.
 router.post('/synchronization_zona', async (req,res) => {

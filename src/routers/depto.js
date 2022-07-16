@@ -43,6 +43,32 @@ router.get('/depto/:nit', async (req, res) => {
     res.status(status).json(response);
 });
 
+
+// listar un departamentos por nit
+router.get('/app_depto/:nit', async (req, res) => { //appmovil
+    const response = newResponseJson();
+    response.msg = 'Listar un Departamento pot Nit';
+    let status = 200;
+    let bandera = false;
+    let {nit} = req?.params;
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    } 
+    if (!bandera) {
+        let depto = await new Depto().getDeptoByNitApp(nit);
+        if(depto.length > 0){
+            response.data = depto;
+        } else {
+            response.success = false;
+            response.msg = 'No existe registros.';
+        }
+    }
+    res.status(status).json(response);
+});
+
 // CREATE A TODO
 router.post('/synchronization_depto', async (req, res) => {
     const response = newResponseJson();   

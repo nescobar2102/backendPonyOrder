@@ -15,6 +15,19 @@ router.get('/tipoidentificacion_all', async (req, res) => {
     }
     res.status(status).json(response)
 });
+router.get('/app_tipoidentificacion_all', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar todos los tipos de identificacion';
+    let status = 200;
+    let tipoidentificacion = await new Tipoidentificacion().getTipoidentificacion_app();
+    if (tipoidentificacion.length > 0) {
+        response.data = tipoidentificacion;
+    } else {
+        response.success = false;
+        response.msg = 'No existen registros';
+    }
+    res.status(status).json(response)
+});
 
 router.get('/tipoidentificacion/:id_tipo_identificacion', async (req, res) => {
     const response = newResponseJson();

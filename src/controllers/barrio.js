@@ -9,6 +9,10 @@ class Barrio {
         let results = await db.query('SELECT * FROM barrio WHERE nit = $1 ', [nit]).catch(console.log);
         return results.rows;
     }
+    async getBarrioByNitApp(nit) {
+        let results = await db.query('select id_barrio as value, nombre as label FROM barrio WHERE nit = $1 ', [nit]).catch(console.log);
+        return results.rows;
+    }
     async getBarrioNitId(nit,id_barrio) {       
         let results = await db.query('SELECT * FROM barrio WHERE nit = $1 and id_barrio= $2', [nit,id_barrio]).catch(console.log);
         return results.rows;

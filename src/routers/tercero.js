@@ -93,6 +93,28 @@ router.post('/clientes', async (req, res) => { //appmovil
     }
     res.status(status).json(response)
 });
+router.post('/crear_cliente', async (req, res) => { //appmovil
+    const response = newResponseJson();
+    let status = 200;  
+    let {nit, nombre} = req.body;    
+    if (nit.trim() == "" || nombre.trim() == ""  ) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit o nombre están vacios';
+        status = 400;
+    }
+    let tercero = await new Tercero().getTerceroByNitIlike(nit, nombre);
+    console.log("count",tercero.length)
+   
+    if (tercero.length > 0) {      
+        response.count = tercero.length;
+        response.data = tercero;
+    } else { 
+        response.success = false;
+        response.msg = 'No se encontro el cliente!';
+    }
+    res.status(status).json(response)
+});
 router.get('/tercero/:nit', async (req, res) => {
     const response = newResponseJson();
     let status = 200;

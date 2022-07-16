@@ -42,6 +42,30 @@ router.get('/medioContacto/:nit', async (req,res) => {
     res.status(status).json(response)
 });
 
+router.get('/app_medioContacto/:nit', async (req,res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar un Medio Contacto  por Nit';
+    let status = 200;
+    let bandera = false;
+    let {nit} = req?.params;    
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400;
+    } 
+    if (! bandera) {
+        let medioContacto = await new MedioContacto().getMedioContactoByNitApp(nit);
+        if (medioContacto.length > 0) {
+            response.data = medioContacto;
+        } else {
+            response.success = false;
+            response.msg = 'No existen registros.';
+        }
+    }
+    res.status(status).json(response)
+});
+
 // CREAR  TODOS
 router.post('/synchronization_medioContacto', async (req,res) => {
     const response = newResponseJson();

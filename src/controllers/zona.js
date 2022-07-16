@@ -10,6 +10,10 @@ class Zona
         let results = await db.query('SELECT * FROM zona WHERE nit = $1', [nit]).catch(console.log); 
         return results.rows;
     }
+    async getZonaByNitApp(nit) {
+        let results = await db.query('select id_zona as value, descripcion as label  FROM zona WHERE nit = $1', [nit]).catch(console.log); 
+        return results.rows;
+    }
     async getZonaNitId(nit,id_zona) {
         let results = await db.query('SELECT * FROM zona WHERE nit = $1 and id_zona = $2', [nit,id_zona]).catch(console.log); 
         return results.rows;

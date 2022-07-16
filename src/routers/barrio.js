@@ -41,7 +41,31 @@ router.get('/barrio/:nit', async (req, res) => {
     }
     res.status(status).json(response)
 });
-
+// listar un nuevo Barrio por Nit
+router.get('/app_barrio/:nit', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Listar un Barrio por Nit';
+    let status = 200;
+    let bandera = false;
+    let {nit} = req?.params;
+    
+    if (nit.trim() == '' || nit == null) {
+        bandera = true;
+        response.success = false;
+        response.msg = 'El nit esta vacio';
+        status = 400; 
+    } 
+    if (!bandera) { 
+        let barrio = await new Barrio().getBarrioByNitApp(nit);
+        if (barrio.length > 0) {
+            response.data = barrio;
+        } else {
+            response.success = false;
+            response.msg = 'No existen registros';
+        }
+    }
+    res.status(status).json(response)
+});
 // Create a todo.
 router.post('/synchronization_barrio', async (req, res) => {
     const response = newResponseJson();
