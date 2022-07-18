@@ -23,8 +23,8 @@ class Tercero
         return results.rows;
     }
 
-    async getTerceroByNitIlike(nit,nombre) { //ikili        
-        const sql = `SELECT * FROM tercero WHERE nit = '${nit}' and nombre ILIKE '%${nombre}%' `;
+    async getTerceroByNitIlike(nit,nombre) { //ikili                
+        const sql = `SELECT * FROM tercero WHERE nit = '${nit}' and nombre ILIKE '%${nombre}%' `;      
         const results = await db.query(sql).catch(console.log);  
         return results.rows;
     }
@@ -148,6 +148,7 @@ class Tercero
           return response
         
 }
+
     async createTercerocliente(nit,
         id_tercero,
         id_sucursal_tercero,
@@ -261,5 +262,99 @@ async createTercerodireccion(nit,id_tercero,id_sucursal_tercero,id_direccion,dir
     return response
  
 }
+
+//app
+
+async createTerceroApp( nit,
+    id_tercero,id_sucursal_tercero,id_tipo_identificacion, dv, nombre, direccion, id_pais, id_depto,
+    id_ciudad, id_barrio, telefono,nombre_sucursal,
+        primer_apellido, segundo_apellido, primer_nombre, segundo_nombre, e_mail) { 
+
+    let response
+    try {  
+         const sql = `INSERT INTO public.tercero(
+            id_tercero,id_sucursal_tercero,id_tipo_identificacion, dv, nombre, direccion, id_pais, id_depto,
+            id_ciudad, id_barrio, telefono,cliente,fecha_creacion,nombre_sucursal,
+            primer_apellido, segundo_apellido, primer_nombre, segundo_nombre,
+            flag_persona_nat,estado_tercero,e_mail,nit)		
+             VALUES ('${id_tercero}','${id_sucursal_tercero}','${id_tipo_identificacion}', '${dv}','${nombre}', '${direccion}','${id_pais}', '${id_depto}',
+                    '${id_ciudad}', '${id_barrio}', '${telefono}', 'SI', NOW(), '${nombre_sucursal}',
+                    '${primer_apellido}', '${segundo_apellido}', '${primer_nombre}','${segundo_nombre}',
+                    'SI', 'ACTIVO','${e_mail}','${nit}') `;               
+        const insert = await db.query(sql); 
+ 
+        response = insert
+    }catch(err){
+        response = err
+    }
+      return response    
+}
+
+async createTerceroclienteApp(id_tercero, id_sucursal_tercero,id_forma_pago,id_precio_item ,id_vendedor,
+    id_suc_vendedor,id_medio_contacto, id_zona, nit) { 
+
+    let response
+    try {
+        const sql = `INSERT INTO public.tercero_cliente(
+                    id_tercero, id_sucursal_tercero,id_forma_pago,id_precio_item ,id_vendedor,
+                    id_suc_vendedor,id_medio_contacto, id_zona, nit)
+                        VALUES ('${id_tercero}',  '${id_sucursal_tercero}' ,'${id_forma_pago}','${id_precio_item}','${id_vendedor}',
+                        '${id_suc_vendedor}', '${id_medio_contacto}', '${id_zona}', '${nit}' );`;
+         const insert = await db.query(sql); 
+        response = insert
+    }catch(err){
+        response = err
+    }
+      return response    
+}
+async createTercerodireccionApp(id_tercero, id_sucursal_tercero, id_direccion, direccion, telefono,
+    id_pais, id_ciudad, id_depto, tipo_direccion, nit) { 
+ 
+    let response
+    try { 
+        const sql = `INSERT INTO public.tercero_direccion(
+            id_tercero, id_sucursal_tercero, id_direccion, direccion, telefono,
+            id_pais, id_ciudad, id_depto, tipo_direccion, nit)
+            VALUES ('${id_tercero}', '${id_sucursal_tercero}', '${id_direccion}', '${direccion}', '${telefono}', 
+            '${id_pais}','${id_ciudad}','${id_depto}','${tipo_direccion}' ,'${nit}' ) `;
+         const insert2 =   await db.query(sql); 
+/*
+        const sql1 = `INSERT INTO public.tercero_direccion(
+            id_tercero, id_sucursal_tercero, id_direccion, direccion, telefono,
+            id_pais, id_ciudad, id_depto, tipo_direccion, nit)
+            VALUES ('${id_tercero}', '${id_sucursal_tercero}', '${id_direccion}', '${direccion}', '${telefono}', 
+            '${id_pais}','${id_ciudad}','${id_depto}','${tipo_direccion}' ,'${nit}' ) `;
+        const insert2 = await db.query(sql1); */
+  
+        response = insert2
+    }catch(err){
+        response = err
+    }
+    return response 
+}
+    async getTerceroApp(nit) {
+     let results = await db.query(` 
+                    SELECT tercero.id_tercero, usuario,id_tipo_identificacion,dv,telefono,ciudad.nombre AS ciudad,direccion,
+                    CONCAT(primer_nombre,' ',primer_apellido) AS nombre_completo ,
+                    nombre_sucursal,e_mail,tercero.nit,limite_credito
+                    FROM tercero JOIN ciudad ON tercero.id_ciudad=ciudad.id_ciudad AND tercero.nit=ciudad.nit
+                    JOIN tercero_cliente ON tercero_cliente.id_tercero=tercero.id_tercero AND tercero.nit=tercero_cliente.nit
+                    WHERE tercero.nit = '${nit}' 
+                    ORDER BY nombre_completo ASC                     
+                    `).catch(console.log); 
+        return results.rows;
+}
+    async getTerceroAppIlike(nit,nombre) {
+        
+    let results = await db.query(`SELECT tercero.id_tercero, usuario,id_tipo_identificacion,dv,telefono,ciudad.nombre AS ciudad,direccion,
+                    CONCAT(primer_nombre,' ',primer_apellido) AS nombre_completo ,
+                    nombre_sucursal,e_mail,tercero.nit,limite_credito
+                    FROM tercero JOIN ciudad ON tercero.id_ciudad=ciudad.id_ciudad AND tercero.nit=ciudad.nit
+                    JOIN tercero_cliente ON tercero_cliente.id_tercero=tercero.id_tercero AND tercero.nit=tercero_cliente.nit
+                    WHERE tercero.nit = '${nit}' AND tercero.nombre ILIKE '%${nombre}%'
+                    ORDER BY nombre_completo ASC ` ).catch(console.log); 
+       return results.rows;
+}
+
 }
 module.exports = Tercero;

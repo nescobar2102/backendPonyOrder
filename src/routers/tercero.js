@@ -74,16 +74,23 @@ router.get('/tercero/:nit/:nombre', async (req, res) => {
 router.post('/clientes', async (req, res) => { //appmovil
     const response = newResponseJson();
     let status = 200;  
-    let {nit, nombre} = req.body;    
-    if (nit.trim() == "" || nombre.trim() == ""  ) {
+    let {nit, nombre} = req?.body; 
+    let tercero ;
+    if (nit.trim() == ""  ) {
         bandera = true;
         response.success = false;
         response.msg = 'El nit o nombre están vacios';
         status = 400;
     }
-    let tercero = await new Tercero().getTerceroByNitIlike(nit, nombre);
-    console.log("count",tercero.length)
-   
+    if (nombre?.trim() == "" || nombre=='@') {
+        console.log("#aaaaaaaaaaaaaaaaaaaaaaa")
+         tercero = await new Tercero().getTerceroApp(nit);
+        console.log("count",tercero.length)       
+    }else{
+        console.log("#bbbbbbbbbbbbbbbbbbbbb")
+        tercero = await new Tercero().getTerceroAppIlike(nit, nombre);
+        console.log("count",tercero.length)
+    }
     if (tercero.length > 0) {      
         response.count = tercero.length;
         response.data = tercero;
@@ -93,28 +100,7 @@ router.post('/clientes', async (req, res) => { //appmovil
     }
     res.status(status).json(response)
 });
-router.post('/crear_cliente', async (req, res) => { //appmovil
-    const response = newResponseJson();
-    let status = 200;  
-    let {nit, nombre} = req.body;    
-    if (nit.trim() == "" || nombre.trim() == ""  ) {
-        bandera = true;
-        response.success = false;
-        response.msg = 'El nit o nombre están vacios';
-        status = 400;
-    }
-    let tercero = await new Tercero().getTerceroByNitIlike(nit, nombre);
-    console.log("count",tercero.length)
-   
-    if (tercero.length > 0) {      
-        response.count = tercero.length;
-        response.data = tercero;
-    } else { 
-        response.success = false;
-        response.msg = 'No se encontro el cliente!';
-    }
-    res.status(status).json(response)
-});
+ 
 router.get('/tercero/:nit', async (req, res) => {
     const response = newResponseJson();
     let status = 200;
@@ -392,6 +378,89 @@ router.post('/synchronization_tercero', async (req, res) => {
     if (! bandera_cliente && ! bandera_direccion && !bandera) { // no se levanto la bandera (false) 
         response.data =  await new Tercero().getTercero(); 
     }  
+    res.status(status).json(response);
+});
+
+
+router.post('/nuevo_cliente_app', async (req, res) => {
+    const response = newResponseJson();
+    response.msg = 'Creación de cliente exitosa.';
+    let status = 201;    
+            const {
+                nit,
+                id_tercero,
+                id_sucursal_tercero,
+                id_tipo_identificacion,
+                dv,
+                nombre,
+                direccion,
+                id_pais,
+                id_depto,
+                id_ciudad,
+                id_barrio,
+                telefono,    
+                nombre_sucursal,
+                primer_apellido,
+                segundo_apellido,
+                primer_nombre,
+                segundo_nombre, 
+                e_mail,
+                id_forma_pago,
+                id_precio_item,                
+                id_vendedor, 
+                id_medio_contacto,
+                id_zona,
+                tipo_direccion,
+                id_direccion,
+                id_suc_vendedor
+            } = req.body
+            let tercero = await new Tercero().getTercerocliente(id_tercero);
+            if (tercero.length > 0) {               
+                
+                response.success = false; 
+                response.msg = `El Cliente con el id_tercero ${id_tercero} ya existe`;
+                status = 200;             
+                } 
+                console.log("segundo_nombre",segundo_nombre)
+                console.log("primer_nombre",primer_nombre)
+                console.log("nombre_sucursal",nombre_sucursal)
+                console.log("e_mail",e_mail)
+            let result1 = await new Tercero().createTerceroApp(nit,
+                id_tercero,id_sucursal_tercero,id_tipo_identificacion, dv, nombre, direccion, id_pais, id_depto,
+                id_ciudad, id_barrio, telefono,nombre_sucursal,
+                    primer_apellido, segundo_apellido, primer_nombre, segundo_nombre, e_mail);
+          
+            if (!result1 ?. rowCount || result1 ?. rowCount == 0 ) { 
+                console.log("entra en bandera tercero",result1)               
+                response.success = false;
+                response.msg = `Ha ocurrido un error al insertar un tercero: BD ${result1}`;
+                status = 500;
+               
+            } else {
+                if ( result1 ?. rowCount > 0) {  
+                                             let result2 = await new Tercero().createTerceroclienteApp(id_tercero, id_sucursal_tercero,id_forma_pago,id_precio_item ,id_vendedor,
+                        id_suc_vendedor,id_medio_contacto, id_zona, nit);
+                        
+                         if (!result2 ?. rowCount || result2 ?. rowCount == 0) {   
+                            response.success = false;
+                            response.msg = `Ha ocurrido un error al insertar un tercero cliente: BD ${result2}`;
+                            status = 500;   
+                        }  
+                       if (result2 ?. rowCount > 0 && response.success) {                           
+                                  let result3 = await new Tercero().createTercerodireccionApp(id_tercero, id_sucursal_tercero, id_direccion, direccion, telefono,
+                                    id_pais, id_ciudad, id_depto, tipo_direccion, nit);
+                                    if (!result3 ?. rowCount || result3 ?. rowCount == 0) { //
+                                        console.log("entra en bandera direccion") 
+                                        response.success = false;
+                                        response.msg = `Ha ocurrido un error al insertar un tercero direccion: BD ${result3}`;                                       
+                                    } 
+                            }
+                        }
+                    }
+                  
+    
+        response.data =  await new Tercero().getTerceroApp(nit); 
+    
     res.status(status).json(response);
 });
 function newResponseJson() {
